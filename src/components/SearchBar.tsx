@@ -1,28 +1,24 @@
-import { Search, Sparkles } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { Search, Sparkles, ArrowRight } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
-import { aiSearch } from '@/data/ai-search';
 
 interface SearchBarProps {
   variant?: 'hero' | 'compact';
   className?: string;
+  onAISearch?: (query: string) => void;
 }
 
 const suggestions = [
   'Best open-source PCB design tools',
   'Free robotics simulation software',
-  'Machine learning for embedded systems',
+  'ESP32 simulator for beginners',
   'IoT platforms with free tier',
-  'Computer vision libraries for beginners',
+  'Verilog HDL practice online',
   'KiCad alternatives for circuit design',
 ];
 
-export function SearchBar({ variant = 'hero', className = '' }: SearchBarProps) {
+export function SearchBar({ variant = 'hero', className = '', onAISearch }: SearchBarProps) {
   const [query, setQuery] = useState('');
-  const [aiResult, setAiResult] = useState<string[]>([]);
-  const [isSearching, setIsSearching] = useState(false);
   const [currentSuggestion, setCurrentSuggestion] = useState(0);
-  const navigate = useNavigate();
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -33,47 +29,33 @@ export function SearchBar({ variant = 'hero', className = '' }: SearchBarProps) 
     return () => clearInterval(interval);
   }, [variant]);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!query.trim()) return;
-
-    setIsSearching(true);
-    setAiResult([]);
-
-    try {
-      const result = aiSearch(query);
-      if (result) {
-        setAiResult([
-          result.bestMatch.name,
-          ...result.otherResults.map((w) => w.name),
-        ]);
-      }
-    } finally {
-      setIsSearching(false);
-      navigate(`/explore?q=${encodeURIComponent(query.trim())}`);
-    }
-  };
-
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter') {
-      handleSubmit(e);
-    }
+    onAISearch?.(query.trim());
   };
 
   if (variant === 'compact') {
     return (
       <form onSubmit={handleSubmit} className={className}>
-        <div className="relative">
-          <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
+        <div className="relative flex items-center">
+          <Search className="pointer-events-none absolute left-3 h-4 w-4 text-slate-400" />
           <input
             ref={inputRef}
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            onKeyDown={handleKeyDown}
             placeholder="Search tools, platforms, resources…"
-            className="h-10 w-full rounded-lg border border-slate-200 bg-white py-2 pl-10 pr-4 text-[13px] text-slate-900 placeholder-slate-400 transition-colors focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+            className="h-10 w-full rounded-lg border border-slate-200 bg-white py-2 pl-10 pr-24 text-[13px] text-slate-900 placeholder-slate-400 transition-colors focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
           />
+          <button
+            type="submit"
+            className="absolute right-1.5 top-1/2 flex h-7 -translate-y-1/2 items-center gap-1.5 rounded-md bg-blue-600 px-3 text-[12px] font-medium text-white transition-colors hover:bg-blue-700 cursor-pointer"
+          >
+            <Sparkles className="h-3 w-3" />
+            <span className="hidden sm:inline">Search</span>
+            <ArrowRight className="h-3 w-3 sm:hidden" />
+          </button>
         </div>
       </form>
     );
@@ -91,42 +73,19 @@ export function SearchBar({ variant = 'hero', className = '' }: SearchBarProps) 
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            onKeyDown={handleKeyDown}
             placeholder={suggestions[currentSuggestion]}
-            className="h-14 w-full rounded-xl border border-slate-200 bg-white py-3 pl-12 pr-32 text-[15px] text-slate-900 placeholder-slate-400 shadow-sm transition-all focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 sm:text-[14px]"
+            className="h-14 w-full rounded-xl border border-slate-200 bg-white py-3 pl-12 pr-36 text-[15px] text-slate-900 placeholder-slate-400 shadow-sm transition-all focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 sm:text-[14px]"
           />
           <button
             type="submit"
-            disabled={isSearching}
-            className="absolute right-2 top-1/2 flex h-10 -translate-y-1/2 items-center gap-2 rounded-lg bg-blue-600 px-4 text-[13px] font-medium text-white transition-colors hover:bg-blue-700 disabled:opacity-50 cursor-pointer"
+            className="absolute right-2 top-1/2 flex h-10 -translate-y-1/2 items-center gap-2 rounded-lg bg-blue-600 px-4 text-[13px] font-medium text-white transition-colors hover:bg-blue-700 cursor-pointer"
           >
             <Sparkles className="h-3.5 w-3.5" />
-            <span className="hidden sm:inline">{isSearching ? 'Searching…' : 'AI Search'}</span>
+            <span className="hidden sm:inline">AI Search</span>
+            <ArrowRight className="h-3.5 w-3.5 sm:hidden" />
           </button>
         </div>
       </form>
-
-      {/* AI Results inline */}
-      {aiResult.length > 0 && (
-        <div className="mt-4 rounded-xl border border-slate-200 bg-white p-4 shadow-lg">
-          <div className="mb-3 flex items-center gap-2">
-            <Sparkles className="h-4 w-4 text-blue-600" />
-            <span className="text-[13px] font-medium text-slate-900">AI Suggestions</span>
-          </div>
-          <div className="space-y-2">
-            {aiResult.map((name, i) => (
-              <div
-                key={i}
-                className="flex items-center gap-3 rounded-lg border border-slate-100 p-3 transition-colors hover:bg-slate-50"
-              >
-                <div>
-                  <p className="text-[13px] font-medium text-slate-900">{name}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
     </div>
   );
 }

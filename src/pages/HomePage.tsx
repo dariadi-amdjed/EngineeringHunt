@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { websites, getFeaturedWebsites } from '@/data/websites';
@@ -7,6 +8,7 @@ import { WebsiteCard } from '@/components/WebsiteCard';
 import { CategoryCard } from '@/components/CategoryCard';
 import { SearchBar } from '@/components/SearchBar';
 import { FloatingStickers } from '@/components/FloatingStickers';
+import { AISearchOverlay } from '@/components/AISearchOverlay';
 import { Zap, Code, Cpu, GitBranch } from 'lucide-react';
 
 const featuredWebsites = getFeaturedWebsites().slice(0, 6);
@@ -19,8 +21,23 @@ const stats = [
 ];
 
 export function HomePage() {
+  const [aiQuery, setAiQuery] = useState('');
+  const [aiOpen, setAiOpen] = useState(false);
+
+  const handleAISearch = (query: string) => {
+    setAiQuery(query);
+    setAiOpen(true);
+  };
+
   return (
     <div>
+      {/* AI Search Overlay */}
+      <AISearchOverlay
+        query={aiQuery}
+        isOpen={aiOpen}
+        onClose={() => setAiOpen(false)}
+      />
+
       {/* Hero */}
       <section className="relative overflow-hidden border-b border-slate-200 bg-white grid-canvas">
         <FloatingStickers stickers={heroStickers} />
@@ -42,7 +59,7 @@ export function HomePage() {
             resources — organized by domain and purpose.
           </p>
           <div className="mx-auto mt-6 max-w-xl">
-            <SearchBar variant="hero" />
+            <SearchBar variant="hero" onAISearch={handleAISearch} />
           </div>
           <div className="mt-4 flex items-center justify-center gap-4 text-[11px] text-slate-400">
             <span>Try: "free PCB design tools"</span>

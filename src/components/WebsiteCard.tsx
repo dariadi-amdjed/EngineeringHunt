@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ExternalLink } from 'lucide-react';
+import { ExternalLink, Info } from 'lucide-react';
 import type { Website } from '@/types';
 import { Tag } from './Tag';
 
@@ -15,19 +15,37 @@ function categoryLabel(slug: string): string {
 export function WebsiteCard({ website, layout = 'grid' }: WebsiteCardProps) {
   if (layout === 'list') {
     return (
-      <Link
-        to={`/website/${website.slug}`}
-        className="group flex items-start gap-4 rounded-lg border border-slate-200 bg-white p-4 no-underline transition-all hover:border-slate-300 hover:shadow-sm"
-      >
+      <div className="group flex items-start gap-4 rounded-lg border border-slate-200 bg-white p-4 transition-all hover:border-slate-300 hover:shadow-sm">
         <div className="min-w-0 flex-1">
           <div className="flex items-start justify-between gap-2">
             <div>
-              <h3 className="text-[14px] font-semibold text-slate-900 group-hover:text-blue-600">
+              <a
+                href={website.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[14px] font-semibold text-slate-900 no-underline hover:text-blue-600"
+              >
                 {website.name}
-              </h3>
+              </a>
               <p className="mt-0.5 text-[13px] text-slate-500 line-clamp-1">{website.description}</p>
             </div>
-            <ExternalLink className="mt-0.5 h-3.5 w-3.5 flex-shrink-0 text-slate-300 transition-colors group-hover:text-slate-500" />
+            <div className="flex items-center gap-1">
+              <a
+                href={website.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-md text-slate-300 transition-colors hover:bg-slate-100 hover:text-slate-500"
+              >
+                <ExternalLink className="h-3.5 w-3.5" />
+              </a>
+              <Link
+                to={`/website/${website.slug}`}
+                className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-md text-slate-300 transition-colors hover:bg-blue-50 hover:text-blue-500"
+                title="More details"
+              >
+                <Info className="h-3.5 w-3.5" />
+              </Link>
+            </div>
           </div>
           <div className="mt-2 flex flex-wrap items-center gap-1.5">
             <Tag variant="category">{categoryLabel(website.category)}</Tag>
@@ -35,24 +53,42 @@ export function WebsiteCard({ website, layout = 'grid' }: WebsiteCardProps) {
             <Tag variant="pricing">{website.pricing}</Tag>
           </div>
         </div>
-      </Link>
+      </div>
     );
   }
 
   return (
-    <Link
-      to={`/website/${website.slug}`}
-      className="group flex flex-col rounded-lg border border-slate-200 bg-white no-underline transition-all hover:border-slate-300 hover:shadow-sm"
-    >
+    <div className="group flex flex-col rounded-lg border border-slate-200 bg-white transition-all hover:border-slate-300 hover:shadow-sm">
       {/* Header */}
       <div className="flex items-start justify-between p-4 pb-3">
-        <div>
-          <h3 className="text-[14px] font-semibold text-slate-900 group-hover:text-blue-600">
+        <div className="min-w-0 flex-1">
+          <a
+            href={website.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[14px] font-semibold text-slate-900 no-underline hover:text-blue-600"
+          >
             {website.name}
-          </h3>
+          </a>
           <p className="text-[11px] text-slate-400">{website.url.replace('https://', '')}</p>
         </div>
-        <ExternalLink className="mt-0.5 h-3.5 w-3.5 flex-shrink-0 text-slate-300 transition-colors group-hover:text-slate-500" />
+        <div className="flex items-center gap-1">
+          <a
+            href={website.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-md text-slate-300 transition-colors hover:bg-slate-100 hover:text-slate-500"
+          >
+            <ExternalLink className="h-3.5 w-3.5" />
+          </a>
+          <Link
+            to={`/website/${website.slug}`}
+            className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-md text-slate-300 transition-colors hover:bg-blue-50 hover:text-blue-500"
+            title="More details"
+          >
+            <Info className="h-3.5 w-3.5" />
+          </Link>
+        </div>
       </div>
 
       {/* Description */}
@@ -84,6 +120,6 @@ export function WebsiteCard({ website, layout = 'grid' }: WebsiteCardProps) {
           {website.platform[0]}
         </span>
       </div>
-    </Link>
+    </div>
   );
 }

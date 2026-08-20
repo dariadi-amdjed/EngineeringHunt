@@ -137,3 +137,96 @@
 .animate-sticker-drift {
   animation: stickerDrift 11s ease-in-out infinite;
 }
+
+/* ── AI Search Overlay ──────────────────────────────────────────────── */
+@keyframes aiOverlayIn {
+  from { opacity: 0; transform: translateY(-12px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes aiOverlayOut {
+  from { opacity: 1; transform: translateY(0) scale(1); }
+  to { opacity: 0; transform: translateY(-12px) scale(0.98); }
+}
+
+@keyframes aiPageFadeOut {
+  from { opacity: 1; filter: blur(0px); }
+  to { opacity: 0; filter: blur(4px); }
+}
+
+@keyframes aiPageFadeIn {
+  from { opacity: 0; filter: blur(4px); }
+  to { opacity: 1; filter: blur(0px); }
+}
+
+@keyframes aiProcessingPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.05); }
+}
+
+@keyframes aiDotBounce {
+  0%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-6px); }
+}
+
+@keyframes aiMarquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes aiResultSlideUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes aiBadgeShimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes aiSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-ai-overlay-in {
+  animation: aiOverlayIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-ai-overlay-out {
+  animation: aiOverlayOut 0.3s ease-in forwards;
+}
+
+.animate-ai-page-fade-out {
+  animation: aiPageFadeOut 0.4s ease-out forwards;
+}
+
+.animate-ai-page-fade-in {
+  animation: aiPageFadeIn 0.4s ease-out forwards;
+}
+
+.animate-ai-processing-pulse {
+  animation: aiProcessingPulse 2s ease-in-out infinite;
+}
+
+.animate-ai-dot-bounce span:nth-child(1) { animation: aiDotBounce 1.4s ease-in-out infinite; }
+.animate-ai-dot-bounce span:nth-child(2) { animation: aiDotBounce 1.4s ease-in-out 0.2s infinite; }
+.animate-ai-dot-bounce span:nth-child(3) { animation: aiDotBounce 1.4s ease-in-out 0.4s infinite; }
+
+.animate-ai-marquee {
+  animation: aiMarquee 20s linear infinite;
+}
+
+.animate-ai-result-slide-up {
+  animation: aiResultSlideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-ai-badge-shimmer {
+  background: linear-gradient(90deg, #2563eb 0%, #60a5fa 25%, #2563eb 50%, #60a5fa 75%, #2563eb 100%);
+  background-size: 200% 100%;
+  animation: aiBadgeShimmer 3s linear infinite;
+}
+
+.animate-ai-spin {
+  animation: aiSpin 1s linear infinite;
+}

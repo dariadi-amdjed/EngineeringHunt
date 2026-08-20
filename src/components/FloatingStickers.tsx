@@ -18,7 +18,7 @@ export function FloatingStickers({ stickers, className = '' }: FloatingStickersP
           alt={sticker.alt}
           loading="lazy"
           draggable={false}
-          className={`absolute select-none ${sticker.position} ${sticker.size} ${sticker.rotation} ${sticker.opacity} ${sticker.animation} ${sticker.blur || ''}`}
+          className={`absolute select-none ${sticker.hideOnMobile ? 'hidden md:block' : ''} ${sticker.position} ${sticker.size} ${sticker.rotation} ${sticker.opacity} ${sticker.animation} ${sticker.blur || ''}`}
         />
       ))}
     </div>

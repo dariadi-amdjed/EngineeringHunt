@@ -1,19 +1,32 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Zap, Lightbulb, Cpu, CircuitBoard, Binary, Server, Bot, Calculator, type LucideIcon } from 'lucide-react';
 import type { Category } from '@/types';
+
+const iconMap: Record<string, LucideIcon> = {
+  Zap,
+  Lightbulb,
+  Cpu,
+  CircuitBoard,
+  Binary,
+  Server,
+  Bot,
+  Calculator,
+};
 
 interface CategoryCardProps {
   category: Category;
 }
 
 export function CategoryCard({ category }: CategoryCardProps) {
+  const Icon = iconMap[category.icon] || Zap;
+
   return (
     <Link
       to={`/category/${category.slug}`}
-      className="group relative flex flex-col rounded-lg border border-slate-200 bg-white p-4 no-underline transition-all hover:border-slate-300 hover:shadow-sm"
+      className="group relative flex flex-col rounded-lg border border-slate-200 bg-white p-4 no-underline transition-all hover:border-blue-200 hover:shadow-sm"
     >
-      <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-lg bg-slate-100 text-[16px] transition-colors group-hover:bg-blue-50">
-        {category.icon}
+      <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl border border-slate-100 bg-slate-50 text-slate-600 shadow-sm transition-all group-hover:border-blue-200 group-hover:bg-blue-50 group-hover:text-blue-600">
+        <Icon className="h-5 w-5" strokeWidth={1.5} />
       </div>
       <h3 className="text-[14px] font-semibold text-slate-900 group-hover:text-blue-600">
         {category.name}

@@ -10,6 +10,7 @@ interface FilterSidebarProps {
   onSortChange: (sort: SortOption) => void;
   isMobileOpen?: boolean;
   onMobileClose?: () => void;
+  contentOnly?: boolean;
 }
 
 const purposeLabels: Record<Purpose, string> = {
@@ -124,6 +125,7 @@ export function FilterSidebar({
   onSortChange,
   isMobileOpen = false,
   onMobileClose,
+  contentOnly = false,
 }: FilterSidebarProps) {
   const toggleFilter = useCallback(
     <K extends keyof SearchFilters>(key: K, value: SearchFilters[K] extends (infer U)[] ? U : never) => {
@@ -275,6 +277,10 @@ export function FilterSidebar({
       </CollapsibleSection>
     </div>
   );
+
+  if (contentOnly) {
+    return sidebarContent;
+  }
 
   return (
     <>

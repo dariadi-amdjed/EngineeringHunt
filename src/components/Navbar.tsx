@@ -1,5 +1,5 @@
 import { Link, NavLink } from 'react-router-dom';
-import { Search, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
 import { GithubIcon } from './GithubIcon';
 
@@ -10,18 +10,19 @@ const links = [
   { to: '/about', label: 'About' },
 ];
 
-interface NavbarProps {
-  onSearchOpen: () => void;
-}
-
-export function Navbar({ onSearchOpen }: NavbarProps) {
+export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
     <header className="sticky top-0 z-40 border-b border-slate-200 bg-white/95 backdrop-blur">
-      <nav className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4 sm:px-6">
+      {/* Solid blue left accent with diagonal slant */}
+      <div
+        className="absolute left-0 top-0 bottom-0 w-56 bg-blue-600 pointer-events-none"
+        style={{ clipPath: 'polygon(0 0, 100% 0, 80% 100%, 0 100%)' }}
+      />
+      <nav className="relative mx-auto flex h-14 max-w-6xl items-center justify-between px-4 sm:px-6">
         {/* Logo */}
-        <Link to="/" className="flex items-center gap-2 no-underline">
+        <Link to="/" className="flex items-center gap-2 no-underline relative z-10">
           <img
             src="images/photo.png"
             alt="EngineeringHunt"
@@ -53,17 +54,6 @@ export function Navbar({ onSearchOpen }: NavbarProps) {
 
         {/* Right side */}
         <div className="flex items-center gap-1">
-          <button
-            onClick={onSearchOpen}
-            className="flex h-8 items-center gap-2 rounded-md border border-slate-200 bg-white px-2.5 text-[13px] text-slate-400 transition-colors hover:border-slate-300 hover:text-slate-600 cursor-pointer"
-          >
-            <Search className="h-3.5 w-3.5" />
-            <span className="hidden sm:inline">Search…</span>
-            <kbd className="hidden rounded border border-slate-200 bg-slate-50 px-1 py-0.5 font-mono text-[10px] text-slate-400 sm:inline">
-              ⌘K
-            </kbd>
-          </button>
-
           <a
             href="https://github.com/jamesvidler/engineeringhunt"
             target="_blank"
