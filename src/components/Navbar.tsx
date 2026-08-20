@@ -33,11 +33,11 @@ export function Navbar() {
       </div>
 
       {/* Nav bar content */}
-      <nav className="relative mx-auto flex h-16 max-w-7xl items-center px-4 sm:px-6 lg:px-8">
-        {/* Logo — z-10 so it paints on top of the blue accent */}
+      <nav className="relative mx-auto flex h-14 max-w-7xl items-center px-4 sm:px-6 lg:px-8">
+        {/* Logo — z-10, pushed right with ml */}
         <Link
           to="/"
-          className="relative z-10 mr-8 flex-shrink-0 select-none leading-none no-underline"
+          className="relative z-10 ml-14 mr-8 flex-shrink-0 select-none leading-none no-underline"
         >
           <span className="block text-lg font-black leading-none text-white tracking-tight">
             Eng
@@ -53,8 +53,8 @@ export function Navbar() {
           </span>
         </Link>
 
-        {/* Desktop nav links */}
-        <div className="hidden items-center gap-1 md:flex">
+        {/* Centered nav links — absolute centered in viewport */}
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 hidden items-center gap-1 md:flex">
           {links.map((link) => (
             <NavLink
               key={link.to}
