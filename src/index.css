@@ -230,3 +230,23 @@
 .animate-ai-spin {
   animation: aiSpin 1s linear infinite;
 }
+
+/* ── Page Transition ────────────────────────────────────────────────── */
+@keyframes pageEnter {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-page-enter {
+  animation: pageEnter 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* ── Skeleton Loading ────────────────────────────────────────────────── */
+@keyframes skeletonPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.animate-skeleton {
+  animation: skeletonPulse 1.5s ease-in-out infinite;
+}

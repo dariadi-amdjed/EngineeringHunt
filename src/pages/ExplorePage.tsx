@@ -1,15 +1,19 @@
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo, useEffect, useCallback } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { SlidersHorizontal, Grid3X3, List, Search } from 'lucide-react';
+import { Search, ChevronDown, Loader2 } from 'lucide-react';
 import { WebsiteCard } from '@/components/WebsiteCard';
-import { FilterSidebar } from '@/components/FilterSidebar';
+import { FilterBar } from '@/components/FilterBar';
 import { SearchBar } from '@/components/SearchBar';
 import { EmptyState } from '@/components/EmptyState';
 import { FloatingStickers } from '@/components/FloatingStickers';
 import { AISearchOverlay } from '@/components/AISearchOverlay';
+import { SkeletonCard } from '@/components/SkeletonCard';
 import { exploreStickers } from '@/data/stickers';
 import { websites, filterWebsites, searchWebsites } from '@/data/websites';
-import type { SearchFilters, SortOption } from '@/types';
+import type { SearchFilters } from '@/types';
+
+const PAGE_SIZE = 12;
+const LOAD_DELAY = 400;
 
 const defaultFilters: SearchFilters = {
   query: '',
@@ -30,11 +34,10 @@ export function ExplorePage() {
     ...defaultFilters,
     query: initialQuery,
   });
-  const [sortBy, setSortBy] = useState<SortOption>('relevance');
-  const [layout, setLayout] = useState<'grid' | 'list'>('grid');
-  const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const [aiQuery, setAiQuery] = useState('');
   const [aiOpen, setAiOpen] = useState(false);
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     setFilters((prev) => ({ ...prev, query: initialQuery }));
@@ -51,19 +54,36 @@ export function ExplorePage() {
       filters.pricing.length > 0 ||
       filters.difficulty.length > 0 ||
       filters.categories.length > 0 ||
+      filters.authentication.length > 0 ||
+      filters.interactivity.length > 0 ||
       filters.openSource;
 
     if (filters.query) {
       return searchWebsites(filters.query);
     }
     if (hasActiveFilters) {
-      return filterWebsites(filters, sortBy);
+      return filterWebsites(filters, 'relevance');
     }
-    return filterWebsites({}, sortBy);
-  }, [filters, sortBy]);
+    return filterWebsites({}, 'relevance');
+  }, [filters]);
+
+  useEffect(() => {
+    setVisibleCount(PAGE_SIZE);
+  }, [filters]);
+
+  const visibleResults = results.slice(0, visibleCount);
+  const hasMore = visibleCount < results.length;
+
+  const handleLoadMore = useCallback(() => {
+    setLoading(true);
+    setTimeout(() => {
+      setVisibleCount((prev) => prev + PAGE_SIZE);
+      setLoading(false);
+    }, LOAD_DELAY);
+  }, []);
 
   return (
-    <div className="h-[calc(100vh-56px)] flex flex-col">
+    <div className="pb-24">
       {/* AI Search Overlay */}
       <AISearchOverlay
         query={aiQuery}
@@ -71,9 +91,8 @@ export function ExplorePage() {
         onClose={() => setAiOpen(false)}
       />
 
-      {/* Fixed Header Area */}
-      <div className="flex-shrink-0 px-4 pt-6 sm:px-6">
-        {/* Header */}
+      {/* Header */}
+      <div className="px-4 pt-6 sm:px-6">
         <div className="relative mb-4 overflow-hidden">
           <FloatingStickers stickers={exploreStickers} />
           <div className="relative z-10">
@@ -92,92 +111,65 @@ export function ExplorePage() {
           <SearchBar variant="compact" className="max-w-xl" onAISearch={handleAISearch} />
         </div>
 
-        {/* Toolbar */}
-        <div className="mb-4 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <button
-              onClick={() => setMobileFiltersOpen(true)}
-              className="flex items-center gap-1.5 rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-[12px] font-medium text-slate-600 transition-colors hover:bg-slate-50 lg:hidden cursor-pointer"
-            >
-              <SlidersHorizontal className="h-3.5 w-3.5" />
-              Filters
-            </button>
-            <span className="text-[12px] text-slate-400">
-              {results.length} result{results.length !== 1 ? 's' : ''}
-            </span>
-          </div>
-          <div className="flex items-center gap-1">
-            <button
-              onClick={() => setLayout('grid')}
-              className={`flex h-8 w-8 items-center justify-center rounded-md transition-colors cursor-pointer ${
-                layout === 'grid' ? 'bg-slate-100 text-slate-900' : 'text-slate-400 hover:bg-slate-50'
-              }`}
-            >
-              <Grid3X3 className="h-3.5 w-3.5" />
-            </button>
-            <button
-              onClick={() => setLayout('list')}
-              className={`flex h-8 w-8 items-center justify-center rounded-md transition-colors cursor-pointer ${
-                layout === 'list' ? 'bg-slate-100 text-slate-900' : 'text-slate-400 hover:bg-slate-50'
-              }`}
-            >
-              <List className="h-3.5 w-3.5" />
-            </button>
-          </div>
+        {/* Filter Bar */}
+        <div className="mb-2">
+          <FilterBar filters={filters} onFilterChange={(f) => setFilters((prev) => ({ ...prev, ...f }))} />
+        </div>
+
+        {/* Result count */}
+        <div className="mb-4">
+          <span className="text-[12px] text-slate-400">
+            {results.length} result{results.length !== 1 ? 's' : ''}
+          </span>
         </div>
       </div>
 
-      {/* Dual-scroll content area */}
-      <div className="flex min-h-0 flex-1 gap-6 px-4 sm:px-6">
-        {/* Left Sidebar - independent scroll */}
-        <div className="hidden lg:block w-64 flex-shrink-0">
-          <div className="sticky top-20 h-[calc(100vh-80px)] overflow-y-auto rounded-xl border border-slate-200 bg-white p-4">
-            <FilterSidebar
-              filters={filters}
-              sortBy={sortBy}
-              onFilterChange={(f) => setFilters((prev) => ({ ...prev, ...f }))}
-              onSortChange={setSortBy}
-              contentOnly
-            />
-          </div>
-        </div>
-
-        {/* Mobile sidebar (overlay) */}
-        <FilterSidebar
-          filters={filters}
-          sortBy={sortBy}
-          onFilterChange={(f) => setFilters((prev) => ({ ...prev, ...f }))}
-          onSortChange={setSortBy}
-          isMobileOpen={mobileFiltersOpen}
-          onMobileClose={() => setMobileFiltersOpen(false)}
-        />
-
-        {/* Right Pane - independent scroll */}
-        <div className="flex-1 overflow-y-auto pb-6" style={{ height: 'calc(100vh - 80px)' }}>
-          {results.length > 0 ? (
-            <div
-              className={
-                layout === 'grid'
-                  ? 'grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3'
-                  : 'flex flex-col gap-2'
-              }
-            >
-              {results.map((website) => (
-                <WebsiteCard
-                  key={website.slug}
-                  website={website}
-                  layout={layout}
-                />
+      {/* Tools Grid */}
+      <div className="px-4 sm:px-6">
+        {visibleResults.length > 0 ? (
+          <>
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {visibleResults.map((website) => (
+                <WebsiteCard key={website.slug} website={website} layout="grid" />
               ))}
+
+              {/* Skeleton placeholders while loading */}
+              {loading &&
+                Array.from({ length: Math.min(PAGE_SIZE, results.length - visibleCount) }).map(
+                  (_, i) => <SkeletonCard key={`skeleton-${i}`} />
+                )}
             </div>
-          ) : (
-            <EmptyState
-              icon={<Search className="h-6 w-6" />}
-              title="No tools found"
-              description="Try adjusting your filters or search query."
-            />
-          )}
-        </div>
+
+            {/* Load More */}
+            {hasMore && (
+              <div className="flex justify-center py-8">
+                <button
+                  onClick={handleLoadMore}
+                  disabled={loading}
+                  className="flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-6 py-2.5 text-[13px] font-medium text-slate-700 transition-colors hover:bg-slate-50 disabled:opacity-60 cursor-pointer"
+                >
+                  {loading ? (
+                    <>
+                      <Loader2 className="h-3.5 w-3.5 animate-ai-spin" />
+                      Loading tools...
+                    </>
+                  ) : (
+                    <>
+                      Load More Tools
+                      <ChevronDown className="h-3.5 w-3.5" />
+                    </>
+                  )}
+                </button>
+              </div>
+            )}
+          </>
+        ) : (
+          <EmptyState
+            icon={<Search className="h-6 w-6" />}
+            title="No tools found"
+            description="Try adjusting your filters or search query."
+          />
+        )}
       </div>
     </div>
   );

@@ -2,6 +2,7 @@ import { Outlet } from 'react-router-dom';
 import { Navbar } from './Navbar';
 import { Footer } from './Footer';
 import { ScrollToTop } from './ScrollToTop';
+import { PageTransition } from './PageTransition';
 
 export function Layout() {
   return (
@@ -9,7 +10,9 @@ export function Layout() {
       <ScrollToTop />
       <Navbar />
       <main className="flex-1">
-        <Outlet />
+        <PageTransition>
+          <Outlet />
+        </PageTransition>
       </main>
       <Footer />
     </div>
