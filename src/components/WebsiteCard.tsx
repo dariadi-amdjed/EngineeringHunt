@@ -3,66 +3,87 @@ import { ExternalLink } from 'lucide-react';
 import type { Website } from '@/types';
 import { Tag } from './Tag';
 
-type WebsiteCardProps = {
+interface WebsiteCardProps {
   website: Website;
-  showRelevance?: boolean;
-  relevance?: string;
-};
+  layout?: 'grid' | 'list';
+}
 
-export function WebsiteCard({ website, showRelevance = false, relevance }: WebsiteCardProps) {
-  return (
-    <div className="group flex flex-col justify-between rounded-lg border border-slate-200 bg-white p-5 transition-colors hover:border-slate-300">
-      <div>
-        <div className="mb-2 flex items-start justify-between">
-          <Link
-            to={`/website/${website.slug}`}
-            className="text-[15px] font-semibold text-slate-900 no-underline transition-colors hover:text-blue-600"
-          >
-            {website.name}
-          </Link>
-          <a
-            href={website.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="ml-2 flex-shrink-0 text-slate-400 transition-colors hover:text-slate-600"
-          >
-            <ExternalLink className="h-4 w-4" />
-          </a>
+function categoryLabel(slug: string): string {
+  return slug.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
+}
+
+export function WebsiteCard({ website, layout = 'grid' }: WebsiteCardProps) {
+  if (layout === 'list') {
+    return (
+      <Link
+        to={`/website/${website.slug}`}
+        className="group flex items-start gap-4 rounded-lg border border-slate-200 bg-white p-4 no-underline transition-all hover:border-slate-300 hover:shadow-sm"
+      >
+        <div className="min-w-0 flex-1">
+          <div className="flex items-start justify-between gap-2">
+            <div>
+              <h3 className="text-[14px] font-semibold text-slate-900 group-hover:text-blue-600">
+                {website.name}
+              </h3>
+              <p className="mt-0.5 text-[13px] text-slate-500 line-clamp-1">{website.description}</p>
+            </div>
+            <ExternalLink className="mt-0.5 h-3.5 w-3.5 flex-shrink-0 text-slate-300 transition-colors group-hover:text-slate-500" />
+          </div>
+          <div className="mt-2 flex flex-wrap items-center gap-1.5">
+            <Tag variant="category">{categoryLabel(website.category)}</Tag>
+            {website.purposes[0] && <Tag variant="purpose">{website.purposes[0]}</Tag>}
+            <Tag variant="pricing">{website.pricing}</Tag>
+          </div>
         </div>
+      </Link>
+    );
+  }
 
-        <p className="mb-3 text-[13px] leading-relaxed text-slate-500">
+  return (
+    <Link
+      to={`/website/${website.slug}`}
+      className="group flex flex-col rounded-lg border border-slate-200 bg-white no-underline transition-all hover:border-slate-300 hover:shadow-sm"
+    >
+      {/* Header */}
+      <div className="flex items-start justify-between p-4 pb-3">
+        <div>
+          <h3 className="text-[14px] font-semibold text-slate-900 group-hover:text-blue-600">
+            {website.name}
+          </h3>
+          <p className="text-[11px] text-slate-400">{website.url.replace('https://', '')}</p>
+        </div>
+        <ExternalLink className="mt-0.5 h-3.5 w-3.5 flex-shrink-0 text-slate-300 transition-colors group-hover:text-slate-500" />
+      </div>
+
+      {/* Description */}
+      <div className="flex-1 px-4 pb-3">
+        <p className="text-[13px] leading-relaxed text-slate-500 line-clamp-2">
           {website.description}
         </p>
-
-        <div className="flex flex-wrap gap-1.5">
-          {website.tags.map((tag) => (
-            <Tag key={tag} label={tag} />
-          ))}
-        </div>
       </div>
 
-      <div className="mt-4 flex items-center justify-between border-t border-slate-100 pt-3">
-        <div className="flex items-center gap-2 text-[12px] text-slate-400">
-          <span>{website.categories.map((c) => c.replace(/-/g, ' ')).join(' · ')}</span>
-          <span>·</span>
-          <span>{website.difficulty[0]}</span>
-        </div>
+      {/* Tags */}
+      <div className="flex flex-wrap gap-1.5 px-4 pb-3">
+        <Tag variant="category">{categoryLabel(website.category)}</Tag>
+        {website.purposes[0] && <Tag variant="purpose">{website.purposes[0]}</Tag>}
+        {website.pricing === 'free' && <Tag variant="pricing">Free</Tag>}
+        {website.pricing === 'freemium' && <Tag variant="pricing">Freemium</Tag>}
+      </div>
 
-        {showRelevance && relevance && (
-          <span className="rounded-full bg-green-50 px-2 py-0.5 text-[11px] font-medium text-green-700">
-            {relevance}
+      {/* Footer stats */}
+      <div className="flex items-center gap-3 border-t border-slate-100 px-4 py-2.5">
+        <span className="font-mono text-[11px] uppercase tracking-wider text-slate-400">
+          {website.difficulty[0] || 'all'}
+        </span>
+        {website.openSource && (
+          <span className="font-mono text-[10px] uppercase tracking-wider text-emerald-500">
+            open source
           </span>
         )}
-
-        {!showRelevance && (
-          <Link
-            to={`/website/${website.slug}`}
-            className="text-[12px] font-medium text-slate-400 no-underline transition-colors hover:text-slate-900"
-          >
-            Visit →
-          </Link>
-        )}
+        <span className="ml-auto font-mono text-[10px] uppercase tracking-wider text-slate-300">
+          {website.platform[0]}
+        </span>
       </div>
-    </div>
+    </Link>
   );
 }

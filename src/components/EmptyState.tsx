@@ -1,27 +1,22 @@
-import { Link } from 'react-router-dom';
-import { Search } from 'lucide-react';
+import type { ReactNode } from 'react';
+import { SearchX } from 'lucide-react';
 
-export function EmptyState({ query }: { query?: string }) {
+interface EmptyStateProps {
+  icon?: ReactNode;
+  title: string;
+  description: string;
+  action?: ReactNode;
+}
+
+export function EmptyState({ icon, title, description, action }: EmptyStateProps) {
   return (
-    <div className="flex flex-col items-center justify-center py-16 text-center">
-      <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-slate-100">
-        <Search className="h-5 w-5 text-slate-400" />
+    <div className="flex flex-col items-center justify-center rounded-xl border border-dashed border-slate-300 px-6 py-16 text-center">
+      <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-xl bg-slate-100 text-slate-400">
+        {icon || <SearchX className="h-6 w-6" />}
       </div>
-      <h3 className="mb-1 text-[15px] font-semibold text-slate-900">No resources found</h3>
-      <p className="mb-4 max-w-sm text-[13px] text-slate-500">
-        Try changing your filters or searching for:
-      </p>
-      <div className="flex flex-wrap justify-center gap-2">
-        {['ESP32', 'Arduino', 'PCB', 'Robotics'].map((suggestion) => (
-          <Link
-            key={suggestion}
-            to={`/search?q=${encodeURIComponent(suggestion)}`}
-            className="rounded-md border border-slate-200 bg-white px-3 py-1.5 text-[12px] font-medium text-slate-600 no-underline transition-colors hover:border-slate-300 hover:text-slate-900"
-          >
-            {suggestion}
-          </Link>
-        ))}
-      </div>
+      <h3 className="text-[15px] font-semibold text-slate-900">{title}</h3>
+      <p className="mt-1 max-w-sm text-[13px] text-slate-500">{description}</p>
+      {action && <div className="mt-4">{action}</div>}
     </div>
   );
 }

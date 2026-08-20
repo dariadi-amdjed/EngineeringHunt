@@ -1,30 +1,36 @@
+import { ChevronRight, Home } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { ChevronRight } from 'lucide-react';
 
-export type BreadcrumbItem = {
+export interface BreadcrumbItem {
   label: string;
   to?: string;
-};
+}
 
-type BreadcrumbsProps = {
+interface BreadcrumbsProps {
   items: BreadcrumbItem[];
-};
+}
 
 export function Breadcrumbs({ items }: BreadcrumbsProps) {
   return (
-    <nav className="flex items-center gap-1 text-[13px] text-slate-400">
-      {items.map((item, index) => (
-        <span key={index} className="flex items-center gap-1">
-          {index > 0 && <ChevronRight className="h-3 w-3" />}
+    <nav className="flex items-center gap-1 text-[12px] text-slate-400">
+      <Link
+        to="/"
+        className="flex items-center gap-1 text-slate-400 no-underline transition-colors hover:text-slate-700"
+      >
+        <Home className="h-3 w-3" />
+      </Link>
+      {items.map((item, i) => (
+        <span key={i} className="flex items-center gap-1">
+          <ChevronRight className="h-3 w-3" />
           {item.to ? (
             <Link
               to={item.to}
-              className="no-underline transition-colors hover:text-slate-600"
+              className="text-slate-400 no-underline transition-colors hover:text-slate-700"
             >
               {item.label}
             </Link>
           ) : (
-            <span className="text-slate-600">{item.label}</span>
+            <span className="font-medium text-slate-700">{item.label}</span>
           )}
         </span>
       ))}

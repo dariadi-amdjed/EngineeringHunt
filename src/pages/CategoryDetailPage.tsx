@@ -1,77 +1,84 @@
 import { useParams, Link } from 'react-router-dom';
-import { getCategoryBySlug } from '@/data/categories';
-import { getWebsitesByCategory } from '@/data/websites';
+import { websites } from '@/data/websites';
+import { categories } from '@/data/categories';
 import { WebsiteCard } from '@/components/WebsiteCard';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { EmptyState } from '@/components/EmptyState';
 
 export function CategoryDetailPage() {
   const { slug } = useParams<{ slug: string }>();
-  const category = slug ? getCategoryBySlug(slug as never) : undefined;
-  const websitesList = slug ? getWebsitesByCategory(slug) : [];
+  const category = categories.find((c) => c.slug === slug);
 
   if (!category) {
     return (
-      <div className="mx-auto max-w-3xl px-4 py-16 text-center sm:px-6">
-        <h1 className="text-[18px] font-semibold text-slate-900">Category not found</h1>
+      <div className="mx-auto max-w-3xl px-4 py-20 text-center sm:px-6">
+        <p className="font-mono text-[12px] uppercase tracking-widest text-slate-400">404</p>
+        <h1 className="mt-3 text-[20px] font-bold text-slate-900">Category not found</h1>
         <p className="mt-2 text-[13px] text-slate-500">
-          This category doesn't exist.
+          The category you're looking for doesn't exist.
         </p>
         <Link
           to="/categories"
           className="mt-4 inline-block text-[13px] font-medium text-blue-600 no-underline hover:text-blue-700"
         >
-          Browse categories →
+          ← Browse categories
         </Link>
       </div>
     );
   }
 
+  const categoryWebsites = websites.filter(
+    (w) => w.category === slug
+  );
+
   return (
-    <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6">
+    <div className="mx-auto max-w-6xl px-4 py-6 sm:px-6">
       <Breadcrumbs
         items={[
-          { label: 'Engineering Finder', to: '/' },
           { label: 'Categories', to: '/categories' },
           { label: category.name },
         ]}
       />
 
-      <div className="mt-6">
-        <h1 className="text-[22px] font-bold tracking-tight text-slate-900">{category.name}</h1>
-        <p className="mt-2 text-[14px] text-slate-500">{category.description}</p>
-      </div>
-
-      <div className="mt-6">
-        <h2 className="mb-3 text-[13px] font-semibold text-slate-900">Popular topics</h2>
-        <div className="flex flex-wrap gap-2">
-          {category.topics.map((topic) => (
-            <Link
-              key={topic}
-              to={`/search?q=${encodeURIComponent(topic)}`}
-              className="rounded-full border border-slate-200 bg-white px-3 py-1 text-[12px] font-medium text-slate-600 no-underline transition-colors hover:border-slate-300 hover:text-slate-900"
-            >
-              {topic}
-            </Link>
-          ))}
+      {/* Header */}
+      <div className="mt-6 mb-6">
+        <div className="flex items-center gap-3">
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-100 text-[20px]">
+            {category.icon}
+          </div>
+          <div>
+            <h1 className="text-[20px] font-bold text-slate-900">{category.name}</h1>
+            <p className="text-[13px] text-slate-500">{category.description}</p>
+          </div>
+        </div>
+        <div className="mt-3 flex items-center gap-4 text-[12px] text-slate-400">
+          <span className="font-mono uppercase tracking-wider">
+            {categoryWebsites.length} tool{categoryWebsites.length !== 1 ? 's' : ''}
+          </span>
         </div>
       </div>
 
-      <div className="mt-8 border-t border-slate-100 pt-8">
-        <h2 className="mb-4 text-[14px] font-semibold text-slate-900">
-          Resources ({websitesList.length})
-        </h2>
-
-        {websitesList.length > 0 ? (
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {websitesList.map((site) => (
-              <WebsiteCard key={site.id} website={site} />
-            ))}
-          </div>
-        ) : (
-          <EmptyState />
-        )}
-      </div>
+      {/* Websites */}
+      {categoryWebsites.length > 0 ? (
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {categoryWebsites.map((website) => (
+            <WebsiteCard key={website.slug} website={website} />
+          ))}
+        </div>
+      ) : (
+        <EmptyState
+          title="No tools in this category yet"
+          description="Check back soon or submit a tool."
+          action={
+            <Link
+              to="/submit"
+              className="inline-flex items-center gap-1.5 rounded-lg bg-blue-600 px-4 py-2 text-[12px] font-medium text-white no-underline hover:bg-blue-700"
+            >
+              Submit a tool
+            </Link>
+          }
+        />
+      )}
     </div>
   );
 }

@@ -1,119 +1,108 @@
-import { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { Search, Menu, X } from 'lucide-react';
-import { GithubIcon } from '@/components/GithubIcon';
-import { cn } from '@/lib/utils';
+import { useState } from 'react';
+import { GithubIcon } from './GithubIcon';
 
-type NavbarProps = {
+const links = [
+  { to: '/explore', label: 'Explore' },
+  { to: '/categories', label: 'Categories' },
+  { to: '/submit', label: 'Submit Website' },
+  { to: '/about', label: 'About' },
+];
+
+interface NavbarProps {
   onSearchOpen: () => void;
-};
+}
 
 export function Navbar({ onSearchOpen }: NavbarProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const location = useLocation();
-
-  const links = [
-    { to: '/search', label: 'Explore' },
-    { to: '/categories', label: 'Categories' },
-    { to: '/about', label: 'About' },
-  ];
 
   return (
-    <header className="sticky top-0 z-40 border-b border-slate-200 bg-white/95 backdrop-blur-sm">
-      <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4 sm:px-6">
-        <div className="flex items-center gap-8">
-          <Link
-            to="/"
-            className="flex items-center gap-2 text-sm font-semibold tracking-tight text-slate-900 no-underline"
-          >
-            <Search className="h-4 w-4 text-slate-500" strokeWidth={2.5} />
-            Engineering Finder
-          </Link>
+    <header className="sticky top-0 z-40 border-b border-slate-200 bg-white/95 backdrop-blur">
+      <nav className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4 sm:px-6">
+        {/* Logo */}
+        <Link to="/" className="flex items-center gap-2 no-underline">
+          <img
+            src="images/photo.png"
+            alt="EngineeringHunt"
+            className="h-7 w-7 rounded object-cover"
+          />
+          <span className="text-[15px] font-bold tracking-tight text-slate-900">
+            EngineeringHunt
+          </span>
+        </Link>
 
-          <nav className="hidden items-center gap-1 md:flex">
-            {links.map((link) => (
-              <Link
-                key={link.to}
-                to={link.to}
-                className={cn(
-                  'rounded-md px-3 py-1.5 text-[13px] font-medium no-underline transition-colors',
-                  location.pathname === link.to ||
-                    (link.to !== '/' && location.pathname.startsWith(link.to))
+        {/* Desktop nav */}
+        <div className="hidden items-center gap-1 md:flex">
+          {links.map((link) => (
+            <NavLink
+              key={link.to}
+              to={link.to}
+              className={({ isActive }) =>
+                `rounded-md px-2.5 py-1.5 text-[13px] font-medium no-underline transition-colors ${
+                  isActive
                     ? 'bg-slate-100 text-slate-900'
-                    : 'text-slate-500 hover:text-slate-900'
-                )}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </nav>
+                    : 'text-slate-500 hover:bg-slate-50 hover:text-slate-900'
+                }`
+              }
+            >
+              {link.label}
+            </NavLink>
+          ))}
         </div>
 
-        <div className="flex items-center gap-2">
+        {/* Right side */}
+        <div className="flex items-center gap-1">
           <button
             onClick={onSearchOpen}
-            className="hidden items-center gap-2 rounded-md border border-slate-200 px-3 py-1.5 text-[13px] text-slate-400 transition-colors hover:border-slate-300 hover:text-slate-600 sm:flex"
+            className="flex h-8 items-center gap-2 rounded-md border border-slate-200 bg-white px-2.5 text-[13px] text-slate-400 transition-colors hover:border-slate-300 hover:text-slate-600 cursor-pointer"
           >
             <Search className="h-3.5 w-3.5" />
-            <span className="hidden lg:inline">Search...</span>
-            <kbd className="ml-1 hidden rounded border border-slate-200 bg-slate-50 px-1.5 py-0.5 text-[11px] font-mono text-slate-400 lg:inline">
+            <span className="hidden sm:inline">Search…</span>
+            <kbd className="hidden rounded border border-slate-200 bg-slate-50 px-1 py-0.5 font-mono text-[10px] text-slate-400 sm:inline">
               ⌘K
             </kbd>
           </button>
 
           <a
-            href="https://github.com"
+            href="https://github.com/jamesvidler/engineeringhunt"
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden items-center gap-1.5 rounded-md px-3 py-1.5 text-[13px] font-medium text-slate-500 transition-colors hover:text-slate-900 sm:flex"
+            className="flex h-8 w-8 items-center justify-center rounded-md text-slate-400 transition-colors hover:bg-slate-100 hover:text-slate-700"
           >
             <GithubIcon className="h-4 w-4" />
-            <span className="hidden md:inline">GitHub</span>
           </a>
 
-          <button
-            onClick={onSearchOpen}
-            className="rounded-md p-2 text-slate-400 transition-colors hover:text-slate-600 sm:hidden"
-          >
-            <Search className="h-4 w-4" />
-          </button>
-
+          {/* Mobile menu button */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="rounded-md p-2 text-slate-400 transition-colors hover:text-slate-600 md:hidden"
+            className="flex h-8 w-8 items-center justify-center rounded-md text-slate-400 transition-colors hover:bg-slate-100 hover:text-slate-700 md:hidden cursor-pointer"
           >
             {mobileOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
           </button>
         </div>
-      </div>
+      </nav>
 
+      {/* Mobile menu */}
       {mobileOpen && (
-        <nav className="border-t border-slate-100 bg-white px-4 pb-4 pt-2 md:hidden">
+        <div className="border-t border-slate-200 bg-white px-4 pb-3 pt-2 md:hidden">
           {links.map((link) => (
-            <Link
+            <NavLink
               key={link.to}
               to={link.to}
               onClick={() => setMobileOpen(false)}
-              className={cn(
-                'block rounded-md px-3 py-2 text-sm font-medium no-underline transition-colors',
-                location.pathname === link.to
-                  ? 'bg-slate-100 text-slate-900'
-                  : 'text-slate-500 hover:text-slate-900'
-              )}
+              className={({ isActive }) =>
+                `block rounded-md px-3 py-2 text-[13px] font-medium no-underline transition-colors ${
+                  isActive
+                    ? 'bg-slate-100 text-slate-900'
+                    : 'text-slate-500 hover:bg-slate-50 hover:text-slate-900'
+                }`
+              }
             >
               {link.label}
-            </Link>
+            </NavLink>
           ))}
-          <a
-            href="https://github.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-slate-500 transition-colors hover:text-slate-900"
-          >
-            <GithubIcon className="h-4 w-4" />
-            GitHub
-          </a>
-        </nav>
+        </div>
       )}
     </header>
   );
