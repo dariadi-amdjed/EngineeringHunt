@@ -127,7 +127,7 @@ export function SubmitPage() {
           </li>
           <li className="flex items-start gap-2">
             <Check className="mt-0.5 h-3.5 w-3.5 flex-shrink-0 text-emerald-500" />
-            Optionally include an <code className="rounded bg-slate-100 px-1 text-[12px]">imageUrl</code> for a logo or screenshot
+            Optionally include an <code className="rounded bg-slate-100 px-1 text-[12px]">imageUrl</code> for a logo or screenshot — the site favicon and preview screenshot will be fetched automatically from your URL.
           </li>
           <li className="flex items-start gap-2">
             <Check className="mt-0.5 h-3.5 w-3.5 flex-shrink-0 text-emerald-500" />
