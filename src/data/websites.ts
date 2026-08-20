@@ -8,6 +8,7 @@ export const websites: Website[] = [
     slug: 'wokwi',
     name: 'Wokwi',
     url: 'https://wokwi.com',
+  type: 'web-app',
     imageUrl: 'https://wokwi.com/favicon.ico',
     description: 'Online electronics simulator for Arduino, ESP32, and Raspberry Pi Pico.',
     longDescription:
@@ -29,6 +30,7 @@ export const websites: Website[] = [
     slug: 'falstad',
     name: 'Falstad Circuit Simulator',
     url: 'https://falstad.com/circuit',
+  type: 'web-app',
     imageUrl: 'https://falstad.com/circuit/favicon.ico',
     description: 'Interactive browser-based circuit simulator with real-time visualization.',
     longDescription:
@@ -50,6 +52,7 @@ export const websites: Website[] = [
     slug: 'circuitlab',
     name: 'CircuitLab',
     url: 'https://circuitlab.com',
+  type: 'web-app',
     imageUrl: 'https://circuitlab.com/favicon.ico',
     description: 'Browser-based schematic editor and circuit simulator with SPICE analysis.',
     longDescription:
@@ -70,6 +73,7 @@ export const websites: Website[] = [
     slug: 'tinkercad',
     name: 'Tinkercad Circuits',
     url: 'https://tinkercad.com',
+  type: 'web-app',
     imageUrl: 'https://tinkercad.com/favicon.ico',
     description: 'Free browser-based electronics simulation and 3D design tool by Autodesk.',
     longDescription:
@@ -90,6 +94,7 @@ export const websites: Website[] = [
     slug: 'all-about-circuits',
     name: 'All About Circuits',
     url: 'https://allaboutcircuits.com',
+  type: 'web-app',
     description: 'Free online textbook, worksheets, and forums covering electronics fundamentals.',
     longDescription:
       'All About Circuits offers a free online textbook, worksheets, and forums covering fundamental electronics concepts. One of the best resources for learning electronics theory from the ground up.',
@@ -111,6 +116,7 @@ export const websites: Website[] = [
     slug: 'okawa-electric',
     name: 'Okawa Electric Design',
     url: 'https://www.okawa-denshi.jp',
+  type: 'web-app',
     description: 'Free online calculators for filters, transformers, and electrical components.',
     longDescription:
       'Okawa Electric Design provides a comprehensive suite of free online calculators for active filters, passive filters, transformers, transmission lines, and various electrical components. Essential quick-reference tools for EE design.',
@@ -130,6 +136,7 @@ export const websites: Website[] = [
     slug: 'eep-web-tools',
     name: 'EEP Web Tools',
     url: 'https://electrical-engineering-portal.com/interactive-tools',
+  type: 'web-app',
     description: 'Collection of electrical engineering calculators and interactive tools.',
     longDescription:
       'EEP Web Tools offers a range of interactive electrical engineering calculators including cable sizing, short circuit, motor starting, transformer, and arc flash analysis tools. Practical utilities for working engineers.',
@@ -149,6 +156,7 @@ export const websites: Website[] = [
     slug: 'everycircuit',
     name: 'EveryCircuit',
     url: 'https://everycircuit.com',
+  type: 'web-app',
     description: 'Interactive circuit simulator with animated current flow visualization.',
     longDescription:
       'EveryCircuit is an interactive circuit simulator that shows animated current flow, voltage propagation, and component behavior in real time. Available on web and mobile for learning and prototyping analog and digital circuits.',
@@ -168,6 +176,7 @@ export const websites: Website[] = [
     slug: 'electronics-tutorials',
     name: 'Electronics-Tutorials.ws',
     url: 'https://electronics-tutorials.ws',
+  type: 'web-app',
     description: 'Free online tutorials covering analog and digital electronics fundamentals.',
     longDescription:
       'Electronics-Tutorials provides clear, well-structured tutorials on electronics fundamentals including resistors, capacitors, transistors, digital logic, and more. A great resource for building foundational knowledge.',
@@ -189,6 +198,7 @@ export const websites: Website[] = [
     slug: 'arduino',
     name: 'Arduino',
     url: 'https://arduino.cc',
+  type: 'web-app',
     description: 'Official Arduino documentation, project hub and community.',
     longDescription:
       'The official Arduino website provides documentation, project examples, libraries, and community resources for all Arduino boards and the Arduino IDE. The primary resource for Arduino development.',
@@ -196,7 +206,7 @@ export const websites: Website[] = [
     purposes: ['community-docs'],
     pricing: 'freemium',
     authentication: 'optional-signup',
-    platform: ['web', 'desktop'],
+    platform: ['web'],
     difficulty: ['beginner'],
     interactivity: 'static-document',
     openSource: true,
@@ -209,6 +219,7 @@ export const websites: Website[] = [
     slug: 'esp-idf',
     name: 'ESP-IDF Documentation',
     url: 'https://docs.espressif.com/projects/esp-idf',
+  type: 'desktop-app',
     description: 'Official Espressif IoT Development Framework documentation.',
     longDescription:
       'ESP-IDF is the official development framework for ESP32 and other Espressif chips. The documentation provides comprehensive guides for building IoT applications with Wi-Fi, Bluetooth, and many other peripherals.',
@@ -216,7 +227,7 @@ export const websites: Website[] = [
     purposes: ['community-docs'],
     pricing: 'free',
     authentication: 'no-account',
-    platform: ['web'],
+    platform: ['windows', 'mac', 'linux'],
     difficulty: ['intermediate', 'advanced'],
     interactivity: 'static-document',
     openSource: true,
@@ -229,6 +240,7 @@ export const websites: Website[] = [
     slug: 'platformio',
     name: 'PlatformIO',
     url: 'https://platformio.org',
+  type: 'desktop-app',
     description: 'Professional embedded development ecosystem and IDE.',
     longDescription:
       'PlatformIO is a professional collaborative platform for embedded development. It supports multiple development frameworks, boards, and IDEs, making cross-platform embedded development seamless.',
@@ -236,7 +248,7 @@ export const websites: Website[] = [
     purposes: ['eda-tool'],
     pricing: 'freemium',
     authentication: 'signup-required',
-    platform: ['desktop'],
+    platform: ['windows', 'mac', 'linux'],
     difficulty: ['intermediate', 'advanced'],
     interactivity: 'input-output-tool',
     openSource: true,
@@ -249,6 +261,7 @@ export const websites: Website[] = [
     slug: 'adafruit',
     name: 'Adafruit',
     url: 'https://adafruit.com',
+  type: 'web-app',
     description: 'Open-source hardware company with tutorials and learning system.',
     longDescription:
       'Adafruit is a leading open-source hardware company offering electronics components, development boards, and extensive learning resources. Their learning system covers electronics, programming, and maker projects.',
@@ -269,6 +282,7 @@ export const websites: Website[] = [
     slug: 'hackster',
     name: 'Hackster.io',
     url: 'https://hackster.io',
+  type: 'web-app',
     description: 'Community platform for hardware projects, tutorials and competitions.',
     longDescription:
       'Hackster.io is a community for hardware engineers and makers to share projects, participate in contests, and learn from each other. The platform covers embedded systems, IoT, robotics, and maker projects.',
@@ -290,6 +304,7 @@ export const websites: Website[] = [
     slug: 'easyeda',
     name: 'EasyEDA',
     url: 'https://easyeda.com',
+  type: 'web-app',
     description: 'Free browser-based EDA tool with schematic, PCB layout and component library.',
     longDescription:
       'EasyEDA is a free, web-based EDA tool offering schematic capture, PCB layout, and a massive component library integrated with LCSC and JLCPCB. Supports direct PCB ordering from the design interface.',
@@ -297,7 +312,7 @@ export const websites: Website[] = [
     purposes: ['eda-tool'],
     pricing: 'free',
     authentication: 'signup-required',
-    platform: ['web', 'desktop'],
+    platform: ['web'],
     difficulty: ['beginner', 'intermediate'],
     interactivity: 'interactive-canvas',
     openSource: false,
@@ -309,6 +324,7 @@ export const websites: Website[] = [
     slug: 'kicad',
     name: 'KiCad',
     url: 'https://kicad.org',
+  type: 'desktop-app',
     imageUrl: 'https://kicad.org/favicon.ico',
     description: 'Open-source electronic design automation suite for PCB design.',
     longDescription:
@@ -317,7 +333,7 @@ export const websites: Website[] = [
     purposes: ['eda-tool'],
     pricing: 'open-source',
     authentication: 'no-account',
-    platform: ['desktop'],
+    platform: ['windows', 'mac', 'linux'],
     difficulty: ['intermediate', 'advanced'],
     interactivity: 'interactive-canvas',
     openSource: true,
@@ -330,6 +346,7 @@ export const websites: Website[] = [
     slug: 'opencircuit',
     name: 'OpenCircuit',
     url: 'https://opencircuit.io',
+  type: 'web-app',
     description: 'Online PCB design tool with component library and 3D preview.',
     longDescription:
       'OpenCircuit is an online PCB design tool featuring a large component library, schematic editor, and 3D board preview. It aims to make PCB design accessible directly in the browser.',
@@ -349,6 +366,7 @@ export const websites: Website[] = [
     slug: 'snapeda',
     name: 'SnapEDA',
     url: 'https://snapeda.com',
+  type: 'web-app',
     description: 'Free PCB component library with symbols, footprints and 3D models.',
     longDescription:
       'SnapEDA is a free search engine for electronic component symbols, PCB footprints, and 3D models. Supports direct import into KiCad, Eagle, Altium, and other EDA tools.',
@@ -368,6 +386,7 @@ export const websites: Website[] = [
     slug: 'altium',
     name: 'Altium Designer',
     url: 'https://altium.com',
+  type: 'desktop-app',
     description: 'Professional PCB design suite with unified schematic and layout.',
     longDescription:
       'Altium Designer is a premium, industry-leading PCB design platform featuring unified schematic capture, board layout, rigid-flex design, and extensive manufacturing output generation.',
@@ -375,7 +394,7 @@ export const websites: Website[] = [
     purposes: ['eda-tool'],
     pricing: 'paid',
     authentication: 'signup-required',
-    platform: ['desktop'],
+    platform: ['windows'],
     difficulty: ['intermediate', 'advanced'],
     interactivity: 'interactive-canvas',
     openSource: false,
@@ -389,6 +408,7 @@ export const websites: Website[] = [
     slug: 'edaplayground',
     name: 'EDA Playground',
     url: 'https://edaplayground.com',
+  type: 'web-app',
     description: 'Browser-based Verilog/SystemVerilog/VHDL simulation environment.',
     longDescription:
       'EDA Playground is an online platform for running HDL simulations in the browser. Supports Verilog, SystemVerilog, and VHDL with multiple simulators (Icarus, VCS, ModelSim) and waveform viewers.',
@@ -408,6 +428,7 @@ export const websites: Website[] = [
     slug: 'tinytapeout',
     name: 'Tiny Tapeout',
     url: 'https://tinytapeout.com',
+  type: 'web-app',
     description: 'Learn digital design and build real chips on tiny silicon tiles.',
     longDescription:
       'Tiny Tapeout is an educational project that lets you learn digital design, design real chips using HDL or gate-level, and get them manufactured on low-cost silicon. An accessible path from learning to a real ASIC.',
@@ -428,6 +449,7 @@ export const websites: Website[] = [
     slug: 'iverilog',
     name: 'Icarus Verilog',
     url: 'https://github.com/steveicarus/iverilog',
+  type: 'desktop-app',
     description: 'Open-source Verilog simulation and synthesis tool.',
     longDescription:
       'Icarus Verilog is a free Verilog simulation and synthesis tool. It compiles Verilog and partial SystemVerilog code, commonly used for HDL simulation, testbenches, and educational digital design.',
@@ -435,7 +457,7 @@ export const websites: Website[] = [
     purposes: ['simulator'],
     pricing: 'open-source',
     authentication: 'no-account',
-    platform: ['cli'],
+    platform: ['linux', 'mac'],
     difficulty: ['intermediate', 'advanced'],
     interactivity: 'input-output-tool',
     openSource: true,
@@ -448,6 +470,7 @@ export const websites: Website[] = [
     slug: 'yosys',
     name: 'Yosys',
     url: 'https://github.com/YosysHQ/yosys',
+  type: 'desktop-app',
     description: 'Open-source Verilog synthesis framework for FPGA and ASIC.',
     longDescription:
       'Yosys is a comprehensive open-source Verilog synthesis framework. Supports optimization, mapping, and technology-independent formal verification for FPGA and ASIC flows.',
@@ -455,7 +478,7 @@ export const websites: Website[] = [
     purposes: ['eda-tool'],
     pricing: 'open-source',
     authentication: 'no-account',
-    platform: ['cli'],
+    platform: ['linux', 'mac'],
     difficulty: ['advanced'],
     interactivity: 'input-output-tool',
     openSource: true,
@@ -468,6 +491,7 @@ export const websites: Website[] = [
     slug: 'hdlbits',
     name: 'HDLBits',
     url: 'https://hdlbits.01xz.net',
+  type: 'web-app',
     description: 'Interactive Verilog practice problems with built-in simulation.',
     longDescription:
       'HDLBits is a collection of small Verilog practice problems with an in-browser simulator. Covers combinational logic, sequential logic, circuits, and more — an excellent hands-on resource for learning digital design.',
@@ -489,6 +513,7 @@ export const websites: Website[] = [
     slug: 'nand2tetris',
     name: 'Nand2Tetris',
     url: 'https://nand2tetris.org',
+  type: 'web-app',
     description: 'Build a complete computer from first principles — NAND gates to OS.',
     longDescription:
       'Nand2Tetris is a comprehensive course that walks you through building an entire computer system from scratch — starting with NAND gates and ending with a high-level language, compiler, OS, and Tetris game.',
@@ -496,7 +521,7 @@ export const websites: Website[] = [
     purposes: ['simulator'],
     pricing: 'free',
     authentication: 'no-account',
-    platform: ['web', 'desktop'],
+    platform: ['web'],
     difficulty: ['beginner', 'intermediate'],
     interactivity: 'interactive-canvas',
     openSource: false,
@@ -508,6 +533,7 @@ export const websites: Website[] = [
     slug: 'riscv',
     name: 'RISC-V International',
     url: 'https://riscv.org',
+  type: 'web-app',
     description: 'Official RISC-V instruction set architecture resources and specifications.',
     longDescription:
       'RISC-V International is the nonprofit managing the open RISC-V ISA. Provides ISA specifications, software ecosystem links, and member resources for RISC-V development.',
@@ -528,6 +554,7 @@ export const websites: Website[] = [
     slug: 'godbolt',
     name: 'Compiler Explorer',
     url: 'https://godbolt.org',
+  type: 'web-app',
     description: 'Interactive compiler explorer for C, C++, Rust, Assembly and more.',
     longDescription:
       'Compiler Explorer lets you write C, C++, Rust, Assembly, and other languages and see the resulting compiler output in real time. Essential for understanding code generation, optimization, and low-level behavior.',
@@ -548,6 +575,7 @@ export const websites: Website[] = [
     slug: 'stm32',
     name: 'STM32 Developer',
     url: 'https://stm32.com',
+  type: 'web-app',
     description: 'STMicroelectronics STM32 microcontroller resources and tools.',
     longDescription:
       'The official STM32 portal provides documentation, development tools, HAL libraries, and training resources for the STM32 family of ARM Cortex-M microcontrollers.',
@@ -555,7 +583,7 @@ export const websites: Website[] = [
     purposes: ['datasheet-reference'],
     pricing: 'freemium',
     authentication: 'optional-signup',
-    platform: ['web', 'desktop'],
+    platform: ['web'],
     difficulty: ['intermediate', 'advanced'],
     interactivity: 'static-document',
     openSource: false,
@@ -567,6 +595,7 @@ export const websites: Website[] = [
     slug: 'digital-logic',
     name: 'Digital (Logic Simulator)',
     url: 'https://github.com/hneemann/Digital',
+  type: 'desktop-app',
     description: 'Digital logic circuit simulator for learning computer architecture.',
     longDescription:
       'Digital is a digital logic circuit simulator that lets you design and simulate CPUs, ALUs, registers, and complex digital systems. Supports component libraries, VHDL import, and integrated circuit testing.',
@@ -574,7 +603,7 @@ export const websites: Website[] = [
     purposes: ['simulator'],
     pricing: 'open-source',
     authentication: 'no-account',
-    platform: ['desktop'],
+    platform: ['windows', 'mac', 'linux'],
     difficulty: ['beginner', 'intermediate'],
     interactivity: 'interactive-canvas',
     openSource: true,
@@ -589,6 +618,7 @@ export const websites: Website[] = [
     slug: 'webots',
     name: 'Webots',
     url: 'https://cyberbotics.com',
+  type: 'desktop-app',
     description: 'Open-source mobile robot simulation software with physics engine.',
     longDescription:
       'Webots is an open-source robot simulation software for designing and prototyping robotic systems. Supports URDF models, ROS integration, and physics-based simulation with multiple engine options.',
@@ -596,7 +626,7 @@ export const websites: Website[] = [
     purposes: ['simulator'],
     pricing: 'open-source',
     authentication: 'no-account',
-    platform: ['desktop', 'web'],
+    platform: ['windows', 'mac', 'linux'],
     difficulty: ['intermediate', 'advanced'],
     interactivity: 'interactive-canvas',
     openSource: true,
@@ -609,6 +639,7 @@ export const websites: Website[] = [
     slug: 'gazebo',
     name: 'Gazebo',
     url: 'https://gazebosim.org',
+  type: 'desktop-app',
     imageUrl: 'https://gazebosim.org/favicon.ico',
     description: 'Industry-standard robot simulator by Open Robotics.',
     longDescription:
@@ -617,7 +648,7 @@ export const websites: Website[] = [
     purposes: ['simulator'],
     pricing: 'free',
     authentication: 'no-account',
-    platform: ['desktop', 'web'],
+    platform: ['linux'],
     difficulty: ['intermediate', 'advanced'],
     interactivity: 'interactive-canvas',
     openSource: true,
@@ -630,6 +661,7 @@ export const websites: Website[] = [
     slug: 'coppeliasim',
     name: 'CoppeliaSim',
     url: 'https://coppeliarobotics.com',
+  type: 'desktop-app',
     description: 'Versatile robot simulation platform with multiple physics engines.',
     longDescription:
       'CoppeliaSim (formerly V-REP) is a versatile robot simulation platform supporting multiple physics engines, programming languages, and robot models. Used in education and research for prototyping robotic systems.',
@@ -637,7 +669,7 @@ export const websites: Website[] = [
     purposes: ['simulator'],
     pricing: 'freemium',
     authentication: 'signup-required',
-    platform: ['desktop'],
+    platform: ['windows', 'mac', 'linux'],
     difficulty: ['intermediate', 'advanced'],
     interactivity: 'interactive-canvas',
     openSource: false,
@@ -649,6 +681,7 @@ export const websites: Website[] = [
     slug: 'ros-org',
     name: 'ROS.org',
     url: 'https://ros.org',
+  type: 'web-app',
     description: 'Official Robot Operating System documentation and ecosystem.',
     longDescription:
       'ROS.org is the official website for the Robot Operating System, providing documentation, tutorials, packages, and community resources for robotics development using ROS and ROS 2.',
@@ -669,6 +702,7 @@ export const websites: Website[] = [
     slug: 'matlab-simulink',
     name: 'MATLAB / Simulink',
     url: 'https://mathworks.com',
+  type: 'desktop-app',
     description: 'Numerical computing and model-based design for control systems.',
     longDescription:
       'MATLAB and Simulink from MathWorks are industry standards for numerical computing, algorithm development, and model-based design. Simulink is widely used for control systems, signal processing, and embedded systems simulation.',
@@ -676,7 +710,7 @@ export const websites: Website[] = [
     purposes: ['simulator', 'calculator'],
     pricing: 'paid',
     authentication: 'signup-required',
-    platform: ['desktop'],
+    platform: ['windows', 'mac', 'linux'],
     difficulty: ['intermediate', 'advanced'],
     interactivity: 'interactive-canvas',
     openSource: false,
@@ -690,6 +724,7 @@ export const websites: Website[] = [
     slug: 'octopart',
     name: 'Octopart',
     url: 'https://octopart.com',
+  type: 'web-app',
     description: 'Electronic component search engine with pricing and datasheets.',
     longDescription:
       'Octopart is the most comprehensive search engine for electronic components. Aggregates pricing, availability, and datasheets from hundreds of distributors, making component sourcing fast and transparent.',
@@ -709,6 +744,7 @@ export const websites: Website[] = [
     slug: 'digikey',
     name: 'Digi-Key',
     url: 'https://digikey.com',
+  type: 'web-app',
     description: 'Global electronic component distributor with parametric search tools.',
     longDescription:
       'Digi-Key Electronics is a major authorized distributor offering a vast inventory of electronic components with powerful parametric search, reference designs, and engineering resources for rapid prototyping.',
@@ -762,6 +798,7 @@ export function filterWebsites(
     difficulty?: string[];
     interactivity?: string[];
     openSource?: boolean;
+    type?: string[];
   },
   sort: string = 'relevance'
 ): Website[] {
@@ -817,6 +854,10 @@ export function filterWebsites(
 
   if (filters.openSource) {
     filtered = filtered.filter((w) => isToolOpenSource(w));
+  }
+
+  if (filters.type && filters.type.length > 0) {
+    filtered = filtered.filter((w) => filters.type!.includes(w.type));
   }
 
   switch (sort) {

@@ -15,6 +15,7 @@ const templateJson = `{
   description: 'One-line description of the tool.',
   longDescription:
     'A detailed description explaining what this tool does, who it is for, and why it is useful for engineers.',
+  type: 'web-app',
   category: 'electronics-circuitry',
   purposes: ['simulator'],
   pricing: 'free',

@@ -7,6 +7,7 @@ import type {
   Pricing,
   Authentication,
   Difficulty,
+  ToolType,
 } from '@/types';
 
 /* ── Labels ──────────────────────────────────────────────────────────── */
@@ -38,6 +39,12 @@ const difficultyLabels: Record<Difficulty, string> = {
   advanced: 'Expert / Pro',
 };
 
+const typeLabels: Record<ToolType, string> = {
+  'web-app': 'Web App',
+  'desktop-app': 'Desktop App',
+  'extension': 'Extension',
+};
+
 /* ── Option arrays ───────────────────────────────────────────────────── */
 
 const allPurposes: Purpose[] = [
@@ -54,6 +61,7 @@ const allAuth: Authentication[] = [
   'signup-required',
 ];
 const allDifficulty: Difficulty[] = ['beginner', 'intermediate', 'advanced'];
+const allToolTypes: ToolType[] = ['web-app', 'desktop-app', 'extension'];
 
 /* ── Props ───────────────────────────────────────────────────────────── */
 
@@ -229,7 +237,8 @@ export function FilterBar({ filters, onFilterChange }: FilterBarProps) {
     filters.purposes.length +
     filters.pricing.length +
     filters.authentication.length +
-    filters.difficulty.length;
+    filters.difficulty.length +
+    filters.type.length;
 
   const clearAll = () => {
     onFilterChange({
@@ -238,6 +247,7 @@ export function FilterBar({ filters, onFilterChange }: FilterBarProps) {
       pricing: [],
       authentication: [],
       difficulty: [],
+      type: [],
     });
   };
 
@@ -248,6 +258,13 @@ export function FilterBar({ filters, onFilterChange }: FilterBarProps) {
       filterKey: 'categories' as const,
       options: categories.map((c) => ({ value: c.slug, label: c.name })),
       selected: filters.categories,
+    },
+    {
+      id: 'type',
+      label: 'Tool Type',
+      filterKey: 'type' as const,
+      options: allToolTypes.map((t) => ({ value: t, label: typeLabels[t] })),
+      selected: filters.type,
     },
     {
       id: 'purpose',

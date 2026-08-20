@@ -23,6 +23,7 @@ const defaultFilters: SearchFilters = {
   difficulty: [],
   interactivity: [],
   openSource: false,
+  type: [],
 };
 
 export function ExplorePage() {

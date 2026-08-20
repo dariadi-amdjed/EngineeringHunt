@@ -23,7 +23,9 @@ export type Difficulty = 'beginner' | 'intermediate' | 'advanced';
 
 export type Interactivity = 'interactive-canvas' | 'input-output-tool' | 'static-document';
 
-export type Platform = 'web' | 'desktop' | 'mobile' | 'cli';
+export type ToolType = 'web-app' | 'desktop-app' | 'extension';
+
+export type Platform = 'web' | 'windows' | 'mac' | 'linux' | 'cli' | 'mobile';
 
 export type Website = {
   id: string;
@@ -33,6 +35,7 @@ export type Website = {
   imageUrl?: string;
   description: string;
   longDescription: string;
+  type: ToolType;
   category: CategorySlug;
   purposes: Purpose[];
   pricing: Pricing;
@@ -67,6 +70,7 @@ export type SearchFilters = {
   difficulty: Difficulty[];
   interactivity: Interactivity[];
   openSource: boolean;
+  type: ToolType[];
 };
 
 export type SortOption = 'relevance' | 'popular' | 'recent' | 'free-first' | 'open-source-first';

@@ -44,6 +44,9 @@ function applyFilters(
   if (filters.openSource) {
     result = result.filter((w) => isToolOpenSource(w));
   }
+  if (filters.type && filters.type.length > 0) {
+    result = result.filter((w) => filters.type!.includes(w.type));
+  }
 
   return result;
 }
@@ -108,6 +111,7 @@ export function useWebsites(options: UseWebsitesOptions = {}): UseWebsitesResult
     d: filters?.difficulty || [],
     i: filters?.interactivity || [],
     o: filters?.openSource || false,
+    t: filters?.type || [],
     f: featured || false,
     l: limit || 0,
   });

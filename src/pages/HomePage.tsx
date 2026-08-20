@@ -63,7 +63,7 @@ export function HomePage() {
             for every engineering domain
           </h1>
           <p className="mx-auto mt-4 max-w-xl text-[14px] leading-relaxed text-slate-500">
-            A curated index of simulators, design platforms, development environments, and learning
+            A curated index of web tools, desktop software, simulators, design platforms, and learning
             resources — organized by domain and purpose.
           </p>
           <div className="mx-auto mt-6 max-w-xl">

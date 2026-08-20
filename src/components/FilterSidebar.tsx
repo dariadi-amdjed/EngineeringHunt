@@ -1,6 +1,6 @@
 import { ChevronDown, ChevronRight } from 'lucide-react';
 import { useState, useCallback } from 'react';
-import type { SearchFilters, SortOption, Purpose, Pricing, Authentication, Difficulty, Interactivity } from '@/types';
+import type { SearchFilters, SortOption, Purpose, Pricing, Authentication, Difficulty, Interactivity, ToolType } from '@/types';
 import { categories } from '@/data/categories';
 
 interface FilterSidebarProps {
@@ -46,11 +46,18 @@ const interactivityLabels: Record<Interactivity, string> = {
   'static-document': 'Static Document',
 };
 
+const typeLabels: Record<ToolType, string> = {
+  'web-app': 'Web App',
+  'desktop-app': 'Desktop App',
+  'extension': 'Extension',
+};
+
 const purposes: Purpose[] = ['simulator', 'eda-tool', 'calculator', 'datasheet-reference', 'community-docs'];
 const pricing: Pricing[] = ['free', 'open-source', 'freemium', 'paid'];
 const authentications: Authentication[] = ['no-account', 'optional-signup', 'signup-required'];
 const difficulties: Difficulty[] = ['beginner', 'intermediate', 'advanced'];
 const interactivities: Interactivity[] = ['interactive-canvas', 'input-output-tool', 'static-document'];
+const toolTypes: ToolType[] = ['web-app', 'desktop-app', 'extension'];
 
 const sortOptions: { value: SortOption; label: string }[] = [
   { value: 'relevance', label: 'Relevance' },
@@ -145,6 +152,7 @@ export function FilterSidebar({
     filters.authentication.length +
     filters.difficulty.length +
     filters.interactivity.length +
+    filters.type.length +
     (filters.openSource ? 1 : 0);
 
   const sidebarContent = (
@@ -164,6 +172,7 @@ export function FilterSidebar({
                 difficulty: [],
                 interactivity: [],
                 openSource: false,
+                type: [],
               })
             }
             className="text-[11px] text-blue-600 hover:text-blue-700 cursor-pointer"
@@ -217,7 +226,19 @@ export function FilterSidebar({
       </CollapsibleSection>
 
       {/* Tool Type */}
-      <CollapsibleSection title="Tool Type" count={filters.purposes.length}>
+      <CollapsibleSection title="Tool Type" count={filters.type.length}>
+        {toolTypes.map((t) => (
+          <CheckboxItem
+            key={t}
+            label={typeLabels[t]}
+            checked={filters.type.includes(t)}
+            onChange={() => toggleFilter('type', t)}
+          />
+        ))}
+      </CollapsibleSection>
+
+      {/* Purpose */}
+      <CollapsibleSection title="Purpose" count={filters.purposes.length}>
         {purposes.map((p) => (
           <CheckboxItem
             key={p}

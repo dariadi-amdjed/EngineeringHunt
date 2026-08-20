@@ -1,9 +1,27 @@
 import { Link } from 'react-router-dom';
-import { ExternalLink, Info } from 'lucide-react';
-import type { Website } from '@/types';
+import { ExternalLink, Info, Globe, Monitor, Smartphone, Terminal, Apple, AppWindow } from 'lucide-react';
+import type { Website, Platform } from '@/types';
 import { isToolOpenSource } from '@/types';
 import { SiteFavicon } from './SiteFavicon';
 import { Tag } from './Tag';
+
+const platformIcons: Record<Platform, React.ReactNode> = {
+  web: <Globe className="h-2.5 w-2.5" />,
+  windows: <AppWindow className="h-2.5 w-2.5" />,
+  mac: <Apple className="h-2.5 w-2.5" />,
+  linux: <Monitor className="h-2.5 w-2.5" />,
+  cli: <Terminal className="h-2.5 w-2.5" />,
+  mobile: <Smartphone className="h-2.5 w-2.5" />,
+};
+
+const platformLabels: Record<Platform, string> = {
+  web: 'Web',
+  windows: 'Win',
+  mac: 'Mac',
+  linux: 'Linux',
+  cli: 'CLI',
+  mobile: 'Mobile',
+};
 
 interface WebsiteCardProps {
   website: Website;
@@ -113,7 +131,7 @@ export function WebsiteCard({ website, layout = 'grid' }: WebsiteCardProps) {
       </div>
 
       {/* Footer stats */}
-      <div className="flex items-center gap-3 border-t border-slate-100 px-4 py-2.5">
+      <div className="flex items-center gap-2 border-t border-slate-100 px-4 py-2.5">
         <span className="font-mono text-[11px] uppercase tracking-wider text-slate-400">
           {website.difficulty[0] || 'all'}
         </span>
@@ -122,9 +140,18 @@ export function WebsiteCard({ website, layout = 'grid' }: WebsiteCardProps) {
             open source
           </span>
         )}
-        <span className="ml-auto font-mono text-[10px] uppercase tracking-wider text-slate-300">
-          {website.platform[0]}
-        </span>
+        <div className="ml-auto flex items-center gap-1">
+          {website.platform.map((p) => (
+            <span
+              key={p}
+              className="flex items-center gap-0.5 rounded bg-slate-100 px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-wider text-slate-500"
+              title={platformLabels[p]}
+            >
+              {platformIcons[p]}
+              {platformLabels[p]}
+            </span>
+          ))}
+        </div>
       </div>
     </div>
   );

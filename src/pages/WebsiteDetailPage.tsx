@@ -1,6 +1,6 @@
 import { useParams, Link } from 'react-router-dom';
 import {
-  ArrowUpRight, Globe, Monitor, Smartphone, Tag as TagIcon, Camera,
+  ArrowUpRight, Globe, Monitor, Smartphone, Tag as TagIcon, Camera, Terminal, Apple, AppWindow,
 } from 'lucide-react';
 import { getWebsiteBySlug, getWebsitesByDomain } from '@/lib/useWebsites';
 import { isToolOpenSource } from '@/types';
@@ -67,8 +67,17 @@ export function WebsiteDetailPage() {
 
   const platformIcons: Record<string, React.ReactNode> = {
     web: <Globe className="h-3 w-3" />,
-    desktop: <Monitor className="h-3 w-3" />,
+    windows: <AppWindow className="h-3 w-3" />,
+    mac: <Apple className="h-3 w-3" />,
+    linux: <Monitor className="h-3 w-3" />,
+    cli: <Terminal className="h-3 w-3" />,
     mobile: <Smartphone className="h-3 w-3" />,
+  };
+
+  const typeLabels: Record<string, string> = {
+    'web-app': 'Web App',
+    'desktop-app': 'Desktop App',
+    'extension': 'Extension',
   };
 
   return (
@@ -92,6 +101,7 @@ export function WebsiteDetailPage() {
               <Tag key={p} variant="purpose">{purposeLabels[p] || p}</Tag>
             ))}
             <Tag variant="pricing">{website.pricing.replace('-', ' ')}</Tag>
+            <Tag variant="category">{typeLabels[website.type] || website.type}</Tag>
             {isToolOpenSource(website) && <Tag variant="pricing">Open Source</Tag>}
             <Tag variant="authentication">{authLabels[website.authentication]}</Tag>
             <Tag variant="interactivity">{interactivityLabels[website.interactivity]}</Tag>
@@ -156,12 +166,16 @@ export function WebsiteDetailPage() {
                 <dt className="text-slate-500">Platform</dt>
                 <dd className="flex items-center gap-1.5">
                   {website.platform.map((p) => (
-                    <span key={p} className="flex items-center gap-1 text-slate-600">
+                    <span key={p} className="flex items-center gap-1 rounded bg-slate-100 px-1.5 py-0.5 text-[11px] font-medium capitalize text-slate-600">
                       {platformIcons[p] || <Globe className="h-3 w-3" />}
                       {p}
                     </span>
                   ))}
                 </dd>
+              </div>
+              <div className="flex items-center justify-between">
+                <dt className="text-slate-500">Type</dt>
+                <dd className="font-medium text-slate-900">{typeLabels[website.type] || website.type}</dd>
               </div>
               {isToolOpenSource(website) && website.githubUrl && (
                 <div className="flex items-center justify-between">
