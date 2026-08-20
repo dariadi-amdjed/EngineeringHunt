@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { categories } from '@/data/categories';
+import { websites as allWebsitesData } from '@/data/websites';
 import { heroStickers } from '@/data/stickers';
 import { WebsiteCard } from '@/components/WebsiteCard';
 import { CategoryCard } from '@/components/CategoryCard';
@@ -18,15 +19,15 @@ export function HomePage() {
   const [aiQuery, setAiQuery] = useState('');
   const [aiOpen, setAiOpen] = useState(false);
 
-  const { websites: featuredWebsites, totalCount, loading } = useWebsites({ featured: true, limit: 6 });
-  const { websites: allWebsites } = useWebsites({});
+  const { websites: featuredWebsites, loading } = useWebsites({ featured: true, limit: 6 });
   const categoryCounts = getCategoryCounts();
 
-  const openSourceCount = allWebsites.filter((w) => w.openSource).length;
+  const uniqueDomains = new Set(allWebsitesData.map((w) => w.category)).size;
+  const openSourceCount = allWebsitesData.filter((w) => w.openSource).length;
 
   const stats = [
-    { label: 'Tools indexed', value: totalCount.toString(), icon: Code },
-    { label: 'Domains', value: categories.length.toString(), icon: Cpu },
+    { label: 'Tools indexed', value: allWebsitesData.length.toString(), icon: Code },
+    { label: 'Domains', value: uniqueDomains.toString(), icon: Cpu },
     { label: 'Open source', value: openSourceCount.toString(), icon: GitBranch },
   ];
 
