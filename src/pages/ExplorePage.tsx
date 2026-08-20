@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { Search, ChevronDown, Loader2 } from 'lucide-react';
 import { WebsiteCard } from '@/components/WebsiteCard';
@@ -9,11 +9,10 @@ import { FloatingStickers } from '@/components/FloatingStickers';
 import { AISearchOverlay } from '@/components/AISearchOverlay';
 import { SkeletonCard } from '@/components/SkeletonCard';
 import { exploreStickers } from '@/data/stickers';
-import { websites, filterWebsites, searchWebsites } from '@/data/websites';
+import { useWebsites } from '@/lib/useWebsites';
 import type { SearchFilters } from '@/types';
 
 const PAGE_SIZE = 12;
-const LOAD_DELAY = 400;
 
 const defaultFilters: SearchFilters = {
   query: '',
@@ -37,7 +36,7 @@ export function ExplorePage() {
   const [aiQuery, setAiQuery] = useState('');
   const [aiOpen, setAiOpen] = useState(false);
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
-  const [loading, setLoading] = useState(false);
+  const [loadingMore, setLoadingMore] = useState(false);
 
   useEffect(() => {
     setFilters((prev) => ({ ...prev, query: initialQuery }));
@@ -48,24 +47,7 @@ export function ExplorePage() {
     setAiOpen(true);
   };
 
-  const results = useMemo(() => {
-    const hasActiveFilters =
-      filters.purposes.length > 0 ||
-      filters.pricing.length > 0 ||
-      filters.difficulty.length > 0 ||
-      filters.categories.length > 0 ||
-      filters.authentication.length > 0 ||
-      filters.interactivity.length > 0 ||
-      filters.openSource;
-
-    if (filters.query) {
-      return searchWebsites(filters.query);
-    }
-    if (hasActiveFilters) {
-      return filterWebsites(filters, 'relevance');
-    }
-    return filterWebsites({}, 'relevance');
-  }, [filters]);
+  const { websites: results, totalCount, loading } = useWebsites({ filters });
 
   useEffect(() => {
     setVisibleCount(PAGE_SIZE);
@@ -75,11 +57,11 @@ export function ExplorePage() {
   const hasMore = visibleCount < results.length;
 
   const handleLoadMore = useCallback(() => {
-    setLoading(true);
+    setLoadingMore(true);
     setTimeout(() => {
       setVisibleCount((prev) => prev + PAGE_SIZE);
-      setLoading(false);
-    }, LOAD_DELAY);
+      setLoadingMore(false);
+    }, 400);
   }, []);
 
   return (
@@ -101,7 +83,7 @@ export function ExplorePage() {
             </span>
             <h1 className="mt-1 text-[20px] font-bold text-slate-900">Browse all tools</h1>
             <p className="mt-1 text-[13px] text-slate-500">
-              {websites.length} tools across {new Set(websites.map((w) => w.category)).size} domains
+              {totalCount} tool{totalCount !== 1 ? 's' : ''} across 8 domains
             </p>
           </div>
         </div>
@@ -119,36 +101,40 @@ export function ExplorePage() {
         {/* Result count */}
         <div className="mb-4">
           <span className="text-[12px] text-slate-400">
-            {results.length} result{results.length !== 1 ? 's' : ''}
+            {loading ? 'Loading...' : `${results.length} result${results.length !== 1 ? 's' : ''}`}
           </span>
         </div>
       </div>
 
       {/* Tools Grid */}
       <div className="px-4 sm:px-6">
-        {visibleResults.length > 0 ? (
+        {loading ? (
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {Array.from({ length: 6 }).map((_, i) => (
+              <SkeletonCard key={`skeleton-${i}`} />
+            ))}
+          </div>
+        ) : visibleResults.length > 0 ? (
           <>
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
               {visibleResults.map((website) => (
-                <WebsiteCard key={website.slug} website={website} layout="grid" />
+                <WebsiteCard key={website.id} website={website} layout="grid" />
               ))}
 
-              {/* Skeleton placeholders while loading */}
-              {loading &&
+              {loadingMore &&
                 Array.from({ length: Math.min(PAGE_SIZE, results.length - visibleCount) }).map(
-                  (_, i) => <SkeletonCard key={`skeleton-${i}`} />
+                  (_, i) => <SkeletonCard key={`skeleton-more-${i}`} />
                 )}
             </div>
 
-            {/* Load More */}
             {hasMore && (
               <div className="flex justify-center py-8">
                 <button
                   onClick={handleLoadMore}
-                  disabled={loading}
+                  disabled={loadingMore}
                   className="flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-6 py-2.5 text-[13px] font-medium text-slate-700 transition-colors hover:bg-slate-50 disabled:opacity-60 cursor-pointer"
                 >
-                  {loading ? (
+                  {loadingMore ? (
                     <>
                       <Loader2 className="h-3.5 w-3.5 animate-ai-spin" />
                       Loading tools...

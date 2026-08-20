@@ -250,3 +250,25 @@
 .animate-skeleton {
   animation: skeletonPulse 1.5s ease-in-out infinite;
 }
+
+/* ── Submit Success Animation ──────────────────────────────────────── */
+@keyframes successPop {
+  0% { transform: scale(0.5); opacity: 0; }
+  60% { transform: scale(1.15); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes checkBounce {
+  0% { transform: scale(0); }
+  50% { transform: scale(1.2); }
+  70% { transform: scale(0.9); }
+  100% { transform: scale(1); }
+}
+
+.animate-success-pop {
+  animation: successPop 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-check-bounce {
+  animation: checkBounce 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
+}

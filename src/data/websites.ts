@@ -7,6 +7,7 @@ export const websites: Website[] = [
     slug: 'wokwi',
     name: 'Wokwi',
     url: 'https://wokwi.com',
+    imageUrl: 'https://wokwi.com/favicon.ico',
     description: 'Online electronics simulator for Arduino, ESP32, and Raspberry Pi Pico.',
     longDescription:
       'Wokwi is a browser-based electronics simulator that supports Arduino, ESP32, Raspberry Pi Pico, and other microcontrollers. Simulate circuits with sensors, LEDs, displays, and custom parts — entirely in your browser with no hardware required.',
@@ -27,6 +28,7 @@ export const websites: Website[] = [
     slug: 'falstad',
     name: 'Falstad Circuit Simulator',
     url: 'https://falstad.com/circuit',
+    imageUrl: 'https://falstad.com/circuit/favicon.ico',
     description: 'Interactive browser-based circuit simulator with real-time visualization.',
     longDescription:
       "Falstad's circuit simulator is a free, browser-based tool that provides real-time visualization of voltage, current, and component behavior. It supports analog, digital, and mixed-signal circuits and is excellent for learning electronics fundamentals.",
@@ -47,6 +49,7 @@ export const websites: Website[] = [
     slug: 'circuitlab',
     name: 'CircuitLab',
     url: 'https://circuitlab.com',
+    imageUrl: 'https://circuitlab.com/favicon.ico',
     description: 'Browser-based schematic editor and circuit simulator with SPICE analysis.',
     longDescription:
       'CircuitLab offers an online schematic editor and circuit simulator with SPICE analysis, Bode plots, and real-time waveform viewing. Widely used in EE education and professional circuit prototyping.',
@@ -66,6 +69,7 @@ export const websites: Website[] = [
     slug: 'tinkercad',
     name: 'Tinkercad Circuits',
     url: 'https://tinkercad.com',
+    imageUrl: 'https://tinkercad.com/favicon.ico',
     description: 'Free browser-based electronics simulation and 3D design tool by Autodesk.',
     longDescription:
       'Tinkercad is a free, web-based 3D design, electronics simulation, and coding tool from Autodesk. Popular for education, it offers circuit simulation with Arduino and basic 3D modeling for beginners.',
@@ -304,6 +308,7 @@ export const websites: Website[] = [
     slug: 'kicad',
     name: 'KiCad',
     url: 'https://kicad.org',
+    imageUrl: 'https://kicad.org/favicon.ico',
     description: 'Open-source electronic design automation suite for PCB design.',
     longDescription:
       'KiCad is a free and open-source EDA suite for schematic capture and PCB layout. It features a 3D board viewer, extensive component libraries, and Gerber file export for manufacturing.',
@@ -603,6 +608,7 @@ export const websites: Website[] = [
     slug: 'gazebo',
     name: 'Gazebo',
     url: 'https://gazebosim.org',
+    imageUrl: 'https://gazebosim.org/favicon.ico',
     description: 'Industry-standard robot simulator by Open Robotics.',
     longDescription:
       'Gazebo is the industry-standard robot simulator from Open Robotics. Provides accurate physics simulation, 3D environments, sensor models, and tight integration with ROS and ROS 2.',

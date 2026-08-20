@@ -1,189 +1,153 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Send, CheckCircle, ArrowRight } from 'lucide-react';
+import { ArrowRight, GitFork, FileCode, Check } from 'lucide-react';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
-import { categories } from '@/data/categories';
+
+const GITHUB_REPO = 'https://github.com/user/engineeringhunt';
+const GITHUB_FILE = `${GITHUB_REPO}/edit/main/src/data/websites.ts`;
+
+const templateJson = `{
+  id: 'YOUR_UNIQUE_ID',
+  slug: 'your-tool-slug',
+  name: 'Tool Name',
+  url: 'https://example.com',
+  imageUrl: 'https://example.com/favicon.ico',
+  description: 'One-line description of the tool.',
+  longDescription:
+    'A detailed description explaining what this tool does, who it is for, and why it is useful for engineers.',
+  category: 'electronics-circuitry',
+  purposes: ['simulator'],
+  pricing: 'free',
+  authentication: 'no-account',
+  platform: ['web'],
+  difficulty: ['beginner'],
+  interactivity: 'interactive-canvas',
+  openSource: false,
+  githubUrl: undefined,
+  tags: ['Tag1', 'Tag2', 'Tag3'],
+  featured: false,
+}`;
+
+const steps = [
+  {
+    step: 1,
+    title: 'Fork the repository',
+    description: 'Click the Fork button on GitHub to create your own copy of the project.',
+  },
+  {
+    step: 2,
+    title: 'Add your tool entry',
+    description: 'Open src/data/websites.ts and paste the JSON template below with your tool\'s details.',
+  },
+  {
+    step: 3,
+    title: 'Submit a Pull Request',
+    description: 'Commit your changes and open a PR. We\'ll review and merge it shortly.',
+  },
+];
 
 export function SubmitPage() {
-  const [submitted, setSubmitted] = useState(false);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitted(true);
-  };
-
-  if (submitted) {
-    return (
-      <div className="mx-auto max-w-2xl px-4 py-20 text-center sm:px-6">
-        <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-emerald-100">
-          <CheckCircle className="h-7 w-7 text-emerald-600" />
-        </div>
-        <h1 className="text-[20px] font-bold text-slate-900">Submission received!</h1>
-        <p className="mt-2 text-[13px] text-slate-500">
-          Thank you for contributing. We'll review your submission and add it to the index.
-        </p>
-        <div className="mt-6 flex items-center justify-center gap-3">
-          <Link
-            to="/explore"
-            className="inline-flex items-center gap-1.5 rounded-lg bg-blue-600 px-4 py-2 text-[13px] font-medium text-white no-underline hover:bg-blue-700"
-          >
-            Explore tools <ArrowRight className="h-3.5 w-3.5" />
-          </Link>
-          <button
-            onClick={() => setSubmitted(false)}
-            className="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 bg-white px-4 py-2 text-[13px] font-medium text-slate-700 cursor-pointer hover:bg-slate-50"
-          >
-            Submit another
-          </button>
-        </div>
-      </div>
-    );
-  }
-
   return (
-    <div className="mx-auto max-w-2xl px-4 py-6 sm:px-6">
-      <Breadcrumbs items={[{ label: 'Submit Website' }]} />
+    <div className="mx-auto max-w-3xl px-4 py-6 sm:px-6">
+      <Breadcrumbs items={[{ label: 'Submit Tool' }]} />
 
+      {/* Header */}
       <div className="mt-6">
         <span className="font-mono text-[10px] uppercase tracking-widest text-blue-600">
-          [ SUBMIT ]
+          [ CONTRIBUTE ]
         </span>
-        <h1 className="mt-1 text-[20px] font-bold text-slate-900">Submit a website</h1>
+        <h1 className="mt-1 text-[20px] font-bold text-slate-900">
+          Submit a tool via Pull Request
+        </h1>
         <p className="mt-1 text-[13px] text-slate-500">
-          Help fellow engineers discover great tools.
+          EngineeringHunt is open source. Add a tool by submitting a PR to our GitHub repo.
         </p>
       </div>
 
-      <form onSubmit={handleSubmit} className="mt-6 space-y-5">
-        {/* Name */}
-        <div>
-          <label className="mb-1.5 block text-[12px] font-semibold text-slate-700">
-            Website Name *
-          </label>
-          <input
-            type="text"
-            required
-            placeholder="e.g. KiCad, Wokwi, Hugging Face"
-            className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-[13px] text-slate-900 placeholder-slate-400 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
-          />
-        </div>
-
-        {/* URL */}
-        <div>
-          <label className="mb-1.5 block text-[12px] font-semibold text-slate-700">
-            Website URL *
-          </label>
-          <input
-            type="url"
-            required
-            placeholder="https://example.com"
-            className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-[13px] text-slate-900 placeholder-slate-400 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
-          />
-        </div>
-
-        {/* Tagline */}
-        <div>
-          <label className="mb-1.5 block text-[12px] font-semibold text-slate-700">
-            Short description *
-          </label>
-          <input
-            type="text"
-            required
-            placeholder="One-line description of the tool"
-            className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-[13px] text-slate-900 placeholder-slate-400 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
-          />
-        </div>
-
-        {/* Description */}
-        <div>
-          <label className="mb-1.5 block text-[12px] font-semibold text-slate-700">
-            Detailed description *
-          </label>
-          <textarea
-            required
-            rows={4}
-            placeholder="What does this tool do? What makes it useful?"
-            className="w-full resize-none rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-[13px] text-slate-900 placeholder-slate-400 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
-          />
-        </div>
-
-        {/* Category */}
-        <div>
-          <label className="mb-1.5 block text-[12px] font-semibold text-slate-700">
-            Primary Category *
-          </label>
-          <select
-            required
-            className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-[13px] text-slate-700 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
-          >
-            <option value="">Select a category</option>
-            {categories.map((cat) => (
-              <option key={cat.slug} value={cat.slug}>
-                {cat.name}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        {/* Purpose */}
-        <div>
-          <label className="mb-1.5 block text-[12px] font-semibold text-slate-700">
-            Purpose
-          </label>
-          <select className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-[13px] text-slate-700 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500">
-            <option value="">Select purpose</option>
-            <option value="simulation">Simulation</option>
-            <option value="design">Design</option>
-            <option value="learning">Learning</option>
-            <option value="monitoring">Monitoring</option>
-            <option value="automation">Automation</option>
-            <option value="analysis">Analysis</option>
-            <option value="programming">Programming</option>
-            <option value="visualization">Visualization</option>
-            <option value="data">Data</option>
-            <option value="development">Development</option>
-          </select>
-        </div>
-
-        {/* Pricing */}
-        <div>
-          <label className="mb-1.5 block text-[12px] font-semibold text-slate-700">Pricing</label>
-          <div className="flex flex-wrap gap-2">
-            {(['free', 'freemium', 'paid'] as const).map((option) => (
-              <label
-                key={option}
-                className="flex cursor-pointer items-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-2 text-[12px] text-slate-600 transition-colors hover:border-slate-300 has-[:checked]:border-blue-500 has-[:checked]:bg-blue-50 has-[:checked]:text-blue-700"
-              >
-                <input type="radio" name="pricing" value={option} className="sr-only" />
-                {option}
-              </label>
-            ))}
+      {/* Steps */}
+      <div className="mt-8 space-y-4">
+        {steps.map((s) => (
+          <div key={s.step} className="flex gap-4">
+            <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-blue-600 text-[13px] font-bold text-white">
+              {s.step}
+            </div>
+            <div className="pt-1">
+              <h3 className="text-[14px] font-semibold text-slate-900">{s.title}</h3>
+              <p className="mt-0.5 text-[13px] text-slate-500">{s.description}</p>
+            </div>
           </div>
-        </div>
+        ))}
+      </div>
 
-        {/* Open source */}
-        <div>
-          <label className="flex cursor-pointer items-center gap-2 text-[13px] text-slate-700">
-            <input
-              type="checkbox"
-              className="h-4 w-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500"
-            />
-            This tool is open source
-          </label>
+      {/* JSON Template */}
+      <div className="mt-8">
+        <div className="mb-3 flex items-center justify-between">
+          <h3 className="text-[14px] font-semibold text-slate-900">JSON Template</h3>
+          <span className="font-mono text-[10px] uppercase tracking-wider text-slate-400">
+            Copy &amp; paste
+          </span>
         </div>
+        <div className="relative overflow-hidden rounded-xl border border-slate-200 bg-slate-900">
+          <pre className="overflow-x-auto p-4 text-[12px] leading-relaxed text-slate-300">
+            <code>{templateJson}</code>
+          </pre>
+        </div>
+      </div>
 
-        {/* Submit */}
-        <div className="flex items-center gap-3 pt-2">
-          <button
-            type="submit"
-            className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-5 py-2.5 text-[13px] font-medium text-white transition-colors hover:bg-blue-700 cursor-pointer"
-          >
-            <Send className="h-3.5 w-3.5" />
-            Submit for review
-          </button>
-          <span className="text-[11px] text-slate-400">We'll review within 48 hours</span>
-        </div>
-      </form>
+      {/* CTA Buttons */}
+      <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+        <a
+          href={GITHUB_FILE}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-5 py-2.5 text-[13px] font-medium text-white no-underline transition-colors hover:bg-blue-700"
+        >
+          <GitFork className="h-4 w-4" />
+          Open GitHub Editor
+          <ArrowRight className="h-3.5 w-3.5" />
+        </a>
+        <a
+          href={GITHUB_REPO}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-5 py-2.5 text-[13px] font-medium text-slate-700 no-underline transition-colors hover:bg-slate-50"
+        >
+          <FileCode className="h-4 w-4" />
+          View Repository
+        </a>
+      </div>
+
+      {/* Guidelines */}
+      <div className="mt-10 rounded-xl border border-slate-200 bg-white p-5">
+        <h3 className="mb-3 text-[14px] font-semibold text-slate-900">Submission Guidelines</h3>
+        <ul className="space-y-2 text-[13px] text-slate-500">
+          <li className="flex items-start gap-2">
+            <Check className="mt-0.5 h-3.5 w-3.5 flex-shrink-0 text-emerald-500" />
+            The tool must be related to engineering, electronics, or hardware
+          </li>
+          <li className="flex items-start gap-2">
+            <Check className="mt-0.5 h-3.5 w-3.5 flex-shrink-0 text-emerald-500" />
+            Include a valid URL and a clear, accurate description
+          </li>
+          <li className="flex items-start gap-2">
+            <Check className="mt-0.5 h-3.5 w-3.5 flex-shrink-0 text-emerald-500" />
+            Optionally include an <code className="rounded bg-slate-100 px-1 text-[12px]">imageUrl</code> for a logo or screenshot
+          </li>
+          <li className="flex items-start gap-2">
+            <Check className="mt-0.5 h-3.5 w-3.5 flex-shrink-0 text-emerald-500" />
+            One tool per PR for easier review
+          </li>
+        </ul>
+      </div>
+
+      {/* Back link */}
+      <div className="mt-8 text-center">
+        <Link
+          to="/explore"
+          className="text-[13px] font-medium text-blue-600 no-underline hover:text-blue-700"
+        >
+          ← Back to explore
+        </Link>
+      </div>
     </div>
   );
 }

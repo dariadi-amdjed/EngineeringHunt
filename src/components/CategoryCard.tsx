@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Zap, Lightbulb, Cpu, CircuitBoard, Binary, Server, Bot, Calculator, type LucideIcon } from 'lucide-react';
 import type { Category } from '@/types';
 
-const iconMap: Record<string, LucideIcon> = {
+export const iconMap: Record<string, LucideIcon> = {
   Zap,
   Lightbulb,
   Cpu,
@@ -15,9 +15,10 @@ const iconMap: Record<string, LucideIcon> = {
 
 interface CategoryCardProps {
   category: Category;
+  count?: number;
 }
 
-export function CategoryCard({ category }: CategoryCardProps) {
+export function CategoryCard({ category, count }: CategoryCardProps) {
   const Icon = iconMap[category.icon] || Zap;
 
   return (
@@ -36,7 +37,7 @@ export function CategoryCard({ category }: CategoryCardProps) {
       </p>
       <div className="mt-auto flex items-center justify-between pt-3">
         <span className="font-mono text-[11px] uppercase tracking-wider text-slate-400">
-          {category.topics.length} topics
+          {count != null ? `${count} tool${count !== 1 ? 's' : ''}` : `${category.topics.length} topics`}
         </span>
         <ArrowRight className="h-3.5 w-3.5 text-slate-300 transition-colors group-hover:text-blue-500" />
       </div>

@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
-import { websites, getFeaturedWebsites } from '@/data/websites';
 import { categories } from '@/data/categories';
 import { heroStickers } from '@/data/stickers';
 import { WebsiteCard } from '@/components/WebsiteCard';
@@ -9,20 +8,27 @@ import { CategoryCard } from '@/components/CategoryCard';
 import { SearchBar } from '@/components/SearchBar';
 import { FloatingStickers } from '@/components/FloatingStickers';
 import { AISearchOverlay } from '@/components/AISearchOverlay';
+import { SkeletonCard } from '@/components/SkeletonCard';
+import { useWebsites, getCategoryCounts } from '@/lib/useWebsites';
 import { Zap, Code, Cpu, GitBranch } from 'lucide-react';
 
-const featuredWebsites = getFeaturedWebsites().slice(0, 6);
 const topCategories = categories.slice(0, 8);
-
-const stats = [
-  { label: 'Tools indexed', value: websites.length.toString(), icon: Code },
-  { label: 'Domains', value: categories.length.toString(), icon: Cpu },
-  { label: 'Open source', value: websites.filter((w) => w.openSource).length.toString(), icon: GitBranch },
-];
 
 export function HomePage() {
   const [aiQuery, setAiQuery] = useState('');
   const [aiOpen, setAiOpen] = useState(false);
+
+  const { websites: featuredWebsites, totalCount, loading } = useWebsites({ featured: true, limit: 6 });
+  const { websites: allWebsites } = useWebsites({});
+  const categoryCounts = getCategoryCounts();
+
+  const openSourceCount = allWebsites.filter((w) => w.openSource).length;
+
+  const stats = [
+    { label: 'Tools indexed', value: totalCount.toString(), icon: Code },
+    { label: 'Domains', value: categories.length.toString(), icon: Cpu },
+    { label: 'Open source', value: openSourceCount.toString(), icon: GitBranch },
+  ];
 
   const handleAISearch = (query: string) => {
     setAiQuery(query);
@@ -102,7 +108,7 @@ export function HomePage() {
         </div>
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
           {topCategories.map((cat) => (
-            <CategoryCard key={cat.slug} category={cat} />
+            <CategoryCard key={cat.slug} category={cat} count={categoryCounts[cat.slug]} />
           ))}
         </div>
       </section>
@@ -123,11 +129,19 @@ export function HomePage() {
             View all <ArrowRight className="h-3 w-3" />
           </Link>
         </div>
-        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {featuredWebsites.map((site) => (
-            <WebsiteCard key={site.slug} website={site} />
-          ))}
-        </div>
+        {loading ? (
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {Array.from({ length: 6 }).map((_, i) => (
+              <SkeletonCard key={`home-skeleton-${i}`} />
+            ))}
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {featuredWebsites.map((site) => (
+              <WebsiteCard key={site.id} website={site} />
+            ))}
+          </div>
+        )}
       </section>
 
       {/* CTA */}

@@ -1,6 +1,8 @@
 import { useParams, Link } from 'react-router-dom';
-import { websites } from '@/data/websites';
+import { Zap } from 'lucide-react';
 import { categories } from '@/data/categories';
+import { getWebsitesByDomain } from '@/lib/useWebsites';
+import { iconMap } from '@/components/CategoryCard';
 import { WebsiteCard } from '@/components/WebsiteCard';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { EmptyState } from '@/components/EmptyState';
@@ -8,6 +10,8 @@ import { EmptyState } from '@/components/EmptyState';
 export function CategoryDetailPage() {
   const { slug } = useParams<{ slug: string }>();
   const category = categories.find((c) => c.slug === slug);
+  const CategoryIcon = category ? (iconMap[category.icon] || Zap) : Zap;
+  const websites = slug ? getWebsitesByDomain(slug) : [];
 
   if (!category) {
     return (
@@ -27,10 +31,6 @@ export function CategoryDetailPage() {
     );
   }
 
-  const categoryWebsites = websites.filter(
-    (w) => w.category === slug
-  );
-
   return (
     <div className="mx-auto max-w-6xl px-4 py-6 sm:px-6">
       <Breadcrumbs
@@ -43,8 +43,8 @@ export function CategoryDetailPage() {
       {/* Header */}
       <div className="mt-6 mb-6">
         <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-100 text-[20px]">
-            {category.icon}
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-100 text-slate-600">
+            <CategoryIcon className="h-5 w-5" strokeWidth={1.5} />
           </div>
           <div>
             <h1 className="text-[20px] font-bold text-slate-900">{category.name}</h1>
@@ -53,15 +53,15 @@ export function CategoryDetailPage() {
         </div>
         <div className="mt-3 flex items-center gap-4 text-[12px] text-slate-400">
           <span className="font-mono uppercase tracking-wider">
-            {categoryWebsites.length} tool{categoryWebsites.length !== 1 ? 's' : ''}
+            {websites.length} tool{websites.length !== 1 ? 's' : ''}
           </span>
         </div>
       </div>
 
       {/* Websites */}
-      {categoryWebsites.length > 0 ? (
+      {websites.length > 0 ? (
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {categoryWebsites.map((website) => (
+          {websites.map((website) => (
             <WebsiteCard key={website.slug} website={website} />
           ))}
         </div>

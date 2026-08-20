@@ -61,16 +61,26 @@ export function WebsiteCard({ website, layout = 'grid' }: WebsiteCardProps) {
     <div className="group flex flex-col rounded-lg border border-slate-200 bg-white transition-all hover:border-slate-300 hover:shadow-sm">
       {/* Header */}
       <div className="flex items-start justify-between p-4 pb-3">
-        <div className="min-w-0 flex-1">
-          <a
-            href={website.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-[14px] font-semibold text-slate-900 no-underline hover:text-blue-600"
-          >
-            {website.name}
-          </a>
-          <p className="text-[11px] text-slate-400">{website.url.replace('https://', '')}</p>
+        <div className="flex items-start gap-3 min-w-0 flex-1">
+          {website.imageUrl && (
+            <img
+              src={website.imageUrl}
+              alt=""
+              className="mt-0.5 h-8 w-8 flex-shrink-0 rounded-md border border-slate-100 object-contain"
+              onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+            />
+          )}
+          <div className="min-w-0 flex-1">
+            <a
+              href={website.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[14px] font-semibold text-slate-900 no-underline hover:text-blue-600"
+            >
+              {website.name}
+            </a>
+            <p className="text-[11px] text-slate-400">{website.url.replace('https://', '')}</p>
+          </div>
         </div>
         <div className="flex items-center gap-1">
           <a

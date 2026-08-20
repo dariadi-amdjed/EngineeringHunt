@@ -2,7 +2,7 @@ import { useParams, Link } from 'react-router-dom';
 import {
   ArrowUpRight, Globe, Monitor, Smartphone, Tag as TagIcon,
 } from 'lucide-react';
-import { websites } from '@/data/websites';
+import { getWebsiteBySlug, getWebsitesByDomain } from '@/lib/useWebsites';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { Tag } from '@/components/Tag';
 import { WebsiteCard } from '@/components/WebsiteCard';
@@ -36,9 +36,17 @@ const interactivityLabels: Record<string, string> = {
   'static-document': 'Static Document',
 };
 
+function ImagePlaceholder({ name }: { name: string }) {
+  return (
+    <div className="flex h-16 w-16 items-center justify-center rounded-xl border border-slate-200 bg-slate-50">
+      <span className="text-[20px] font-bold text-slate-300">{name.charAt(0)}</span>
+    </div>
+  );
+}
+
 export function WebsiteDetailPage() {
   const { slug } = useParams<{ slug: string }>();
-  const website = websites.find((w) => w.slug === slug);
+  const website = slug ? getWebsiteBySlug(slug) : undefined;
 
   if (!website) {
     return (
@@ -58,12 +66,8 @@ export function WebsiteDetailPage() {
     );
   }
 
-  const relatedWebsites = websites
-    .filter(
-      (w) =>
-        w.slug !== website.slug &&
-        w.category === website.category
-    )
+  const relatedWebsites = getWebsitesByDomain(website.category)
+    .filter((w) => w.slug !== website.slug)
     .slice(0, 3);
 
   const platformIcons: Record<string, React.ReactNode> = {
@@ -83,6 +87,16 @@ export function WebsiteDetailPage() {
 
       {/* Header */}
       <div className="mt-6 flex items-start gap-4">
+        {website.imageUrl ? (
+          <img
+            src={website.imageUrl}
+            alt={`${website.name} logo`}
+            className="h-16 w-16 rounded-xl border border-slate-200 object-contain"
+            onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+          />
+        ) : (
+          <ImagePlaceholder name={website.name} />
+        )}
         <div className="flex-1">
           <h1 className="text-[22px] font-bold text-slate-900">{website.name}</h1>
           <p className="mt-1 text-[14px] text-slate-500">{website.description}</p>

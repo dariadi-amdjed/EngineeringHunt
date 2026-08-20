@@ -30,6 +30,7 @@ export type Website = {
   slug: string;
   name: string;
   url: string;
+  imageUrl?: string;
   description: string;
   longDescription: string;
   category: CategorySlug;
