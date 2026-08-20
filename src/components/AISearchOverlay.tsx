@@ -14,7 +14,7 @@ interface AISearchOverlayProps {
 
 const searchSteps = [
   'Analyzing query...',
-  'Searching EngineeringHunt repository...',
+  'Searching tool database...',
   'Matching against domain categories...',
   'Filtering relevant tools...',
   'Ranking results by relevance...',
@@ -142,11 +142,11 @@ function ResultsView({ result, query }: { result: AISearchResult; query: string 
 
       {/* Best Match - Hero Card */}
       <div className="mb-6 overflow-hidden rounded-xl border border-blue-200 bg-white shadow-sm">
-        <div className="flex items-center gap-2 border-b border-blue-100 bg-blue-50 px-5 py-2.5">
-          <div className="animate-ai-badge-shimmer rounded-full px-3 py-0.5">
+          <div className="flex items-center gap-2 border-b border-blue-100 bg-blue-50 px-5 py-2.5">
+          <div className="rounded-full bg-blue-600 px-3 py-0.5">
             <span className="flex items-center gap-1.5 text-[0.6rem] font-bold uppercase tracking-wider text-white">
               <Sparkles className="h-3 w-3" />
-              AI Recommended
+              Top Match
             </span>
           </div>
         </div>
@@ -357,7 +357,7 @@ export function AISearchOverlay({ query, isOpen, onClose }: AISearchOverlayProps
           <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-blue-50">
             <Sparkles className="h-3.5 w-3.5 text-blue-600" />
           </div>
-          <span className="text-[0.65rem] font-semibold text-slate-700">AI Search</span>
+          <span className="text-[0.65rem] font-semibold text-slate-700">Smart Search</span>
           <div className="flex-1 truncate rounded-md border border-slate-200 bg-white px-3 py-1 text-[0.7rem] text-slate-600">
             {query}
           </div>

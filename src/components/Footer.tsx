@@ -38,10 +38,10 @@ export function Footer() {
               </span>
             </Link>
             <p className="mt-3 text-[0.65rem] leading-relaxed text-slate-500">
-              Discover engineering tools, platforms, and resources. Powered by the community.
+              Discover engineering tools, platforms, and technical resources.
             </p>
             <a
-              href="https://github.com/jamesvidler/engineeringhunt"
+              href="https://github.com/dariadi-amdjed/EngineeringHunt"
               target="_blank"
               rel="noopener noreferrer"
               className="mt-3 inline-flex items-center gap-1.5 text-[0.65rem] font-medium text-slate-400 no-underline transition-colors hover:text-slate-700"
@@ -76,10 +76,7 @@ export function Footer() {
         {/* Bottom bar */}
         <div className="flex flex-col items-center justify-between gap-2 border-t border-slate-200 py-4 sm:flex-row">
           <p className="text-[0.6rem] text-slate-400">
-            © {new Date().getFullYear()} EngineeringHunt. Built by engineers, for engineers.
-          </p>
-          <p className="text-[0.6rem] text-slate-400">
-            Made with open-source values.
+            © {new Date().getFullYear()} EngineeringHunt. Engineering tool discovery, organized.
           </p>
         </div>
       </div>

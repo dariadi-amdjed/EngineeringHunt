@@ -81,7 +81,7 @@ export function SearchBar({ variant = 'hero', className = '', onAISearch }: Sear
             className="absolute right-2 top-1/2 flex h-10 -translate-y-1/2 items-center gap-2 rounded-lg bg-blue-600 px-4 text-[0.7rem] font-medium text-white transition-colors hover:bg-blue-700 cursor-pointer"
           >
             <Sparkles className="h-3.5 w-3.5" />
-            <span className="hidden sm:inline">AI Search</span>
+            <span className="hidden sm:inline">Smart Search</span>
             <ArrowRight className="h-3.5 w-3.5 sm:hidden" />
           </button>
         </div>

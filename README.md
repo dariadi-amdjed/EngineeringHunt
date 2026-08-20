@@ -1,32 +1,130 @@
-# React + TypeScript + Vite
+# EngineeringHunt
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+> Find the right tools for engineering.
 
-Currently, two official plugins are available:
+EngineeringHunt is a curated directory for discovering engineering software, simulators, design tools, calculators, documentation, and technical resources.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Instead of searching across scattered websites and outdated lists, EngineeringHunt organizes useful tools by engineering domain, type, purpose, platform, pricing, and difficulty.
 
-## React Compiler
+## What you can find
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+EngineeringHunt currently covers 8 engineering domains:
 
-## Expanding the Oxlint configuration
+- Electronics & Circuitry
+- Electrical & Power Engineering
+- Embedded Systems & IoT
+- PCB Design & EDA
+- Digital Logic & Hardware Description
+- Computer Architecture & Chips
+- Robotics & Control Systems
+- Calculators & Technical Reference
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+## Features
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
-```
+- 🔎 Smart search for engineering tools
+- 🗂️ Browse tools by engineering domain
+- 🎯 Filter by tool type, purpose, pricing, authentication, platform, and difficulty
+- 🌐 Explore web-based tools
+- 💻 Discover desktop and CLI tools
+- 📱 Platform information for supported tools
+- 📖 Detailed tool descriptions
+- 🔗 Direct links to the original tools and resources
+- 🛠️ Open-source tool identification
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+## Current Directory
+
+EngineeringHunt currently indexes:
+
+- **36** tools
+- **8** engineering domains
+- **16** open-source tools
+
+The directory will continue to grow as new useful engineering resources are added.
+
+## Why EngineeringHunt?
+
+Engineering tools are spread across many websites, documentation pages, software platforms, and community resources.
+
+EngineeringHunt aims to make that discovery process simpler by putting useful resources into one organized place.
+
+Whether you are working with electronics, embedded systems, PCB design, robotics, digital logic, or computer architecture, EngineeringHunt helps you explore tools relevant to your work.
+
+## Contributing
+
+Have a useful engineering tool that is missing?
+
+You can contribute by submitting a pull request.
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the submission process and guidelines.
+
+## Tech Stack
+
+EngineeringHunt is built with modern web technologies including:
+
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+
+## Running Locally
+
+Clone the repository:
+
+```bash
+git clone https://github.com/dariadi-amdjed/EngineeringHunt.git
+
+Move into the project:
+
+cd EngineeringHunt
+
+Install dependencies:
+
+pnpm install
+
+Start the development server:
+
+pnpm dev
+
+The application will be available at the local development URL shown in your terminal.
+
+Building for Production
+pnpm build
+Project Structure
+src/
+├── components/      # Reusable UI components
+├── data/            # Engineering tool directory data
+├── pages/           # Application pages
+├── config.ts        # Project configuration
+└── ...
+Adding a Tool
+
+Tools are stored in:
+
+src/data/websites.ts
+
+To add a tool:
+
+Fork the repository.
+Add the tool entry.
+Make sure the information is accurate.
+Commit your changes.
+Open a pull request.
+
+See CONTRIBUTING.md for more details.
+
+Creator
+
+EngineeringHunt was created by:
+
+Mohamed Amdjed Dariadi
+
+Creator & Developer
+
+License
+
+EngineeringHunt is released under the MIT License.
+
+Links
+GitHub: https://github.com/dariadi-amdjed/EngineeringHunt
+
+Made for discovering better engineering tools.

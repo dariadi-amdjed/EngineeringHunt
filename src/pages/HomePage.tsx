@@ -55,16 +55,15 @@ export function HomePage() {
         <div className="relative z-10 mx-auto max-w-4xl px-4 py-20 text-center sm:px-6 lg:py-28">
           <div className="mb-4 inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-white px-3 py-1 font-mono text-[0.55rem] uppercase tracking-wider text-slate-500">
             <Zap className="h-3 w-3 text-blue-600" />
-            Engineering Discovery Engine
+            Engineering Tool Discovery
           </div>
           <h1 className="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl lg:text-[2.5rem]">
             Find the right tools
             <br />
-            for every engineering domain
+            for engineering
           </h1>
           <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-slate-500 lg:text-[0.85rem]">
-            A curated index of web tools, desktop software, simulators, design platforms, and learning
-            resources — organized by domain and purpose.
+            Describe what you're looking for and find matching engineering tools.
           </p>
           <div className="mx-auto mt-6 max-w-lg">
             <SearchBar variant="hero" onAISearch={handleAISearch} />

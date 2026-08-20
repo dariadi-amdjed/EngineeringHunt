@@ -3,7 +3,7 @@ import { ArrowRight, GitFork, FileCode, Check } from 'lucide-react';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { CodeBlock } from '@/components/CodeBlock';
 
-const GITHUB_REPO = 'https://github.com/user/engineeringhunt';
+const GITHUB_REPO = 'https://github.com/dariadi-amdjed/EngineeringHunt';
 const GITHUB_FILE = `${GITHUB_REPO}/edit/main/src/data/websites.ts`;
 
 const templateJson = `{
@@ -38,12 +38,12 @@ const steps = [
   {
     step: 2,
     title: 'Add your tool entry',
-    description: 'Open src/data/websites.ts and paste the JSON template below with your tool\'s details.',
+        description: 'Open src/data/websites.ts and paste the tool entry template below with your tool\'s details.',
   },
   {
     step: 3,
     title: 'Submit a Pull Request',
-    description: 'Commit your changes and open a PR. We\'ll review and merge it shortly.',
+    description: 'Commit your changes and open a pull request for review.',
   },
 ];
 
@@ -61,7 +61,7 @@ export function SubmitPage() {
           Submit a tool via Pull Request
         </h1>
         <p className="mt-1 text-[0.7rem] text-slate-500">
-          EngineeringHunt is open source. Add a tool by submitting a PR to our GitHub repo.
+          Suggest a tool by submitting a PR to the GitHub repository.
         </p>
       </div>
 
@@ -83,9 +83,9 @@ export function SubmitPage() {
       {/* JSON Template */}
       <div className="mt-8">
         <div className="mb-3 flex items-center justify-between">
-          <h3 className="text-[0.75rem] font-semibold text-slate-900">JSON Template</h3>
+          <h3 className="text-[0.75rem] font-semibold text-slate-900">Tool Entry Template</h3>
           <span className="font-mono text-[0.55rem] uppercase tracking-wider text-slate-400">
-            Copy &amp; paste
+            Copy and adapt
           </span>
         </div>
         <CodeBlock code={templateJson} language="json" />
@@ -132,7 +132,7 @@ export function SubmitPage() {
           </li>
           <li className="flex items-start gap-2">
             <Check className="mt-0.5 h-3.5 w-3.5 flex-shrink-0 text-emerald-500" />
-            One tool per PR for easier review
+            One tool per PR to keep submissions simple and easy to review
           </li>
         </ul>
       </div>

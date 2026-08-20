@@ -16,7 +16,7 @@ export function OpenSourcePage() {
           Open Source
         </div>
         <h1 className="text-2xl font-bold tracking-tight text-stone-900">
-          Open Source Engineering
+          Open Source Engineering Tools
         </h1>
         <p className="mt-3 max-w-2xl text-[0.75rem] leading-relaxed text-stone-500">
           Open-source tools are the backbone of modern engineering. They democratize access
@@ -68,13 +68,13 @@ export function OpenSourcePage() {
               EngineeringHunt is open source
             </h2>
             <p className="mt-1 text-[0.7rem] leading-relaxed text-stone-600">
-              This project itself is open-source. We believe engineering resources should be
-              discoverable, organized, and community-driven. Check out the code, contribute,
+              This project itself is open-source. Engineering resources should be
+              discoverable, organized, and easy to contribute to. Check out the code, contribute,
               or report issues.
             </p>
             <div className="mt-3 flex items-center gap-3">
               <a
-                href="https://github.com"
+                href="https://github.com/dariadi-amdjed/EngineeringHunt"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 rounded-lg border border-stone-200 bg-white px-4 py-2 text-[0.7rem] font-medium text-stone-700 no-underline shadow-sm transition-all hover:shadow-md"
