@@ -76,14 +76,14 @@ export function ExplorePage() {
 
       {/* Header */}
       <div className="px-4 pt-6 sm:px-6">
-        <div className="relative mb-4 overflow-x-clip overflow-y-visible">
+        <div className="relative mb-4 overflow-hidden">
           <FloatingStickers stickers={exploreStickers} />
           <div className="relative z-10">
-            <span className="font-mono text-[10px] uppercase tracking-widest text-blue-600">
+            <span className="font-mono text-[0.55rem] uppercase tracking-widest text-blue-600">
               [ EXPLORE ]
             </span>
-            <h1 className="mt-1 text-[20px] font-bold text-slate-900">Browse all tools</h1>
-            <p className="mt-1 text-[13px] text-slate-500">
+            <h1 className="mt-1 text-xl font-bold text-slate-900">Browse all tools</h1>
+            <p className="mt-1 text-[0.7rem] text-slate-500">
               {totalCount} tool{totalCount !== 1 ? 's' : ''} across 8 domains
             </p>
           </div>
@@ -101,7 +101,7 @@ export function ExplorePage() {
 
         {/* Result count */}
         <div className="mb-4">
-          <span className="text-[12px] text-slate-400">
+          <span className="text-[0.65rem] text-slate-400">
             {loading ? 'Loading...' : `${results.length} result${results.length !== 1 ? 's' : ''}`}
           </span>
         </div>
@@ -133,7 +133,7 @@ export function ExplorePage() {
                 <button
                   onClick={handleLoadMore}
                   disabled={loadingMore}
-                  className="flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-6 py-2.5 text-[13px] font-medium text-slate-700 transition-colors hover:bg-slate-50 disabled:opacity-60 cursor-pointer"
+                  className="flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-6 py-2.5 text-[0.7rem] font-medium text-slate-700 transition-colors hover:bg-slate-50 disabled:opacity-60 cursor-pointer"
                 >
                   {loadingMore ? (
                     <>

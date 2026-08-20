@@ -14,8 +14,8 @@ export function EmptyState({ icon, title, description, action }: EmptyStateProps
       <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-xl bg-slate-100 text-slate-400">
         {icon || <SearchX className="h-6 w-6" />}
       </div>
-      <h3 className="text-[15px] font-semibold text-slate-900">{title}</h3>
-      <p className="mt-1 max-w-sm text-[13px] text-slate-500">{description}</p>
+      <h3 className="text-[0.8rem] font-semibold text-slate-900">{title}</h3>
+      <p className="mt-1 max-w-sm text-[0.7rem] text-slate-500">{description}</p>
       {action && <div className="mt-4">{action}</div>}
     </div>
   );

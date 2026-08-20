@@ -33,18 +33,18 @@ export function Footer() {
               <span className="flex h-6 w-6 items-center justify-center rounded bg-blue-600 text-white">
                 <Zap className="h-3 w-3" strokeWidth={2.5} />
               </span>
-              <span className="text-[14px] font-bold tracking-tight text-slate-900">
+              <span className="text-[0.75rem] font-bold tracking-tight text-slate-900">
                 EngineeringHunt
               </span>
             </Link>
-            <p className="mt-3 text-[12px] leading-relaxed text-slate-500">
+            <p className="mt-3 text-[0.65rem] leading-relaxed text-slate-500">
               Discover engineering tools, platforms, and resources. Powered by the community.
             </p>
             <a
               href="https://github.com/jamesvidler/engineeringhunt"
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-3 inline-flex items-center gap-1.5 text-[12px] font-medium text-slate-400 no-underline transition-colors hover:text-slate-700"
+              className="mt-3 inline-flex items-center gap-1.5 text-[0.65rem] font-medium text-slate-400 no-underline transition-colors hover:text-slate-700"
             >
               <GithubIcon className="h-3.5 w-3.5" />
               <span>Open Source</span>
@@ -54,7 +54,7 @@ export function Footer() {
           {/* Link sections */}
           {footerSections.map((section) => (
             <div key={section.title}>
-              <h3 className="text-[10px] font-semibold uppercase tracking-widest text-slate-400">
+              <h3 className="text-[0.55rem] font-semibold uppercase tracking-widest text-slate-400">
                 {section.title}
               </h3>
               <ul className="mt-3 space-y-1.5">
@@ -62,7 +62,7 @@ export function Footer() {
                   <li key={link.to}>
                     <Link
                       to={link.to}
-                      className="text-[13px] text-slate-500 no-underline transition-colors hover:text-slate-900"
+                      className="text-[0.7rem] text-slate-500 no-underline transition-colors hover:text-slate-900"
                     >
                       {link.label}
                     </Link>
@@ -75,10 +75,10 @@ export function Footer() {
 
         {/* Bottom bar */}
         <div className="flex flex-col items-center justify-between gap-2 border-t border-slate-200 py-4 sm:flex-row">
-          <p className="text-[11px] text-slate-400">
+          <p className="text-[0.6rem] text-slate-400">
             © {new Date().getFullYear()} EngineeringHunt. Built by engineers, for engineers.
           </p>
-          <p className="text-[11px] text-slate-400">
+          <p className="text-[0.6rem] text-slate-400">
             Made with open-source values.
           </p>
         </div>

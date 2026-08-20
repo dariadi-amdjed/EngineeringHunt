@@ -103,7 +103,7 @@ function FilterDropdown({
         {options.map((opt) => (
           <label
             key={opt.value}
-            className="flex cursor-pointer items-center gap-2 rounded-md px-2 py-1.5 text-[12px] text-slate-600 transition-colors hover:bg-slate-50"
+            className="flex cursor-pointer items-center gap-2 rounded-md px-2 py-1.5 text-[0.65rem] text-slate-600 transition-colors hover:bg-slate-50"
           >
             <input
               type="checkbox"
@@ -121,13 +121,13 @@ function FilterDropdown({
             setDraft([]);
             onClear();
           }}
-          className="text-[11px] font-medium text-slate-400 hover:text-slate-600 cursor-pointer"
+          className="text-[0.6rem] font-medium text-slate-400 hover:text-slate-600 cursor-pointer"
         >
           Clear
         </button>
         <button
           onClick={() => onApply(draft)}
-          className="rounded-md bg-blue-600 px-4 py-1.5 text-[11px] font-medium text-white transition-colors hover:bg-blue-700 cursor-pointer"
+          className="rounded-md bg-blue-600 px-4 py-1.5 text-[0.6rem] font-medium text-white transition-colors hover:bg-blue-700 cursor-pointer"
         >
           Apply
         </button>
@@ -182,7 +182,7 @@ function Chip({ label, count, isOpen, onToggle, onClear, children }: ChipProps) 
     <div ref={chipRef} className="relative">
       <button
         onClick={onToggle}
-        className={`flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-[12px] font-medium transition-colors cursor-pointer ${
+        className={`flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-[0.65rem] font-medium transition-colors cursor-pointer ${
           active
             ? 'border-blue-200 bg-blue-50 text-blue-700 hover:bg-blue-100'
             : 'border-slate-200 bg-white text-slate-600 hover:border-slate-300 hover:bg-slate-50'
@@ -190,7 +190,7 @@ function Chip({ label, count, isOpen, onToggle, onClear, children }: ChipProps) 
       >
         {label}
         {active && (
-          <span className="flex h-4 min-w-4 items-center justify-center rounded-full bg-blue-600 px-1 font-mono text-[9px] font-bold text-white">
+          <span className="flex h-4 min-w-4 items-center justify-center rounded-full bg-blue-600 px-1 font-mono text-[0.5rem] font-bold text-white">
             {count}
           </span>
         )}
@@ -301,7 +301,7 @@ export function FilterBar({ filters, onFilterChange }: FilterBarProps) {
 
   return (
     <div className="flex flex-wrap items-center gap-2">
-      <span className="text-[12px] font-semibold text-slate-700 mr-0.5">Filters:</span>
+      <span className="text-[0.65rem] font-semibold text-slate-700 mr-0.5">Filters:</span>
       {chips.map((chip) => (
         <Chip
           key={chip.id}
@@ -331,7 +331,7 @@ export function FilterBar({ filters, onFilterChange }: FilterBarProps) {
       {totalActive > 0 && (
         <button
           onClick={clearAll}
-          className="flex items-center gap-1 rounded-full px-3 py-1.5 text-[12px] font-medium text-slate-400 transition-colors hover:text-slate-600 cursor-pointer"
+          className="flex items-center gap-1 rounded-full px-3 py-1.5 text-[0.65rem] font-medium text-slate-400 transition-colors hover:text-slate-600 cursor-pointer"
         >
           <X className="h-3 w-3" />
           Clear all

@@ -25,11 +25,11 @@ export function CodeBlock({ code, language = 'json' }: CodeBlockProps) {
             <span className="h-3 w-3 rounded-full bg-[#febc2e]" />
             <span className="h-3 w-3 rounded-full bg-[#28c840]" />
           </div>
-          <span className="ml-2 font-mono text-[11px] text-slate-500">{language}</span>
+          <span className="ml-2 font-mono text-[0.6rem] text-slate-500">{language}</span>
         </div>
         <button
           onClick={handleCopy}
-          className="flex items-center gap-1.5 rounded-md border border-slate-700/50 bg-slate-800 px-2.5 py-1 text-[11px] font-medium text-slate-400 opacity-0 transition-all hover:border-slate-600 hover:bg-slate-700 hover:text-slate-300 group-hover/code:opacity-100 cursor-pointer"
+          className="flex items-center gap-1.5 rounded-md border border-slate-700/50 bg-slate-800 px-2.5 py-1 text-[0.6rem] font-medium text-slate-400 opacity-0 transition-all hover:border-slate-600 hover:bg-slate-700 hover:text-slate-300 group-hover/code:opacity-100 cursor-pointer"
         >
           {copied ? (
             <>
@@ -45,7 +45,7 @@ export function CodeBlock({ code, language = 'json' }: CodeBlockProps) {
         </button>
       </div>
       {/* Code body */}
-      <pre className="overflow-x-auto px-5 py-4 text-[13px] leading-[1.7] text-slate-300">
+      <pre className="overflow-x-auto px-5 py-4 text-[0.7rem] leading-[1.7] text-slate-300">
         <code>{code}</code>
       </pre>
     </div>

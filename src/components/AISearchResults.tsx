@@ -13,7 +13,7 @@ export function AISearchResults({ results, isLoading }: AISearchResultsProps) {
       <div className="space-y-3">
         <div className="flex items-center gap-2">
           <Sparkles className="h-4 w-4 animate-pulse text-blue-600" />
-          <span className="text-[13px] font-medium text-slate-700">Analyzing your query…</span>
+          <span className="text-[0.7rem] font-medium text-slate-700">Analyzing your query…</span>
         </div>
         {[1, 2, 3].map((i) => (
           <div key={i} className="animate-pulse rounded-lg border border-slate-200 bg-white p-4">
@@ -36,10 +36,10 @@ export function AISearchResults({ results, isLoading }: AISearchResultsProps) {
     <div className="space-y-3">
       <div className="flex items-center gap-2">
         <Sparkles className="h-4 w-4 text-blue-600" />
-        <span className="text-[13px] font-medium text-slate-900">
+        <span className="text-[0.7rem] font-medium text-slate-900">
           AI Recommendations
         </span>
-        <span className="font-mono text-[10px] text-slate-400">
+        <span className="font-mono text-[0.55rem] text-slate-400">
           {results.length} result{results.length !== 1 ? 's' : ''}
         </span>
       </div>
@@ -53,14 +53,14 @@ export function AISearchResults({ results, isLoading }: AISearchResultsProps) {
           <div className="min-w-0 flex-1">
             <div className="flex items-start justify-between gap-2">
               <div>
-                <h4 className="text-[14px] font-semibold text-slate-900 group-hover:text-blue-600">
+                <h4 className="text-[0.75rem] font-semibold text-slate-900 group-hover:text-blue-600">
                   {result.bestMatch.name}
                 </h4>
-                <p className="mt-0.5 text-[12px] text-slate-500">{result.bestMatch.description}</p>
+                <p className="mt-0.5 text-[0.65rem] text-slate-500">{result.bestMatch.description}</p>
               </div>
               <ExternalLink className="mt-0.5 h-3.5 w-3.5 flex-shrink-0 text-slate-300 transition-colors group-hover:text-slate-500" />
             </div>
-            <p className="mt-2 text-[12px] leading-relaxed text-slate-600">
+            <p className="mt-2 text-[0.65rem] leading-relaxed text-slate-600">
               {result.matchReason}
             </p>
             {result.interpretedTags.length > 0 && (
@@ -68,7 +68,7 @@ export function AISearchResults({ results, isLoading }: AISearchResultsProps) {
                 {result.interpretedTags.map((step, _i) => (
                   <span
                     key={_i}
-                    className="rounded bg-blue-50 px-1.5 py-0.5 text-[10px] font-medium text-blue-700"
+                    className="rounded bg-blue-50 px-1.5 py-0.5 text-[0.55rem] font-medium text-blue-700"
                   >
                     {step.label}
                   </span>

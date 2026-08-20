@@ -38,11 +38,11 @@ const domains = [
 export function AboutPage() {
   return (
     <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6">
-      <span className="font-mono text-[10px] uppercase tracking-widest text-blue-600">
+      <span className="font-mono text-[0.55rem] uppercase tracking-widest text-blue-600">
         [ ABOUT ]
       </span>
-      <h1 className="mt-2 text-[24px] font-bold text-slate-900">About EngineeringHunt</h1>
-      <p className="mt-3 text-[14px] leading-relaxed text-slate-500">
+      <h1 className="mt-2 text-2xl font-bold text-slate-900">About EngineeringHunt</h1>
+      <p className="mt-3 text-[0.75rem] leading-relaxed text-slate-500">
         EngineeringHunt is a community-curated index of web-based hardware &amp; computer
         engineering tools. From electronics and embedded systems to PCB design, digital logic,
         and computer architecture — we focus strictly on tools you can run in a browser,
@@ -53,9 +53,9 @@ export function AboutPage() {
       <div className="mt-8 rounded-xl border border-slate-200 bg-white p-6">
         <div className="mb-4 flex items-center gap-2">
           <Rocket className="h-4 w-4 text-blue-600" />
-          <h2 className="text-[15px] font-semibold text-slate-900">Our Mission</h2>
+          <h2 className="text-[0.8rem] font-semibold text-slate-900">Our Mission</h2>
         </div>
-        <p className="text-[13px] leading-relaxed text-slate-600">
+        <p className="text-[0.7rem] leading-relaxed text-slate-600">
           The hardware engineering software landscape is fragmented. Finding a free circuit
           simulator, an open-source EDA tool, or an interactive Verilog playground often
           means digging through outdated Reddit threads, comparing decade-old forum lists,
@@ -69,9 +69,9 @@ export function AboutPage() {
       <div className="mt-6 rounded-xl border border-slate-200 bg-white p-6">
         <div className="mb-4 flex items-center gap-2">
           <Globe className="h-4 w-4 text-blue-600" />
-          <h2 className="text-[15px] font-semibold text-slate-900">8 Core Hardware Domains</h2>
+          <h2 className="text-[0.8rem] font-semibold text-slate-900">8 Core Hardware Domains</h2>
         </div>
-        <p className="mb-4 text-[13px] leading-relaxed text-slate-500">
+        <p className="mb-4 text-[0.7rem] leading-relaxed text-slate-500">
           We cover eight specialized domains in hardware &amp; low-level engineering — each with
           dedicated tool categorization, so results are always relevant to your discipline.
         </p>
@@ -84,7 +84,7 @@ export function AboutPage() {
                 className="flex items-center gap-2 rounded-lg border border-slate-100 bg-slate-50 px-3 py-2"
               >
                 <Icon className="h-3.5 w-3.5 flex-shrink-0 text-blue-600" />
-                <span className="text-[11px] font-medium text-slate-700 leading-tight">{domain}</span>
+                <span className="text-[0.6rem] font-medium text-slate-700 leading-tight">{domain}</span>
               </div>
             );
           })}
@@ -95,32 +95,32 @@ export function AboutPage() {
       <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div className="rounded-xl border border-slate-200 bg-white p-5">
           <Heart className="mb-3 h-5 w-5 text-blue-600" />
-          <h3 className="text-[14px] font-semibold text-slate-900">Community-driven</h3>
-          <p className="mt-1.5 text-[12px] leading-relaxed text-slate-500">
+          <h3 className="text-[0.75rem] font-semibold text-slate-900">Community-driven</h3>
+          <p className="mt-1.5 text-[0.65rem] leading-relaxed text-slate-500">
             Every entry is submitted and verified by hardware engineers and students. No paid
             placements, no ads, no SEO-driven rankings.
           </p>
         </div>
         <div className="rounded-xl border border-slate-200 bg-white p-5">
           <Code className="mb-3 h-5 w-5 text-blue-600" />
-          <h3 className="text-[14px] font-semibold text-slate-900">Open Source</h3>
-          <p className="mt-1.5 text-[12px] leading-relaxed text-slate-500">
+          <h3 className="text-[0.75rem] font-semibold text-slate-900">Open Source</h3>
+          <p className="mt-1.5 text-[0.65rem] leading-relaxed text-slate-500">
             The entire platform is open source. Contributions, corrections, and pull requests
             from the hardware community are always welcome.
           </p>
         </div>
         <div className="rounded-xl border border-slate-200 bg-white p-5">
           <Zap className="mb-3 h-5 w-5 text-blue-600" />
-          <h3 className="text-[14px] font-semibold text-slate-900">Interactive Tools First</h3>
-          <p className="mt-1.5 text-[12px] leading-relaxed text-slate-500">
+          <h3 className="text-[0.75rem] font-semibold text-slate-900">Interactive Tools First</h3>
+          <p className="mt-1.5 text-[0.65rem] leading-relaxed text-slate-500">
             We prioritize web-based simulators, live EDA tools, and interactive calculators
             you can use instantly — no installs, no licenses.
           </p>
         </div>
         <div className="rounded-xl border border-slate-200 bg-white p-5">
           <ExternalLink className="mb-3 h-5 w-5 text-blue-600" />
-          <h3 className="text-[14px] font-semibold text-slate-900">Always Free</h3>
-          <p className="mt-1.5 text-[12px] leading-relaxed text-slate-500">
+          <h3 className="text-[0.75rem] font-semibold text-slate-900">Always Free</h3>
+          <p className="mt-1.5 text-[0.65rem] leading-relaxed text-slate-500">
             No sign-up required. No premium tiers. EngineeringHunt is a free, open resource
             for the entire hardware engineering community.
           </p>
@@ -129,10 +129,10 @@ export function AboutPage() {
 
       {/* How it works */}
       <div className="mt-8 rounded-xl border border-slate-200 bg-white p-6">
-        <h2 className="mb-4 text-[15px] font-semibold text-slate-900">How it works</h2>
-        <ol className="space-y-3 text-[13px] text-slate-600">
+        <h2 className="mb-4 text-[0.8rem] font-semibold text-slate-900">How it works</h2>
+        <ol className="space-y-3 text-[0.7rem] text-slate-600">
           <li className="flex items-start gap-3">
-            <span className="flex h-5 w-5 flex-shrink-0 items-center justify-center rounded bg-blue-100 font-mono text-[11px] font-semibold text-blue-700">
+            <span className="flex h-5 w-5 flex-shrink-0 items-center justify-center rounded bg-blue-100 font-mono text-[0.6rem] font-semibold text-blue-700">
               1
             </span>
             <span>
@@ -142,7 +142,7 @@ export function AboutPage() {
             </span>
           </li>
           <li className="flex items-start gap-3">
-            <span className="flex h-5 w-5 flex-shrink-0 items-center justify-center rounded bg-blue-100 font-mono text-[11px] font-semibold text-blue-700">
+            <span className="flex h-5 w-5 flex-shrink-0 items-center justify-center rounded bg-blue-100 font-mono text-[0.6rem] font-semibold text-blue-700">
               2
             </span>
             <span>
@@ -152,7 +152,7 @@ export function AboutPage() {
             </span>
           </li>
           <li className="flex items-start gap-3">
-            <span className="flex h-5 w-5 flex-shrink-0 items-center justify-center rounded bg-blue-100 font-mono text-[11px] font-semibold text-blue-700">
+            <span className="flex h-5 w-5 flex-shrink-0 items-center justify-center rounded bg-blue-100 font-mono text-[0.6rem] font-semibold text-blue-700">
               3
             </span>
             <span>
@@ -167,34 +167,34 @@ export function AboutPage() {
       {/* Stats */}
       <div className="mt-8 grid grid-cols-3 gap-4">
         <div className="rounded-xl border border-slate-200 bg-white p-5 text-center">
-          <p className="text-[22px] font-bold text-blue-600">8</p>
-          <p className="mt-1 text-[11px] font-medium text-slate-500">Hardware Domains</p>
+          <p className="text-2xl font-bold text-blue-600">8</p>
+          <p className="mt-1 text-[0.6rem] font-medium text-slate-500">Hardware Domains</p>
         </div>
         <div className="rounded-xl border border-slate-200 bg-white p-5 text-center">
-          <p className="text-[22px] font-bold text-blue-600">6</p>
-          <p className="mt-1 text-[11px] font-medium text-slate-500">Tool Categories</p>
+          <p className="text-2xl font-bold text-blue-600">6</p>
+          <p className="mt-1 text-[0.6rem] font-medium text-slate-500">Tool Categories</p>
         </div>
         <div className="rounded-xl border border-slate-200 bg-white p-5 text-center">
-          <p className="text-[22px] font-bold text-blue-600">100%</p>
-          <p className="mt-1 text-[11px] font-medium text-slate-500">Web-based Tools</p>
+          <p className="text-2xl font-bold text-blue-600">100%</p>
+          <p className="mt-1 text-[0.6rem] font-medium text-slate-500">Web-based Tools</p>
         </div>
       </div>
 
       {/* Creator / Founder */}
       <div className="mt-10 overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
         <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-3">
-          <span className="font-mono text-[10px] uppercase tracking-widest text-blue-100">
+          <span className="font-mono text-[0.55rem] uppercase tracking-widest text-blue-100">
             Creator &amp; Founder
           </span>
         </div>
         <div className="flex flex-col items-center gap-5 p-6 sm:flex-row">
-          <div className="flex h-20 w-20 flex-shrink-0 items-center justify-center rounded-full border-2 border-blue-100 bg-blue-50 text-[24px] font-bold text-blue-600">
+          <div className="flex h-20 w-20 flex-shrink-0 items-center justify-center rounded-full border-2 border-blue-100 bg-blue-50 text-2xl font-bold text-blue-600">
             JV
           </div>
           <div className="min-w-0 flex-1 text-center sm:text-left">
-            <h3 className="text-[17px] font-bold text-slate-900">James Vidler</h3>
-            <p className="text-[12px] font-medium text-blue-600">Creator &amp; Lead Architect</p>
-            <p className="mt-2 text-[13px] leading-relaxed text-slate-500">
+            <h3 className="text-lg font-bold text-slate-900">James Vidler</h3>
+            <p className="text-[0.65rem] font-medium text-blue-600">Creator &amp; Lead Architect</p>
+            <p className="mt-2 text-[0.7rem] leading-relaxed text-slate-500">
               Hardware engineer and full-stack developer passionate about making engineering tools
               more discoverable. Built EngineeringHunt to solve the fragmented tool discovery
               problem in the hardware engineering community.
@@ -204,7 +204,7 @@ export function AboutPage() {
                 href="https://github.com/jamesvidler"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-lg bg-slate-900 px-5 py-2.5 text-[13px] font-medium text-white no-underline transition-colors hover:bg-slate-800"
+                className="inline-flex items-center gap-2 rounded-lg bg-slate-900 px-5 py-2.5 text-[0.7rem] font-medium text-white no-underline transition-colors hover:bg-slate-800"
               >
                 <GithubIcon className="h-4 w-4" />
                 GitHub Profile
@@ -213,7 +213,7 @@ export function AboutPage() {
                 href="https://linkedin.com/in/jamesvidler"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-5 py-2.5 text-[13px] font-medium text-slate-700 no-underline transition-colors hover:bg-slate-50"
+                className="inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-5 py-2.5 text-[0.7rem] font-medium text-slate-700 no-underline transition-colors hover:bg-slate-50"
               >
                 <LinkedinIcon className="h-4 w-4 text-[#0A66C2]" />
                 LinkedIn Profile
@@ -226,8 +226,8 @@ export function AboutPage() {
       {/* Community Contributors */}
       <div className="mt-8">
         <div className="mb-4">
-          <h2 className="text-[15px] font-semibold text-slate-900">Community Contributors</h2>
-          <p className="mt-1 text-[12px] text-slate-500">
+          <h2 className="text-[0.8rem] font-semibold text-slate-900">Community Contributors</h2>
+          <p className="mt-1 text-[0.65rem] text-slate-500">
             The people who make EngineeringHunt better every day.
           </p>
         </div>
@@ -251,16 +251,16 @@ export function AboutPage() {
                 className="group flex items-center gap-3 rounded-lg border border-slate-100 p-3 no-underline transition-all hover:border-slate-200 hover:shadow-sm"
               >
                 <div
-                  className={`flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full text-[12px] font-bold text-white ${contributor.color}`}
+                  className={`flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full text-[0.65rem] font-bold text-white ${contributor.color}`}
                 >
                   {contributor.displayName.split(' ').map((n) => n[0]).join('')}
                 </div>
                 <div className="min-w-0">
-                  <p className="truncate text-[12px] font-semibold text-slate-900 group-hover:text-blue-600">
+                  <p className="truncate text-[0.65rem] font-semibold text-slate-900 group-hover:text-blue-600">
                     {contributor.displayName}
                   </p>
-                  <p className="truncate text-[10px] text-slate-400">@{contributor.name}</p>
-                  <span className="mt-0.5 inline-block rounded bg-slate-100 px-1.5 py-0.5 text-[9px] font-medium text-slate-600">
+                  <p className="truncate text-[0.55rem] text-slate-400">@{contributor.name}</p>
+                  <span className="mt-0.5 inline-block rounded bg-slate-100 px-1.5 py-0.5 text-[0.5rem] font-medium text-slate-600">
                     {contributor.tag}
                   </span>
                 </div>
@@ -273,7 +273,7 @@ export function AboutPage() {
               href="https://github.com/jamesvidler/engineeringhunt"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-slate-50 px-4 py-1.5 text-[11px] font-medium text-slate-600 no-underline transition-colors hover:bg-slate-100"
+              className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-slate-50 px-4 py-1.5 text-[0.6rem] font-medium text-slate-600 no-underline transition-colors hover:bg-slate-100"
             >
               <GithubIcon className="h-3 w-3" />
               Want to contribute? View on GitHub
@@ -284,11 +284,11 @@ export function AboutPage() {
 
       {/* CTA */}
       <div className="mt-8 text-center">
-        <p className="text-[13px] text-slate-500">Know a great hardware engineering tool we're missing?</p>
+        <p className="text-[0.7rem] text-slate-500">Know a great hardware engineering tool we're missing?</p>
         <div className="mt-3 flex items-center justify-center gap-3">
           <Link
             to="/submit"
-            className="inline-flex items-center gap-1.5 rounded-lg bg-blue-600 px-4 py-2 text-[13px] font-medium text-white no-underline transition-colors hover:bg-blue-700"
+            className="inline-flex items-center gap-1.5 rounded-lg bg-blue-600 px-4 py-2 text-[0.7rem] font-medium text-white no-underline transition-colors hover:bg-blue-700"
           >
             Submit a tool <ArrowRight className="h-3.5 w-3.5" />
           </Link>
@@ -296,7 +296,7 @@ export function AboutPage() {
             href="https://github.com/jamesvidler/engineeringhunt"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 bg-white px-4 py-2 text-[13px] font-medium text-slate-700 no-underline transition-colors hover:bg-slate-50"
+            className="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 bg-white px-4 py-2 text-[0.7rem] font-medium text-slate-700 no-underline transition-colors hover:bg-slate-50"
           >
             View on GitHub <ExternalLink className="h-3 w-3" />
           </a>

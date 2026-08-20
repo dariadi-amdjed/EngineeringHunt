@@ -83,11 +83,11 @@ function CollapsibleSection({ title, count, defaultOpen = false, children }: Col
         className="flex w-full items-center justify-between text-left cursor-pointer"
       >
         <span className="flex items-center gap-2">
-          <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-500">
+          <span className="text-[0.6rem] font-semibold uppercase tracking-wider text-slate-500">
             {title}
           </span>
           {count !== undefined && count > 0 && (
-            <span className="flex h-4 min-w-4 items-center justify-center rounded bg-blue-100 px-1 font-mono text-[9px] text-blue-700">
+            <span className="flex h-4 min-w-4 items-center justify-center rounded bg-blue-100 px-1 font-mono text-[0.5rem] text-blue-700">
               {count}
             </span>
           )}
@@ -113,7 +113,7 @@ function CheckboxItem({
   onChange: () => void;
 }) {
   return (
-    <label className="flex cursor-pointer items-center gap-2 rounded px-2 py-1 text-[12px] text-slate-600 transition-colors hover:bg-slate-50">
+    <label className="flex cursor-pointer items-center gap-2 rounded px-2 py-1 text-[0.65rem] text-slate-600 transition-colors hover:bg-slate-50">
       <input
         type="checkbox"
         checked={checked}
@@ -159,7 +159,7 @@ export function FilterSidebar({
     <div className="w-full">
       {/* Header */}
       <div className="flex items-center justify-between border-b border-slate-200 pb-3">
-        <span className="text-[12px] font-semibold text-slate-900">Filters</span>
+        <span className="text-[0.65rem] font-semibold text-slate-900">Filters</span>
         {activeFilterCount > 0 && (
           <button
             onClick={() =>
@@ -175,7 +175,7 @@ export function FilterSidebar({
                 type: [],
               })
             }
-            className="text-[11px] text-blue-600 hover:text-blue-700 cursor-pointer"
+            className="text-[0.6rem] text-blue-600 hover:text-blue-700 cursor-pointer"
           >
             Clear all ({activeFilterCount})
           </button>
@@ -184,7 +184,7 @@ export function FilterSidebar({
 
       {/* Quick toggle */}
       <div className="border-b border-slate-100 py-3">
-        <label className="flex cursor-pointer items-center gap-2 rounded px-2 py-1.5 text-[12px] font-medium text-slate-700 transition-colors hover:bg-slate-50">
+        <label className="flex cursor-pointer items-center gap-2 rounded px-2 py-1.5 text-[0.65rem] font-medium text-slate-700 transition-colors hover:bg-slate-50">
           <input
             type="checkbox"
             checked={filters.openSource}
@@ -197,13 +197,13 @@ export function FilterSidebar({
 
       {/* Sort */}
       <div className="border-b border-slate-100 py-3">
-        <span className="mb-2 block text-[11px] font-semibold uppercase tracking-wider text-slate-500">
+        <span className="mb-2 block text-[0.6rem] font-semibold uppercase tracking-wider text-slate-500">
           Sort by
         </span>
         <select
           value={sortBy}
           onChange={(e) => onSortChange(e.target.value as SortOption)}
-          className="w-full rounded-md border border-slate-200 bg-white px-2.5 py-1.5 text-[12px] text-slate-700 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+          className="w-full rounded-md border border-slate-200 bg-white px-2.5 py-1.5 text-[0.65rem] text-slate-700 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
         >
           {sortOptions.map((opt) => (
             <option key={opt.value} value={opt.value}>
@@ -319,7 +319,7 @@ export function FilterSidebar({
           />
           <div className="absolute left-0 top-0 h-full w-80 max-w-[85vw] overflow-y-auto bg-white p-4 shadow-xl">
             <div className="mb-4 flex items-center justify-between">
-              <span className="text-[13px] font-semibold text-slate-900">Filters</span>
+              <span className="text-[0.7rem] font-semibold text-slate-900">Filters</span>
               <button
                 onClick={onMobileClose}
                 className="rounded p-1 text-slate-400 hover:bg-slate-100 hover:text-slate-600 cursor-pointer"

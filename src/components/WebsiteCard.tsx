@@ -44,11 +44,11 @@ export function WebsiteCard({ website, layout = 'grid' }: WebsiteCardProps) {
                 href={website.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[14px] font-semibold text-slate-900 no-underline hover:text-blue-600"
+                className="text-[0.7rem] font-semibold text-slate-900 no-underline hover:text-blue-600"
               >
                 {website.name}
               </a>
-              <p className="mt-0.5 text-[13px] text-slate-500 line-clamp-1">{website.description}</p>
+              <p className="mt-0.5 text-[0.7rem] text-slate-500 line-clamp-1">{website.description}</p>
             </div>
             <div className="flex items-center gap-1">
               <a
@@ -89,11 +89,11 @@ export function WebsiteCard({ website, layout = 'grid' }: WebsiteCardProps) {
               href={website.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[14px] font-semibold text-slate-900 no-underline hover:text-blue-600"
+              className="text-[0.7rem] font-semibold text-slate-900 no-underline hover:text-blue-600"
             >
               {website.name}
             </a>
-            <p className="text-[11px] text-slate-400">{website.url.replace('https://', '')}</p>
+            <p className="text-[0.6rem] text-slate-400">{website.url.replace('https://', '')}</p>
           </div>
         </div>
         <div className="flex items-center gap-1">
@@ -117,7 +117,7 @@ export function WebsiteCard({ website, layout = 'grid' }: WebsiteCardProps) {
 
       {/* Description */}
       <div className="flex-1 px-4 pb-3">
-        <p className="text-[13px] leading-relaxed text-slate-500 line-clamp-2">
+        <p className="text-[0.7rem] leading-relaxed text-slate-500 line-clamp-2">
           {website.description}
         </p>
       </div>
@@ -132,11 +132,11 @@ export function WebsiteCard({ website, layout = 'grid' }: WebsiteCardProps) {
 
       {/* Footer stats */}
       <div className="flex items-center gap-2 border-t border-slate-100 px-4 py-2.5">
-        <span className="font-mono text-[11px] uppercase tracking-wider text-slate-400">
+        <span className="font-mono text-[0.6rem] uppercase tracking-wider text-slate-400">
           {website.difficulty[0] || 'all'}
         </span>
         {isToolOpenSource(website) && (
-          <span className="font-mono text-[10px] uppercase tracking-wider text-emerald-500">
+          <span className="font-mono text-[0.55rem] uppercase tracking-wider text-emerald-500">
             open source
           </span>
         )}
@@ -144,7 +144,7 @@ export function WebsiteCard({ website, layout = 'grid' }: WebsiteCardProps) {
           {website.platform.map((p) => (
             <span
               key={p}
-              className="flex items-center gap-0.5 rounded bg-slate-100 px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-wider text-slate-500"
+              className="flex items-center gap-0.5 rounded bg-slate-100 px-1.5 py-0.5 font-mono text-[0.5rem] uppercase tracking-wider text-slate-500"
               title={platformLabels[p]}
             >
               {platformIcons[p]}

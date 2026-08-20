@@ -22,7 +22,7 @@ export function SiteFavicon({ url, name, size = 'sm' }: SiteFaviconProps) {
       <div
         className={`${sizeMap[size]} flex flex-shrink-0 items-center justify-center rounded-lg border border-slate-200 bg-gradient-to-br from-slate-100 to-slate-50`}
       >
-        <span className="font-bold text-slate-400" style={{ fontSize: size === 'lg' ? 20 : 14 }}>
+        <span className="font-bold text-slate-400" style={{ fontSize: size === 'lg' ? '1.1rem' : '0.8rem' }}>
           {name.charAt(0)}
         </span>
       </div>

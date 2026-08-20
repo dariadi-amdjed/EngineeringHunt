@@ -54,13 +54,13 @@ export function SubmitPage() {
 
       {/* Header */}
       <div className="mt-6">
-        <span className="font-mono text-[10px] uppercase tracking-widest text-blue-600">
+        <span className="font-mono text-[0.55rem] uppercase tracking-widest text-blue-600">
           [ CONTRIBUTE ]
         </span>
-        <h1 className="mt-1 text-[20px] font-bold text-slate-900">
+        <h1 className="mt-1 text-xl font-bold text-slate-900">
           Submit a tool via Pull Request
         </h1>
-        <p className="mt-1 text-[13px] text-slate-500">
+        <p className="mt-1 text-[0.7rem] text-slate-500">
           EngineeringHunt is open source. Add a tool by submitting a PR to our GitHub repo.
         </p>
       </div>
@@ -69,12 +69,12 @@ export function SubmitPage() {
       <div className="mt-8 space-y-4">
         {steps.map((s) => (
           <div key={s.step} className="flex gap-4">
-            <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-blue-600 text-[13px] font-bold text-white">
+            <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-blue-600 text-[0.7rem] font-bold text-white">
               {s.step}
             </div>
             <div className="pt-1">
-              <h3 className="text-[14px] font-semibold text-slate-900">{s.title}</h3>
-              <p className="mt-0.5 text-[13px] text-slate-500">{s.description}</p>
+              <h3 className="text-[0.75rem] font-semibold text-slate-900">{s.title}</h3>
+              <p className="mt-0.5 text-[0.7rem] text-slate-500">{s.description}</p>
             </div>
           </div>
         ))}
@@ -83,8 +83,8 @@ export function SubmitPage() {
       {/* JSON Template */}
       <div className="mt-8">
         <div className="mb-3 flex items-center justify-between">
-          <h3 className="text-[14px] font-semibold text-slate-900">JSON Template</h3>
-          <span className="font-mono text-[10px] uppercase tracking-wider text-slate-400">
+          <h3 className="text-[0.75rem] font-semibold text-slate-900">JSON Template</h3>
+          <span className="font-mono text-[0.55rem] uppercase tracking-wider text-slate-400">
             Copy &amp; paste
           </span>
         </div>
@@ -97,7 +97,7 @@ export function SubmitPage() {
           href={GITHUB_FILE}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-5 py-2.5 text-[13px] font-medium text-white no-underline transition-colors hover:bg-blue-700"
+          className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-5 py-2.5 text-[0.7rem] font-medium text-white no-underline transition-colors hover:bg-blue-700"
         >
           <GitFork className="h-4 w-4" />
           Open GitHub Editor
@@ -107,7 +107,7 @@ export function SubmitPage() {
           href={GITHUB_REPO}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-5 py-2.5 text-[13px] font-medium text-slate-700 no-underline transition-colors hover:bg-slate-50"
+          className="inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-5 py-2.5 text-[0.7rem] font-medium text-slate-700 no-underline transition-colors hover:bg-slate-50"
         >
           <FileCode className="h-4 w-4" />
           View Repository
@@ -116,8 +116,8 @@ export function SubmitPage() {
 
       {/* Guidelines */}
       <div className="mt-10 rounded-xl border border-slate-200 bg-white p-5">
-        <h3 className="mb-3 text-[14px] font-semibold text-slate-900">Submission Guidelines</h3>
-        <ul className="space-y-2 text-[13px] text-slate-500">
+        <h3 className="mb-3 text-[0.75rem] font-semibold text-slate-900">Submission Guidelines</h3>
+        <ul className="space-y-2 text-[0.7rem] text-slate-500">
           <li className="flex items-start gap-2">
             <Check className="mt-0.5 h-3.5 w-3.5 flex-shrink-0 text-emerald-500" />
             The tool must be related to engineering, electronics, or hardware
@@ -128,7 +128,7 @@ export function SubmitPage() {
           </li>
           <li className="flex items-start gap-2">
             <Check className="mt-0.5 h-3.5 w-3.5 flex-shrink-0 text-emerald-500" />
-            Optionally include an <code className="rounded bg-slate-100 px-1 text-[12px]">imageUrl</code> for a logo or screenshot — the site favicon and preview screenshot will be fetched automatically from your URL.
+            Optionally include an <code className="rounded bg-slate-100 px-1 text-[0.65rem]">imageUrl</code> for a logo or screenshot — the site favicon and preview screenshot will be fetched automatically from your URL.
           </li>
           <li className="flex items-start gap-2">
             <Check className="mt-0.5 h-3.5 w-3.5 flex-shrink-0 text-emerald-500" />
@@ -141,7 +141,7 @@ export function SubmitPage() {
       <div className="mt-8 text-center">
         <Link
           to="/explore"
-          className="text-[13px] font-medium text-blue-600 no-underline hover:text-blue-700"
+          className="text-[0.7rem] font-medium text-blue-600 no-underline hover:text-blue-700"
         >
           ← Back to explore
         </Link>

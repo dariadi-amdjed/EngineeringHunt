@@ -12,7 +12,7 @@ interface BreadcrumbsProps {
 
 export function Breadcrumbs({ items }: BreadcrumbsProps) {
   return (
-    <nav className="flex items-center gap-1 text-[12px] text-slate-400">
+    <nav className="flex items-center gap-1 text-[0.65rem] text-slate-400">
       <Link
         to="/"
         className="flex items-center gap-1 text-slate-400 no-underline transition-colors hover:text-slate-700"

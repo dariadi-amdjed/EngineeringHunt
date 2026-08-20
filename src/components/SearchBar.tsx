@@ -46,11 +46,11 @@ export function SearchBar({ variant = 'hero', className = '', onAISearch }: Sear
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search tools, platforms, resources…"
-            className="h-10 w-full rounded-lg border border-slate-200 bg-white py-2 pl-10 pr-24 text-[13px] text-slate-900 placeholder-slate-400 transition-colors focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+            className="h-10 w-full rounded-lg border border-slate-200 bg-white py-2 pl-10 pr-24 text-[0.7rem] text-slate-900 placeholder-slate-400 transition-colors focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
           />
           <button
             type="submit"
-            className="absolute right-1.5 top-1/2 flex h-7 -translate-y-1/2 items-center gap-1.5 rounded-md bg-blue-600 px-3 text-[12px] font-medium text-white transition-colors hover:bg-blue-700 cursor-pointer"
+            className="absolute right-1.5 top-1/2 flex h-7 -translate-y-1/2 items-center gap-1.5 rounded-md bg-blue-600 px-3 text-[0.65rem] font-medium text-white transition-colors hover:bg-blue-700 cursor-pointer"
           >
             <Sparkles className="h-3 w-3" />
             <span className="hidden sm:inline">Search</span>
@@ -74,11 +74,11 @@ export function SearchBar({ variant = 'hero', className = '', onAISearch }: Sear
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder={suggestions[currentSuggestion]}
-            className="h-14 w-full rounded-xl border border-slate-200 bg-white py-3 pl-12 pr-36 text-[15px] text-slate-900 placeholder-slate-400 shadow-sm transition-all focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 sm:text-[14px]"
+            className="h-14 w-full rounded-xl border border-slate-200 bg-white py-3 pl-12 pr-36 text-[0.85rem] text-slate-900 placeholder-slate-400 shadow-sm transition-all focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 sm:text-[0.75rem]"
           />
           <button
             type="submit"
-            className="absolute right-2 top-1/2 flex h-10 -translate-y-1/2 items-center gap-2 rounded-lg bg-blue-600 px-4 text-[13px] font-medium text-white transition-colors hover:bg-blue-700 cursor-pointer"
+            className="absolute right-2 top-1/2 flex h-10 -translate-y-1/2 items-center gap-2 rounded-lg bg-blue-600 px-4 text-[0.7rem] font-medium text-white transition-colors hover:bg-blue-700 cursor-pointer"
           >
             <Sparkles className="h-3.5 w-3.5" />
             <span className="hidden sm:inline">AI Search</span>
