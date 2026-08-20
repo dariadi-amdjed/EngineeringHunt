@@ -284,6 +284,7 @@ export function FilterBar({ filters, onFilterChange }: FilterBarProps) {
 
   return (
     <div className="flex flex-wrap items-center gap-2">
+      <span className="text-[12px] font-semibold text-slate-700 mr-0.5">Filters:</span>
       {chips.map((chip) => (
         <Chip
           key={chip.id}

@@ -1,5 +1,5 @@
 import { Link, NavLink } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Star } from 'lucide-react';
 import { useState } from 'react';
 import { GithubIcon } from './GithubIcon';
 
@@ -58,9 +58,14 @@ export function Navbar() {
             href="https://github.com/jamesvidler/engineeringhunt"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex h-8 w-8 items-center justify-center rounded-md text-slate-400 transition-colors hover:bg-slate-100 hover:text-slate-700"
+            className="hidden items-center gap-1.5 rounded-full border border-slate-200 bg-white px-3 py-1.5 text-[12px] font-medium text-slate-700 no-underline transition-colors hover:border-slate-300 hover:bg-slate-50 sm:flex"
           >
-            <GithubIcon className="h-4 w-4" />
+            <GithubIcon className="h-3.5 w-3.5 text-slate-600" />
+            <span>Star on GitHub</span>
+            <span className="ml-0.5 flex items-center gap-0.5 rounded-full bg-amber-50 px-1.5 py-0.5 text-[10px] font-bold text-amber-700">
+              <Star className="h-2.5 w-2.5 fill-amber-400 text-amber-400" />
+              1.2k
+            </span>
           </a>
 
           {/* Mobile menu button */}
