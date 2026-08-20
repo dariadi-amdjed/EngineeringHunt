@@ -1,9 +1,11 @@
 import { useParams, Link } from 'react-router-dom';
 import {
-  ArrowUpRight, Globe, Monitor, Smartphone, Tag as TagIcon,
+  ArrowUpRight, Globe, Monitor, Smartphone, Tag as TagIcon, Camera,
 } from 'lucide-react';
 import { getWebsiteBySlug, getWebsitesByDomain } from '@/lib/useWebsites';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
+import { SiteFavicon } from '@/components/SiteFavicon';
+import { SiteScreenshot } from '@/components/SiteScreenshot';
 import { Tag } from '@/components/Tag';
 import { WebsiteCard } from '@/components/WebsiteCard';
 
@@ -35,14 +37,6 @@ const interactivityLabels: Record<string, string> = {
   'input-output-tool': 'Input / Output Tool',
   'static-document': 'Static Document',
 };
-
-function ImagePlaceholder({ name }: { name: string }) {
-  return (
-    <div className="flex h-16 w-16 items-center justify-center rounded-xl border border-slate-200 bg-slate-50">
-      <span className="text-[20px] font-bold text-slate-300">{name.charAt(0)}</span>
-    </div>
-  );
-}
 
 export function WebsiteDetailPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -87,16 +81,7 @@ export function WebsiteDetailPage() {
 
       {/* Header */}
       <div className="mt-6 flex items-start gap-4">
-        {website.imageUrl ? (
-          <img
-            src={website.imageUrl}
-            alt={`${website.name} logo`}
-            className="h-16 w-16 rounded-xl border border-slate-200 object-contain"
-            onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
-          />
-        ) : (
-          <ImagePlaceholder name={website.name} />
-        )}
+        <SiteFavicon url={website.url} name={website.name} size="lg" />
         <div className="flex-1">
           <h1 className="text-[22px] font-bold text-slate-900">{website.name}</h1>
           <p className="mt-1 text-[14px] text-slate-500">{website.description}</p>
@@ -130,6 +115,15 @@ export function WebsiteDetailPage() {
           <div className="rounded-xl border border-slate-200 bg-white p-5">
             <h2 className="mb-3 text-[14px] font-semibold text-slate-900">About</h2>
             <p className="text-[13px] leading-relaxed text-slate-600">{website.longDescription}</p>
+          </div>
+
+          {/* Screenshot Preview */}
+          <div className="rounded-xl border border-slate-200 bg-white p-5">
+            <div className="mb-3 flex items-center gap-2">
+              <Camera className="h-4 w-4 text-slate-400" strokeWidth={1.5} />
+              <h2 className="text-[14px] font-semibold text-slate-900">Live Preview</h2>
+            </div>
+            <SiteScreenshot url={website.url} name={website.name} />
           </div>
         </div>
 

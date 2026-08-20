@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ExternalLink, Info } from 'lucide-react';
 import type { Website } from '@/types';
+import { SiteFavicon } from './SiteFavicon';
 import { Tag } from './Tag';
 
 interface WebsiteCardProps {
@@ -16,6 +17,7 @@ export function WebsiteCard({ website, layout = 'grid' }: WebsiteCardProps) {
   if (layout === 'list') {
     return (
       <div className="group flex items-start gap-4 rounded-lg border border-slate-200 bg-white p-4 transition-all hover:border-slate-300 hover:shadow-sm">
+        <SiteFavicon url={website.url} name={website.name} size="sm" />
         <div className="min-w-0 flex-1">
           <div className="flex items-start justify-between gap-2">
             <div>
@@ -62,14 +64,7 @@ export function WebsiteCard({ website, layout = 'grid' }: WebsiteCardProps) {
       {/* Header */}
       <div className="flex items-start justify-between p-4 pb-3">
         <div className="flex items-start gap-3 min-w-0 flex-1">
-          {website.imageUrl && (
-            <img
-              src={website.imageUrl}
-              alt=""
-              className="mt-0.5 h-8 w-8 flex-shrink-0 rounded-md border border-slate-100 object-contain"
-              onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
-            />
-          )}
+          <SiteFavicon url={website.url} name={website.name} size="sm" />
           <div className="min-w-0 flex-1">
             <a
               href={website.url}

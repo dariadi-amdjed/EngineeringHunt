@@ -15,21 +15,38 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-40 border-b border-slate-200 bg-white/95 backdrop-blur">
-      {/* Solid blue left accent with diagonal slant */}
-      <div
-        className="absolute left-0 top-0 bottom-0 w-56 bg-blue-600 pointer-events-none"
-        style={{ clipPath: 'polygon(0 0, 100% 0, 80% 100%, 0 100%)' }}
-      />
+      {/* Blue background — slides in from left on page load */}
+      <div className="absolute left-0 top-0 bottom-0 animate-nav-blue-slide-in">
+        <div
+          className="absolute inset-0 w-56 bg-[#2563EB]"
+          style={{ clipPath: 'polygon(0 0, 100% 0, 80% 100%, 0 100%)' }}
+        />
+        <div
+          className="absolute inset-0"
+          style={{
+            width: 'calc(14rem + 24px)',
+            clipPath: 'polygon(0 0, 100% 0, 80% 100%, 0 100%)',
+            filter: 'blur(12px)',
+            WebkitMaskImage: 'linear-gradient(to right, transparent 60%, black 80%)',
+            maskImage: 'linear-gradient(to right, transparent 60%, black 80%)',
+          }}
+        />
+      </div>
+
       <nav className="relative mx-auto flex h-14 max-w-6xl items-center justify-between px-4 sm:px-6">
         {/* Logo */}
-        <Link to="/" className="flex items-center gap-2 no-underline relative z-10">
-          <img
-            src="images/photo.png"
-            alt="EngineeringHunt"
-            className="h-7 w-7 rounded object-cover"
-          />
-          <span className="text-[15px] font-bold tracking-tight text-slate-900">
-            EngineeringHunt
+        <Link to="/" className="no-underline relative z-10 leading-none select-none">
+          <span className="block text-[18px] font-black leading-none text-white tracking-tight">
+            Eng
+          </span>
+          <span
+            className="block text-[13px] font-extrabold leading-none text-white/70 -mt-0.5"
+            style={{
+              WebkitTextStroke: '0.5px rgba(255,255,255,0.5)',
+              letterSpacing: '0.04em',
+            }}
+          >
+            Hunt
           </span>
         </Link>
 

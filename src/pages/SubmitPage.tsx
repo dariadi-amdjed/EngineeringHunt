@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, GitFork, FileCode, Check } from 'lucide-react';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
+import { CodeBlock } from '@/components/CodeBlock';
 
 const GITHUB_REPO = 'https://github.com/user/engineeringhunt';
 const GITHUB_FILE = `${GITHUB_REPO}/edit/main/src/data/websites.ts`;
@@ -86,11 +87,7 @@ export function SubmitPage() {
             Copy &amp; paste
           </span>
         </div>
-        <div className="relative overflow-hidden rounded-xl border border-slate-200 bg-slate-900">
-          <pre className="overflow-x-auto p-4 text-[12px] leading-relaxed text-slate-300">
-            <code>{templateJson}</code>
-          </pre>
-        </div>
+        <CodeBlock code={templateJson} language="json" />
       </div>
 
       {/* CTA Buttons */}

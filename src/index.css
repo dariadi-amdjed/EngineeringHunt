@@ -231,6 +231,16 @@
   animation: aiSpin 1s linear infinite;
 }
 
+/* ── Navbar Blue Slide-In ──────────────────────────────────────────── */
+@keyframes navBlueSlideIn {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+
+.animate-nav-blue-slide-in {
+  animation: navBlueSlideIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
 /* ── Page Transition ────────────────────────────────────────────────── */
 @keyframes pageEnter {
   from { opacity: 0; transform: translateY(8px); }
