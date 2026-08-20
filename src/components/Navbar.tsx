@@ -15,41 +15,44 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-40 border-b border-slate-200 bg-white/95 backdrop-blur">
-      {/* Blue background — slides in from left, responsive width */}
-      <div className="absolute left-0 top-0 bottom-0 animate-nav-blue-slide-in w-[120px] sm:w-[160px] md:w-56">
-        <div
-          className="absolute inset-0 bg-[#2563EB]"
-          style={{ clipPath: 'polygon(0 0, 100% 0, 80% 100%, 0 100%)' }}
-        />
-        <div
-          className="absolute inset-0"
-          style={{
-            clipPath: 'polygon(0 0, 100% 0, 80% 100%, 0 100%)',
-            filter: 'blur(12px)',
-            WebkitMaskImage: 'linear-gradient(to right, transparent 60%, black 80%)',
-            maskImage: 'linear-gradient(to right, transparent 60%, black 80%)',
-          }}
-        />
-      </div>
+      <div className="relative mx-auto flex h-14 max-w-7xl items-center px-4 sm:px-6 lg:px-8">
+        {/* Blue accent — constrained behind the logo area only */}
+        <div className="absolute left-0 top-0 bottom-0 w-32 sm:w-40 md:w-44 animate-nav-blue-slide-in pointer-events-none">
+          <div
+            className="absolute inset-0 bg-[#2563EB]"
+            style={{ clipPath: 'polygon(0 0, 100% 0, 78% 100%, 0 100%)' }}
+          />
+          <div
+            className="absolute inset-0"
+            style={{
+              clipPath: 'polygon(0 0, 100% 0, 78% 100%, 0 100%)',
+              filter: 'blur(14px)',
+              WebkitMaskImage: 'linear-gradient(to right, transparent 55%, black 80%)',
+              maskImage: 'linear-gradient(to right, transparent 55%, black 80%)',
+            }}
+          />
+        </div>
 
-      <nav className="relative mx-auto flex h-14 max-w-6xl items-center justify-between px-4 sm:px-6">
-        {/* Logo */}
-        <Link to="/" className="no-underline relative z-10 leading-none select-none">
+        {/* Logo — sits inside the blue zone, on top of it */}
+        <Link
+          to="/"
+          className="relative z-10 mr-6 flex-shrink-0 select-none leading-none no-underline"
+        >
           <span className="block text-[18px] font-black leading-none text-white tracking-tight">
             Eng
           </span>
           <span
-            className="block text-[13px] font-extrabold leading-none text-white/70 -mt-0.5"
+            className="block text-[12px] font-extrabold leading-none text-white/60 -mt-0.5"
             style={{
-              WebkitTextStroke: '0.5px rgba(255,255,255,0.5)',
-              letterSpacing: '0.04em',
+              WebkitTextStroke: '0.5px rgba(255,255,255,0.4)',
+              letterSpacing: '0.06em',
             }}
           >
             Hunt
           </span>
         </Link>
 
-        {/* Desktop nav */}
+        {/* Desktop nav links */}
         <div className="hidden items-center gap-1 md:flex">
           {links.map((link) => (
             <NavLink
@@ -68,8 +71,11 @@ export function Navbar() {
           ))}
         </div>
 
+        {/* Spacer */}
+        <div className="flex-1" />
+
         {/* Right side */}
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-1.5">
           <a
             href="https://github.com/jamesvidler/engineeringhunt"
             target="_blank"
@@ -84,38 +90,41 @@ export function Navbar() {
             </span>
           </a>
 
-          {/* Mobile menu button */}
+          {/* Mobile hamburger */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="flex h-8 w-8 items-center justify-center rounded-md text-slate-400 transition-colors hover:bg-slate-100 hover:text-slate-700 md:hidden cursor-pointer"
+            className="flex h-8 w-8 items-center justify-center rounded-md text-slate-500 transition-colors hover:bg-slate-100 hover:text-slate-700 md:hidden cursor-pointer"
+            aria-label="Toggle menu"
           >
-            {mobileOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+            {mobileOpen ? <X className="h-4.5 w-4.5" /> : <Menu className="h-4.5 w-4.5" />}
           </button>
         </div>
-      </nav>
+      </div>
 
-      {/* Mobile menu drawer */}
+      {/* Mobile drawer */}
       {mobileOpen && (
-        <div className="border-t border-slate-100 bg-white px-4 pb-3 pt-2 md:hidden">
-          <div className="flex flex-col gap-0.5">
-            {links.map((link) => (
-              <NavLink
-                key={link.to}
-                to={link.to}
-                onClick={() => setMobileOpen(false)}
-                className={({ isActive }) =>
-                  `rounded-lg px-3 py-2.5 text-[13px] font-medium no-underline transition-colors ${
-                    isActive
-                      ? 'bg-blue-50 text-blue-700'
-                      : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
-                  }`
-                }
-              >
-                {link.label}
-              </NavLink>
-            ))}
+        <nav className="relative z-50 border-t border-slate-100 bg-white md:hidden">
+          <div className="mx-auto max-w-7xl px-4 py-3 sm:px-6">
+            <div className="flex flex-col gap-1">
+              {links.map((link) => (
+                <NavLink
+                  key={link.to}
+                  to={link.to}
+                  onClick={() => setMobileOpen(false)}
+                  className={({ isActive }) =>
+                    `rounded-lg px-4 py-3 text-[14px] font-medium no-underline transition-colors ${
+                      isActive
+                        ? 'bg-blue-50 text-blue-700'
+                        : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
+                    }`
+                  }
+                >
+                  {link.label}
+                </NavLink>
+              ))}
+            </div>
           </div>
-        </div>
+        </nav>
       )}
     </header>
   );
