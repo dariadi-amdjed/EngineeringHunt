@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ExternalLink, Info } from 'lucide-react';
 import type { Website } from '@/types';
+import { isToolOpenSource } from '@/types';
 import { SiteFavicon } from './SiteFavicon';
 import { Tag } from './Tag';
 
@@ -116,7 +117,7 @@ export function WebsiteCard({ website, layout = 'grid' }: WebsiteCardProps) {
         <span className="font-mono text-[11px] uppercase tracking-wider text-slate-400">
           {website.difficulty[0] || 'all'}
         </span>
-        {website.openSource && (
+        {isToolOpenSource(website) && (
           <span className="font-mono text-[10px] uppercase tracking-wider text-emerald-500">
             open source
           </span>

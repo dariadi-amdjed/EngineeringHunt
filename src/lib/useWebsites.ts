@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { websites as localWebsites } from '@/data/websites';
 import { categories } from '@/data/categories';
 import type { Website, SearchFilters, CategorySlug } from '@/types';
+import { isToolOpenSource } from '@/types';
 
 // ── Filtering ──────────────────────────────────────────────────────
 
@@ -41,7 +42,7 @@ function applyFilters(
     result = result.filter((w) => filters.interactivity!.includes(w.interactivity));
   }
   if (filters.openSource) {
-    result = result.filter((w) => w.openSource);
+    result = result.filter((w) => isToolOpenSource(w));
   }
 
   return result;

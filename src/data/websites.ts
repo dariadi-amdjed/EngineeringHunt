@@ -1,4 +1,5 @@
 import type { Website } from '@/types';
+import { isToolOpenSource } from '@/types';
 
 export const websites: Website[] = [
   // ── Electronics & Circuitry ──────────────────────────────────────────
@@ -737,7 +738,7 @@ export function getWebsitesByCategory(categorySlug: string): Website[] {
 }
 
 export function getOpenSourceWebsites(): Website[] {
-  return websites.filter((w) => w.openSource);
+  return websites.filter((w) => isToolOpenSource(w));
 }
 
 export function searchWebsites(query: string): Website[] {
@@ -815,7 +816,7 @@ export function filterWebsites(
   }
 
   if (filters.openSource) {
-    filtered = filtered.filter((w) => w.openSource);
+    filtered = filtered.filter((w) => isToolOpenSource(w));
   }
 
   switch (sort) {
@@ -829,7 +830,7 @@ export function filterWebsites(
       });
       break;
     case 'open-source-first':
-      filtered.sort((a, b) => (b.openSource ? 1 : 0) - (a.openSource ? 1 : 0));
+      filtered.sort((a, b) => (isToolOpenSource(b) ? 1 : 0) - (isToolOpenSource(a) ? 1 : 0));
       break;
     default:
       break;

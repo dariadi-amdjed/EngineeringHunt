@@ -46,6 +46,10 @@ export type Website = {
   featured: boolean;
 };
 
+export function isToolOpenSource(tool: Website): boolean {
+  return tool.openSource === true || Boolean(tool.githubUrl);
+}
+
 export type Category = {
   slug: CategorySlug;
   name: string;

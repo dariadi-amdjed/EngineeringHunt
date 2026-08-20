@@ -3,6 +3,7 @@ import {
   ArrowUpRight, Globe, Monitor, Smartphone, Tag as TagIcon, Camera,
 } from 'lucide-react';
 import { getWebsiteBySlug, getWebsitesByDomain } from '@/lib/useWebsites';
+import { isToolOpenSource } from '@/types';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { SiteFavicon } from '@/components/SiteFavicon';
 import { SiteScreenshot } from '@/components/SiteScreenshot';
@@ -91,7 +92,7 @@ export function WebsiteDetailPage() {
               <Tag key={p} variant="purpose">{purposeLabels[p] || p}</Tag>
             ))}
             <Tag variant="pricing">{website.pricing.replace('-', ' ')}</Tag>
-            {website.openSource && <Tag variant="pricing">Open Source</Tag>}
+            {isToolOpenSource(website) && <Tag variant="pricing">Open Source</Tag>}
             <Tag variant="authentication">{authLabels[website.authentication]}</Tag>
             <Tag variant="interactivity">{interactivityLabels[website.interactivity]}</Tag>
           </div>
@@ -162,7 +163,7 @@ export function WebsiteDetailPage() {
                   ))}
                 </dd>
               </div>
-              {website.openSource && website.githubUrl && (
+              {isToolOpenSource(website) && website.githubUrl && (
                 <div className="flex items-center justify-between">
                   <dt className="text-slate-500">Source</dt>
                   <dd>

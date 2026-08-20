@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { categories } from '@/data/categories';
 import { websites as allWebsitesData } from '@/data/websites';
+import { isToolOpenSource } from '@/types';
 import { heroStickers } from '@/data/stickers';
 import { WebsiteCard } from '@/components/WebsiteCard';
 import { CategoryCard } from '@/components/CategoryCard';
@@ -23,7 +24,7 @@ export function HomePage() {
   const categoryCounts = getCategoryCounts();
 
   const uniqueDomains = new Set(allWebsitesData.map((w) => w.category)).size;
-  const openSourceCount = allWebsitesData.filter((w) => w.openSource).length;
+  const openSourceCount = allWebsitesData.filter((w) => isToolOpenSource(w)).length;
 
   const stats = [
     { label: 'Tools indexed', value: allWebsitesData.length.toString(), icon: Code },

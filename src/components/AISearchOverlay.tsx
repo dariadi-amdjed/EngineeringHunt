@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Sparkles, ExternalLink, X, Loader2, Check, ChevronRight } from 'lucide-react';
 import { aiSearch } from '@/data/ai-search';
 import { websites } from '@/data/websites';
+import { isToolOpenSource } from '@/types';
 import type { AISearchResult, Website } from '@/types';
 
 interface AISearchOverlayProps {
@@ -183,7 +184,7 @@ function ResultsView({ result, query }: { result: AISearchResult; query: string 
                 <span className="rounded-md bg-emerald-50 px-2 py-0.5 text-[10px] font-medium text-emerald-700">
                   {best.pricing.replace('-', ' ')}
                 </span>
-                {best.openSource && (
+                {isToolOpenSource(best) && (
                   <span className="rounded-md bg-emerald-50 px-2 py-0.5 text-[10px] font-medium text-emerald-700">
                     Open Source
                   </span>
