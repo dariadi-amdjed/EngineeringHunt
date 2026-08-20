@@ -8,7 +8,7 @@ interface FloatingStickersProps {
 export function FloatingStickers({ stickers, className = '' }: FloatingStickersProps) {
   return (
     <div
-      className={`pointer-events-none absolute inset-0 overflow-hidden ${className}`}
+      className={`pointer-events-none absolute inset-0 overflow-clip ${className}`}
       aria-hidden="true"
     >
       {stickers.map((sticker) => (

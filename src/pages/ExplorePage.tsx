@@ -76,7 +76,7 @@ export function ExplorePage() {
 
       {/* Header */}
       <div className="px-4 pt-6 sm:px-6">
-        <div className="relative mb-4 overflow-hidden">
+        <div className="relative mb-4 overflow-x-clip overflow-y-visible">
           <FloatingStickers stickers={exploreStickers} />
           <div className="relative z-10">
             <span className="font-mono text-[10px] uppercase tracking-widest text-blue-600">

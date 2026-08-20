@@ -15,16 +15,15 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-40 border-b border-slate-200 bg-white/95 backdrop-blur">
-      {/* Blue background — slides in from left on page load */}
-      <div className="absolute left-0 top-0 bottom-0 animate-nav-blue-slide-in">
+      {/* Blue background — slides in from left, responsive width */}
+      <div className="absolute left-0 top-0 bottom-0 animate-nav-blue-slide-in w-[120px] sm:w-[160px] md:w-56">
         <div
-          className="absolute inset-0 w-56 bg-[#2563EB]"
+          className="absolute inset-0 bg-[#2563EB]"
           style={{ clipPath: 'polygon(0 0, 100% 0, 80% 100%, 0 100%)' }}
         />
         <div
           className="absolute inset-0"
           style={{
-            width: 'calc(14rem + 24px)',
             clipPath: 'polygon(0 0, 100% 0, 80% 100%, 0 100%)',
             filter: 'blur(12px)',
             WebkitMaskImage: 'linear-gradient(to right, transparent 60%, black 80%)',
@@ -95,25 +94,27 @@ export function Navbar() {
         </div>
       </nav>
 
-      {/* Mobile menu */}
+      {/* Mobile menu drawer */}
       {mobileOpen && (
-        <div className="border-t border-slate-200 bg-white px-4 pb-3 pt-2 md:hidden">
-          {links.map((link) => (
-            <NavLink
-              key={link.to}
-              to={link.to}
-              onClick={() => setMobileOpen(false)}
-              className={({ isActive }) =>
-                `block rounded-md px-3 py-2 text-[13px] font-medium no-underline transition-colors ${
-                  isActive
-                    ? 'bg-slate-100 text-slate-900'
-                    : 'text-slate-500 hover:bg-slate-50 hover:text-slate-900'
-                }`
-              }
-            >
-              {link.label}
-            </NavLink>
-          ))}
+        <div className="border-t border-slate-100 bg-white px-4 pb-3 pt-2 md:hidden">
+          <div className="flex flex-col gap-0.5">
+            {links.map((link) => (
+              <NavLink
+                key={link.to}
+                to={link.to}
+                onClick={() => setMobileOpen(false)}
+                className={({ isActive }) =>
+                  `rounded-lg px-3 py-2.5 text-[13px] font-medium no-underline transition-colors ${
+                    isActive
+                      ? 'bg-blue-50 text-blue-700'
+                      : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
+                  }`
+                }
+              >
+                {link.label}
+              </NavLink>
+            ))}
+          </div>
         </div>
       )}
     </header>
