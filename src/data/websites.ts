@@ -1,5 +1,6 @@
 import type { Website } from '@/types';
 import { isToolOpenSource } from '@/types';
+import { rankWebsites } from '@/lib/search';
 
 export const websites: Website[] = [
   // ── Electronics & Circuitry ──────────────────────────────────────────
@@ -20,8 +21,7 @@ export const websites: Website[] = [
     platform: ['web'],
     difficulty: ['beginner', 'intermediate'],
     interactivity: 'interactive-canvas',
-    openSource: true,
-    githubUrl: 'https://github.com/nicholasgasior/wokwi-docs',
+    openSource: false,
     tags: ['ESP32', 'Arduino', 'Circuit Simulation', 'Browser', 'Microcontroller'],
     featured: true,
   },
@@ -43,7 +43,7 @@ export const websites: Website[] = [
     difficulty: ['beginner', 'intermediate'],
     interactivity: 'interactive-canvas',
     openSource: true,
-    githubUrl: 'https://github.com/sharpie7/EESchema',
+    githubUrl: 'https://github.com/pfalstad/circuitjs1',
     tags: ['Circuit Simulation', 'Analog', 'Digital', 'Interactive', 'Real-time'],
     featured: true,
   },
@@ -54,9 +54,9 @@ export const websites: Website[] = [
     url: 'https://circuitlab.com',
   type: 'web-app',
     imageUrl: 'https://circuitlab.com/favicon.ico',
-    description: 'Browser-based schematic editor and circuit simulator with SPICE analysis.',
+    description: 'In-browser schematic editor and mixed-mode circuit simulator with waveform plotting.',
     longDescription:
-      'CircuitLab offers an online schematic editor and circuit simulator with SPICE analysis, Bode plots, and real-time waveform viewing. Widely used in EE education and professional circuit prototyping.',
+      'CircuitLab pairs a browser schematic editor with its own mixed-mode simulation engine — AC sweeps, Bode plots, time-domain analysis — and exports presentation-quality schematics. Its interactive Ultimate Electronics textbook doubles as a solid intro to circuit design.',
     category: 'electronics-circuitry',
     purposes: ['simulator'],
     pricing: 'freemium',
@@ -97,7 +97,7 @@ export const websites: Website[] = [
   type: 'web-app',
     description: 'Free online textbook, worksheets, and forums covering electronics fundamentals.',
     longDescription:
-      'All About Circuits offers a free online textbook, worksheets, and forums covering fundamental electronics concepts. One of the best resources for learning electronics theory from the ground up.',
+      "All About Circuits hosts a free online textbook, worked worksheets, and active forums covering electronics from Ohm's law through semiconductors, digital logic, and power electronics. The forums alone are worth a bookmark for troubleshooting help.",
     category: 'electronics-circuitry',
     purposes: ['community-docs'],
     pricing: 'free',
@@ -115,7 +115,7 @@ export const websites: Website[] = [
     id: '6',
     slug: 'okawa-electric',
     name: 'Okawa Electric Design',
-    url: 'https://www.okawa-denshi.jp',
+    url: 'http://okawa-denshi.jp',
   type: 'web-app',
     description: 'Free online calculators for filters, transformers, and electrical components.',
     longDescription:
@@ -134,21 +134,21 @@ export const websites: Website[] = [
   {
     id: '7',
     slug: 'eep-web-tools',
-    name: 'EEP Web Tools',
-    url: 'https://electrical-engineering-portal.com/interactive-tools',
+    name: 'EEP - Electrical Engineering Portal',
+    url: 'https://electrical-engineering-portal.com',
   type: 'web-app',
-    description: 'Collection of electrical engineering calculators and interactive tools.',
+    description: 'Technical articles, guides, and downloadable calculation spreadsheets for power engineers.',
     longDescription:
-      'EEP Web Tools offers a range of interactive electrical engineering calculators including cable sizing, short circuit, motor starting, transformer, and arc flash analysis tools. Practical utilities for working engineers.',
+      'EEP publishes deep LV/MV/HV technical articles on switchgear, protection relaying, transformers, and substation design, plus a download center full of engineering spreadsheets for cable sizing, voltage drop, and fault calculations. Much of the archive is free; premium membership unlocks specialized guides and video courses.',
     category: 'electrical-power',
-    purposes: ['calculator', 'datasheet-reference'],
+    purposes: ['community-docs', 'calculator'],
     pricing: 'freemium',
     authentication: 'optional-signup',
     platform: ['web'],
     difficulty: ['intermediate', 'advanced'],
-    interactivity: 'input-output-tool',
+    interactivity: 'static-document',
     openSource: false,
-    tags: ['Calculator', 'Cable Sizing', 'Transformer', 'Arc Flash', 'Power Systems'],
+    tags: ['Power Systems', 'Technical Articles', 'Spreadsheets', 'Switchgear', 'Protection'],
     featured: true,
   },
   {
@@ -201,7 +201,7 @@ export const websites: Website[] = [
   type: 'web-app',
     description: 'Official Arduino documentation, project hub and community.',
     longDescription:
-      'The official Arduino website provides documentation, project examples, libraries, and community resources for all Arduino boards and the Arduino IDE. The primary resource for Arduino development.',
+      "Home base for all things Arduino: IDE downloads, board documentation, the Project Hub's thousands of community builds, and forums where most beginner questions get answered within hours. The IDE and board cores are developed in the open on the arduino GitHub org.",
     category: 'embedded-systems-iot',
     purposes: ['community-docs'],
     pricing: 'freemium',
@@ -225,7 +225,7 @@ export const websites: Website[] = [
       'ESP-IDF is the official development framework for ESP32 and other Espressif chips. The documentation provides comprehensive guides for building IoT applications with Wi-Fi, Bluetooth, and many other peripherals.',
     category: 'embedded-systems-iot',
     purposes: ['community-docs'],
-    pricing: 'free',
+    pricing: 'open-source',
     authentication: 'no-account',
     platform: ['windows', 'mac', 'linux'],
     difficulty: ['intermediate', 'advanced'],
@@ -243,7 +243,7 @@ export const websites: Website[] = [
   type: 'desktop-app',
     description: 'Professional embedded development ecosystem and IDE.',
     longDescription:
-      'PlatformIO is a professional collaborative platform for embedded development. It supports multiple development frameworks, boards, and IDEs, making cross-platform embedded development seamless.',
+      "PlatformIO is two things that replace vendor IDEs: PlatformIO Core, a Python-based CLI build system, and a VS Code extension wrapping it. One project configuration builds for any of 1,000+ supported boards (ESP32, STM32, AVR, RP2040...), with dependency management through its central library registry.",
     category: 'embedded-systems-iot',
     purposes: ['eda-tool'],
     pricing: 'freemium',
@@ -262,9 +262,9 @@ export const websites: Website[] = [
     name: 'Adafruit',
     url: 'https://adafruit.com',
   type: 'web-app',
-    description: 'Open-source hardware company with tutorials and learning system.',
+    description: 'Electronics vendor with one of the deepest free maker tutorial libraries.',
     longDescription:
-      'Adafruit is a leading open-source hardware company offering electronics components, development boards, and extensive learning resources. Their learning system covers electronics, programming, and maker projects.',
+      "Adafruit designs and sells dev boards, sensors, and components, and backs them with an enormous free learning system covering Arduino, CircuitPython (which started there), sensors, and wearables. The tutorials are product-agnostic enough to be useful even if you buy nothing.",
     category: 'embedded-systems-iot',
     purposes: ['community-docs'],
     pricing: 'freemium',
@@ -272,8 +272,7 @@ export const websites: Website[] = [
     platform: ['web'],
     difficulty: ['beginner', 'intermediate'],
     interactivity: 'static-document',
-    openSource: true,
-    githubUrl: 'https://github.com/adafruit',
+    openSource: false,
     tags: ['Hardware', 'Sensors', 'CircuitPython', 'Maker', 'Tutorials'],
     featured: true,
   },
@@ -305,12 +304,12 @@ export const websites: Website[] = [
     name: 'EasyEDA',
     url: 'https://easyeda.com',
   type: 'web-app',
-    description: 'Free browser-based EDA tool with schematic, PCB layout and component library.',
+    description: 'Browser-based EDA suite with schematic, PCB layout and LCSC component library.',
     longDescription:
-      'EasyEDA is a free, web-based EDA tool offering schematic capture, PCB layout, and a massive component library integrated with LCSC and JLCPCB. Supports direct PCB ordering from the design interface.',
+      'EasyEDA bundles schematic capture, PCB layout, and Ngspice-based simulation in the browser, wired directly into the LCSC parts catalog and one-click JLCPCB fabrication. The Standard and newer Pro editors are both free; a paid tier adds private libraries, more cloud storage, and support.',
     category: 'pcb-design-eda',
     purposes: ['eda-tool'],
-    pricing: 'free',
+    pricing: 'freemium',
     authentication: 'signup-required',
     platform: ['web'],
     difficulty: ['beginner', 'intermediate'],
@@ -343,13 +342,13 @@ export const websites: Website[] = [
   },
   {
     id: '17',
-    slug: 'opencircuit',
-    name: 'OpenCircuit',
-    url: 'https://opencircuit.io',
+    slug: 'flux',
+    name: 'Flux',
+    url: 'https://flux.ai',
   type: 'web-app',
-    description: 'Online PCB design tool with component library and 3D preview.',
+    description: 'Browser-based PCB design tool with an AI copilot for schematics and layout.',
     longDescription:
-      'OpenCircuit is an online PCB design tool featuring a large component library, schematic editor, and 3D board preview. It aims to make PCB design accessible directly in the browser.',
+      'Flux runs the full PCB design flow in the browser — schematic capture, board layout, and a 3D viewer — with an AI copilot that can place components, wire up reference designs, and answer design questions as you work. Boards share like documents, so reviewing a teammate\'s layout is just a link.',
     category: 'pcb-design-eda',
     purposes: ['eda-tool'],
     pricing: 'freemium',
@@ -358,7 +357,7 @@ export const websites: Website[] = [
     difficulty: ['beginner', 'intermediate'],
     interactivity: 'interactive-canvas',
     openSource: false,
-    tags: ['PCB', 'Online', 'Schematic', '3D Preview', 'Component Library'],
+    tags: ['PCB', 'AI Copilot', 'Schematic', 'Layout', 'Browser', '3D Viewer'],
     featured: false,
   },
   {
@@ -435,7 +434,7 @@ export const websites: Website[] = [
     category: 'digital-logic-hdl',
     purposes: ['simulator', 'community-docs'],
     pricing: 'freemium',
-    authentication: 'signup-required',
+    authentication: 'optional-signup',
     platform: ['web'],
     difficulty: ['beginner', 'intermediate'],
     interactivity: 'interactive-canvas',
@@ -457,7 +456,7 @@ export const websites: Website[] = [
     purposes: ['simulator'],
     pricing: 'open-source',
     authentication: 'no-account',
-    platform: ['linux', 'mac'],
+    platform: ['linux', 'mac', 'windows'],
     difficulty: ['intermediate', 'advanced'],
     interactivity: 'input-output-tool',
     openSource: true,
@@ -478,7 +477,7 @@ export const websites: Website[] = [
     purposes: ['eda-tool'],
     pricing: 'open-source',
     authentication: 'no-account',
-    platform: ['linux', 'mac'],
+    platform: ['linux', 'mac', 'windows'],
     difficulty: ['advanced'],
     interactivity: 'input-output-tool',
     openSource: true,
@@ -504,6 +503,33 @@ export const websites: Website[] = [
     interactivity: 'interactive-canvas',
     openSource: false,
     tags: ['Verilog', 'Practice', 'Education', 'Interactive', 'Digital Logic'],
+    featured: false,
+  },
+  {
+    id: '37',
+    slug: 'enginaut',
+    name: 'Enginaut',
+    url: 'https://enginaut.app/',
+    type: 'web-app',
+    description: 'Gamified learning platform with short daily lessons for engineering concepts.',
+    longDescription:
+      'Enginaut is an interactive educational platform that uses gamification to simplify complex engineering concepts through short, engaging daily lessons — described by its community as the "Duolingo of engineering". Users pick an engineering specialization and follow structured learning paths of increasing difficulty, combining visual lessons, interactive challenges such as drag-and-drop activities, and problem-solving exercises. Free to use; an account is required to save progress and track achievements.',
+    category: 'digital-logic-hdl',
+    purposes: ['community-docs'],
+    pricing: 'free',
+    authentication: 'signup-required',
+    platform: ['web'],
+    difficulty: ['beginner', 'intermediate'],
+    interactivity: 'interactive-canvas',
+    openSource: false,
+    tags: [
+      'Education',
+      'Gamification',
+      'Digital Logic',
+      'Computer Architecture',
+      'Electronics',
+      'Embedded Systems',
+    ],
     featured: false,
   },
 
@@ -557,10 +583,10 @@ export const websites: Website[] = [
   type: 'web-app',
     description: 'Interactive compiler explorer for C, C++, Rust, Assembly and more.',
     longDescription:
-      'Compiler Explorer lets you write C, C++, Rust, Assembly, and other languages and see the resulting compiler output in real time. Essential for understanding code generation, optimization, and low-level behavior.',
+      'Compiler Explorer lets you write C, C++, Rust, Assembly, and other languages and see the resulting compiler output in real time. Essential for understanding code generation, optimization, and low-level behavior — pick any compiler version or target triple and diff the assembly side by side.',
     category: 'computer-architecture-chips',
     purposes: ['simulator'],
-    pricing: 'free',
+    pricing: 'open-source',
     authentication: 'no-account',
     platform: ['web'],
     difficulty: ['intermediate', 'advanced'],
@@ -574,7 +600,7 @@ export const websites: Website[] = [
     id: '28',
     slug: 'stm32',
     name: 'STM32 Developer',
-    url: 'https://stm32.com',
+    url: 'https://www.st.com/en/microcontrollers-microprocessors/stm32-32-bit-arm-cortex-mcus.html',
   type: 'web-app',
     description: 'STMicroelectronics STM32 microcontroller resources and tools.',
     longDescription:
@@ -641,19 +667,19 @@ export const websites: Website[] = [
     url: 'https://gazebosim.org',
   type: 'desktop-app',
     imageUrl: 'https://gazebosim.org/favicon.ico',
-    description: 'Industry-standard robot simulator by Open Robotics.',
+    description: 'Industry-standard robot simulator, the default 3D engine behind ROS.',
     longDescription:
-      'Gazebo is the industry-standard robot simulator from Open Robotics. Provides accurate physics simulation, 3D environments, sensor models, and tight integration with ROS and ROS 2.',
+      "Gazebo is the simulator generations of robotics researchers cut their teeth on: physics engines, sensor and terrain models, and first-class ROS 2 integration. Originally from Open Robotics (now community-governed under the Open Source Robotics Foundation), current releases run on Linux, Windows, and macOS.",
     category: 'robotics-control',
     purposes: ['simulator'],
-    pricing: 'free',
+    pricing: 'open-source',
     authentication: 'no-account',
-    platform: ['linux'],
+    platform: ['linux', 'windows', 'mac'],
     difficulty: ['intermediate', 'advanced'],
     interactivity: 'interactive-canvas',
     openSource: true,
     githubUrl: 'https://github.com/gazebosim/gz-sim',
-    tags: ['ROS', 'Simulation', 'Physics', '3D', 'Sensor Models', 'Garden'],
+    tags: ['ROS 2', 'Simulation', 'Physics', '3D', 'Sensor Models', 'SDF'],
     featured: true,
   },
   {
@@ -687,7 +713,7 @@ export const websites: Website[] = [
       'ROS.org is the official website for the Robot Operating System, providing documentation, tutorials, packages, and community resources for robotics development using ROS and ROS 2.',
     category: 'robotics-control',
     purposes: ['community-docs'],
-    pricing: 'free',
+    pricing: 'open-source',
     authentication: 'no-account',
     platform: ['web'],
     difficulty: ['intermediate', 'advanced'],
@@ -742,12 +768,12 @@ export const websites: Website[] = [
   {
     id: '36',
     slug: 'digikey',
-    name: 'Digi-Key',
+    name: 'DigiKey',
     url: 'https://digikey.com',
   type: 'web-app',
     description: 'Global electronic component distributor with parametric search tools.',
     longDescription:
-      'Digi-Key Electronics is a major authorized distributor offering a vast inventory of electronic components with powerful parametric search, reference designs, and engineering resources for rapid prototyping.',
+      'DigiKey (formerly Digi-Key) is a major authorized distributor offering a vast in-stock inventory of electronic components with powerful parametric search, datasheets, reference designs, and free engineering calculators for rapid prototyping.',
     category: 'calculators-reference',
     purposes: ['datasheet-reference'],
     pricing: 'free',
@@ -778,14 +804,7 @@ export function getOpenSourceWebsites(): Website[] {
 }
 
 export function searchWebsites(query: string): Website[] {
-  const q = query.toLowerCase();
-  return websites.filter(
-    (w) =>
-      w.name.toLowerCase().includes(q) ||
-      w.description.toLowerCase().includes(q) ||
-      w.tags.some((t) => t.toLowerCase().includes(q)) ||
-      w.category.replace(/-/g, ' ').includes(q)
-  );
+  return rankWebsites(query, websites).map((r) => r.website);
 }
 
 export function filterWebsites(
@@ -804,16 +823,8 @@ export function filterWebsites(
 ): Website[] {
   let filtered = [...websites];
 
-  if (filters.query) {
-    const q = filters.query.toLowerCase();
-    filtered = filtered.filter(
-      (w) =>
-        w.name.toLowerCase().includes(q) ||
-        w.description.toLowerCase().includes(q) ||
-        w.tags.some((t) => t.toLowerCase().includes(q)) ||
-        w.category.replace(/-/g, ' ').includes(q) ||
-        w.purposes.some((p) => p.includes(q))
-    );
+  if (filters.query && filters.query.trim()) {
+    filtered = rankWebsites(filters.query, filtered).map((r) => r.website);
   }
 
   if (filters.categories && filters.categories.length > 0) {

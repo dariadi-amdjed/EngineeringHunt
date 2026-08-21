@@ -86,4 +86,6 @@ export type AISearchResult = {
   bestMatch: Website;
   matchReason: string;
   otherResults: Website[];
+  /** True when no result scored as a confident match; results are closest-effort only. */
+  weakMatch?: boolean;
 };

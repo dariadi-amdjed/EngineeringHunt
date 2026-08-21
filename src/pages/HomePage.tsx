@@ -73,7 +73,7 @@ export function HomePage() {
             <span>·</span>
             <span>"robotics simulator"</span>
             <span>·</span>
-            <span>"ML for embedded"</span>
+            <span>"ESP32 development"</span>
           </div>
         </div>
       </section>

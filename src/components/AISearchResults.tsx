@@ -36,9 +36,9 @@ export function AISearchResults({ results, isLoading }: AISearchResultsProps) {
     <div className="space-y-3">
       <div className="flex items-center gap-2">
         <Sparkles className="h-4 w-4 text-blue-600" />
-        <span className="text-[0.7rem] font-medium text-slate-900">
-          AI Recommendations
-        </span>
+          <span className="text-[0.7rem] font-medium text-slate-900">
+            Search Results
+          </span>
         <span className="font-mono text-[0.55rem] text-slate-400">
           {results.length} result{results.length !== 1 ? 's' : ''}
         </span>

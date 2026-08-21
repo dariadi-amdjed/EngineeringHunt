@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { websites as localWebsites } from '@/data/websites';
 import { categories } from '@/data/categories';
+import { rankWebsites } from '@/lib/search';
 import type { Website, SearchFilters, CategorySlug } from '@/types';
 import { isToolOpenSource } from '@/types';
 
@@ -11,17 +12,6 @@ function applyFilters(
   filters: Partial<SearchFilters>
 ): Website[] {
   let result = [...data];
-
-  if (filters.query) {
-    const q = filters.query.toLowerCase();
-    result = result.filter(
-      (w) =>
-        w.name.toLowerCase().includes(q) ||
-        w.description.toLowerCase().includes(q) ||
-        w.tags.some((t) => t.toLowerCase().includes(q)) ||
-        w.category.replace(/-/g, ' ').includes(q)
-    );
-  }
 
   if (filters.categories && filters.categories.length > 0) {
     result = result.filter((w) => filters.categories!.includes(w.category));
@@ -46,6 +36,11 @@ function applyFilters(
   }
   if (filters.type && filters.type.length > 0) {
     result = result.filter((w) => filters.type!.includes(w.type));
+  }
+
+  // Query ranking runs last so it scores only within the filtered pool.
+  if (filters.query && filters.query.trim()) {
+    result = rankWebsites(filters.query, result).map((r) => r.website);
   }
 
   return result;

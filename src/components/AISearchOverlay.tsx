@@ -140,13 +140,23 @@ function ResultsView({ result, query }: { result: AISearchResult; query: string 
         </div>
       </div>
 
+      {/* Weak match notice */}
+      {result.weakMatch && (
+        <div className="mb-4 rounded-lg border border-amber-200 bg-amber-50 px-4 py-2.5">
+          <p className="text-[0.65rem] font-medium text-amber-800">No exact matches found</p>
+          <p className="mt-0.5 text-[0.6rem] text-amber-700">
+            Showing the closest tools in the directory based on keyword relevance.
+          </p>
+        </div>
+      )}
+
       {/* Best Match - Hero Card */}
       <div className="mb-6 overflow-hidden rounded-xl border border-blue-200 bg-white shadow-sm">
           <div className="flex items-center gap-2 border-b border-blue-100 bg-blue-50 px-5 py-2.5">
           <div className="rounded-full bg-blue-600 px-3 py-0.5">
             <span className="flex items-center gap-1.5 text-[0.6rem] font-bold uppercase tracking-wider text-white">
               <Sparkles className="h-3 w-3" />
-              Top Match
+              {result.weakMatch ? 'Closest Match' : 'Top Match'}
             </span>
           </div>
         </div>
