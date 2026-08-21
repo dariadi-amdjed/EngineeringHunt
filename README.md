@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="public/banner.png" alt="EngineeringHunt" width="100">
+  <img src="public/banner.png" alt="EngineeringHunt" width="1200" height="200">
 </p>
 
 # EngineeringHunt
