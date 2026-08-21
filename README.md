@@ -81,13 +81,13 @@ cd EngineeringHunt
 Install dependencies:
 
 ```bash
-pnpm install
+npm install
 ```
 
 Start the development server:
 
 ```bash
-pnpm dev
+npm run dev
 ```
 
 The application will be available at the local development URL shown in your terminal.
@@ -95,7 +95,7 @@ The application will be available at the local development URL shown in your ter
 ### Building for Production
 
 ```bash
-pnpm build
+npm run build
 ```
 
 ## Project Structure
