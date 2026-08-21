@@ -39,15 +39,6 @@ EngineeringHunt currently covers 8 engineering domains:
 - 🔗 Direct links to the original tools and resources
 - 🛠️ Open-source tool identification
 
-## Current Directory
-
-EngineeringHunt currently indexes:
-
-- **36** tools
-- **8** engineering domains
-- **16** open-source tools
-
-The directory will continue to grow as new useful engineering resources are added.
 
 ## Why EngineeringHunt?
 
