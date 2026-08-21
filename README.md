@@ -1,6 +1,14 @@
+<p align="center">
+  <img src="public/images/photo.png" alt="EngineeringHunt" width="100">
+</p>
+
 # EngineeringHunt
 
 > Find the right tools for engineering.
+
+<p align="center">
+  <img src="public/video.gif" alt="EngineeringHunt Demo" width="800">
+</p>
 
 EngineeringHunt is a curated directory for discovering engineering software, simulators, design tools, calculators, documentation, and technical resources.
 
