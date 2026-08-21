@@ -39,7 +39,6 @@ EngineeringHunt currently covers 8 engineering domains:
 - 🔗 Direct links to the original tools and resources
 - 🛠️ Open-source tool identification
 
-
 ## Why EngineeringHunt?
 
 Engineering tools are spread across many websites, documentation pages, software platforms, and community resources.
@@ -71,59 +70,78 @@ Clone the repository:
 
 ```bash
 git clone https://github.com/dariadi-amdjed/EngineeringHunt.git
+```
 
 Move into the project:
 
+```bash
 cd EngineeringHunt
+```
 
 Install dependencies:
 
+```bash
 pnpm install
+```
 
 Start the development server:
 
+```bash
 pnpm dev
+```
 
 The application will be available at the local development URL shown in your terminal.
 
-Building for Production
+### Building for Production
+
+```bash
 pnpm build
-Project Structure
+```
+
+## Project Structure
+
+```
 src/
 ├── components/      # Reusable UI components
 ├── data/            # Engineering tool directory data
 ├── pages/           # Application pages
 ├── config.ts        # Project configuration
 └── ...
-Adding a Tool
+```
+
+## Adding a Tool
 
 Tools are stored in:
 
+```
 src/data/websites.ts
+```
 
 To add a tool:
 
-Fork the repository.
-Add the tool entry.
-Make sure the information is accurate.
-Commit your changes.
-Open a pull request.
+1. Fork the repository.
+2. Add the tool entry.
+3. Make sure the information is accurate.
+4. Commit your changes.
+5. Open a pull request.
 
-See CONTRIBUTING.md for more details.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for more details.
 
-Creator
+## Creator
 
 EngineeringHunt was created by:
 
-Mohamed Amdjed Dariadi
-
+**Mohamed Amdjed Dariadi**
 Creator & Developer
 
-License
+## License
 
 EngineeringHunt is released under the MIT License.
 
-Links
+## Links
+
 GitHub: https://github.com/dariadi-amdjed/EngineeringHunt
+
+---
 
 Made for discovering better engineering tools.
