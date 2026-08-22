@@ -69,7 +69,7 @@ The project still builds successfully.
 
 Run:
 
-pnpm build
+npm run build
 5. Commit your changes
 
 Use a clear commit message:
