@@ -209,6 +209,15 @@ export function AboutPage() {
                 <GithubIcon className="h-4 w-4" />
                 GitHub Profile
               </a>
+              <a
+                href="https://www.linkedin.com/in/amdjed-dariadi/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-lg bg-[#0a66c2] px-5 py-2.5 text-[0.7rem] font-medium text-white no-underline transition-colors hover:bg-[#004182]"
+              >
+                <LinkedinIcon className="h-4 w-4" />
+                LinkedIn
+              </a>
             </div>
           </div>
         </div>
