@@ -112,26 +112,6 @@ export const websites: Website[] = [
 
   // ── Electrical & Power Engineering ──────────────────────────────────
   {
-    id: '6',
-    slug: 'okawa-electric',
-    name: 'Okawa Electric Design',
-    url: 'http://okawa-denshi.jp',
-  type: 'web-app',
-    description: 'Free online calculators for filters, transformers, and electrical components.',
-    longDescription:
-      'Okawa Electric Design provides a comprehensive suite of free online calculators for active filters, passive filters, transformers, transmission lines, and various electrical components. Essential quick-reference tools for EE design.',
-    category: 'electrical-power',
-    purposes: ['calculator'],
-    pricing: 'free',
-    authentication: 'no-account',
-    platform: ['web'],
-    difficulty: ['intermediate', 'advanced'],
-    interactivity: 'input-output-tool',
-    openSource: false,
-    tags: ['Filter Design', 'Transformer', 'Calculator', 'Passive Components', 'Japanese'],
-    featured: true,
-  },
-  {
     id: '7',
     slug: 'eep-web-tools',
     name: 'EEP - Electrical Engineering Portal',
