@@ -56,6 +56,13 @@ Platform
 Difficulty
 Open-source status
 Tags
+
+Categorization guidance:
+
+Category is the broad umbrella domain the tool belongs to. Choose one of the five existing categories (see src/data/categories.ts); do not invent new ones.
+Tags are the precision signal. Add specific, factual keywords (chip families, protocols, formats, e.g. "ESP32", "Verilog", "SPICE") rather than generic words like "tool" or "online".
+Purpose should describe what the tool does (simulator, EDA, IDE/toolchain, RTOS/firmware, calculator, documentation, community, datasheet). Frameworks and RTOS are not EDA tools, and IDEs are not simulators.
+The built-in search ranks tools by matching query terms against name, tags, category topics, purpose, and description. Accurate tags and descriptions directly improve how discoverable a tool is.
 4. Check your changes
 
 Before submitting a pull request, make sure:

@@ -15,6 +15,8 @@ import type {
 const purposeLabels: Record<Purpose, string> = {
   simulator: 'Simulator',
   'eda-tool': 'EDA Tool',
+  'ide-toolchain': 'IDE / Toolchain',
+  rtos: 'RTOS / Firmware',
   calculator: 'Calculator',
   'datasheet-reference': 'Datasheet / Reference',
   'community-docs': 'Community & Docs',
@@ -50,6 +52,8 @@ const typeLabels: Record<ToolType, string> = {
 const allPurposes: Purpose[] = [
   'simulator',
   'eda-tool',
+  'ide-toolchain',
+  'rtos',
   'calculator',
   'datasheet-reference',
   'community-docs',

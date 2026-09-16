@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom';
 import {
   ArrowRight, ExternalLink, Rocket, Heart, Code, Globe,
-  Zap, Cpu, CircuitBoard, Binary, Server, Bot, Calculator, Lightbulb,
+  Zap, Cpu, Sparkles, Bot,
 } from 'lucide-react';
 import { GithubIcon } from '@/components/GithubIcon';
 import { websites } from '@/data/websites';
+import { categories } from '@/data/categories';
 import { isToolOpenSource } from '@/types';
 
 function LinkedinIcon({ className }: { className?: string }) {
@@ -16,26 +17,12 @@ function LinkedinIcon({ className }: { className?: string }) {
 }
 
 const domainIcons: Record<string, React.ElementType> = {
-  'Electronics & Circuitry': Zap,
-  'Electrical & Power Engineering': Lightbulb,
-  'Embedded Systems & IoT': Cpu,
-  'PCB Design & EDA': CircuitBoard,
-  'Digital Logic & Hardware Description': Binary,
-  'Computer Architecture & Chips': Server,
-  'Robotics & Control Systems': Bot,
-  'Calculators & Technical Reference': Calculator,
+  'embedded-computer-engineering': Cpu,
+  'robotics-control': Bot,
+  'electronics-hardware-design': Zap,
+  'ai-machine-learning': Sparkles,
+  'engineering-resources-tools': Globe,
 };
-
-const domains = [
-  'Electronics & Circuitry',
-  'Electrical & Power Engineering',
-  'Embedded Systems & IoT',
-  'PCB Design & EDA',
-  'Digital Logic & Hardware Description',
-  'Computer Architecture & Chips',
-  'Robotics & Control Systems',
-  'Calculators & Technical Reference',
-];
 
 const openSourceCount = websites.filter((w) => isToolOpenSource(w)).length;
 
@@ -73,22 +60,22 @@ export function AboutPage() {
       <div className="mt-6 rounded-xl border border-slate-200 bg-white p-6">
         <div className="mb-4 flex items-center gap-2">
           <Globe className="h-4 w-4 text-blue-600" />
-          <h2 className="text-[0.8rem] font-semibold text-slate-900">8 Core Hardware Domains</h2>
+          <h2 className="text-[0.8rem] font-semibold text-slate-900">5 Core Engineering Domains</h2>
         </div>
         <p className="mb-4 text-[0.7rem] leading-relaxed text-slate-500">
-          We cover eight specialized domains in hardware and low-level engineering, with dedicated
+          We cover five umbrella domains in hardware and low-level engineering, with dedicated
           categorization to make relevant tools easier to find.
         </p>
         <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
-          {domains.map((domain) => {
-            const Icon = domainIcons[domain] || Zap;
+          {categories.map((category) => {
+            const Icon = domainIcons[category.slug] || Zap;
             return (
               <div
-                key={domain}
+                key={category.slug}
                 className="flex items-center gap-2 rounded-lg border border-slate-100 bg-slate-50 px-3 py-2"
               >
                 <Icon className="h-3.5 w-3.5 flex-shrink-0 text-blue-600" />
-                <span className="text-[0.6rem] font-medium text-slate-700 leading-tight">{domain}</span>
+                <span className="text-[0.6rem] font-medium text-slate-700 leading-tight">{category.name}</span>
               </div>
             );
           })}
@@ -173,8 +160,8 @@ export function AboutPage() {
           <p className="mt-1 text-[0.6rem] font-medium text-slate-500">Tools Indexed</p>
         </div>
         <div className="rounded-xl border border-slate-200 bg-white p-5 text-center">
-          <p className="text-2xl font-bold text-blue-600">8</p>
-          <p className="mt-1 text-[0.6rem] font-medium text-slate-500">Hardware Domains</p>
+          <p className="text-2xl font-bold text-blue-600">{categories.length}</p>
+          <p className="mt-1 text-[0.6rem] font-medium text-slate-500">Engineering Domains</p>
         </div>
         <div className="rounded-xl border border-slate-200 bg-white p-5 text-center">
           <p className="text-2xl font-bold text-blue-600">{openSourceCount}</p>

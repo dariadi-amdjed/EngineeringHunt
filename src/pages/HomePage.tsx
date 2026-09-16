@@ -14,7 +14,7 @@ import { SkeletonCard } from '@/components/SkeletonCard';
 import { useWebsites, getCategoryCounts } from '@/lib/useWebsites';
 import { Zap, Code, Cpu, GitBranch } from 'lucide-react';
 
-const topCategories = categories.slice(0, 8);
+const topCategories = categories.slice(0, 5);
 
 export function HomePage() {
   const [aiQuery, setAiQuery] = useState('');

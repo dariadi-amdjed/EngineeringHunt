@@ -9,6 +9,7 @@ import { FloatingStickers } from '@/components/FloatingStickers';
 import { AISearchOverlay } from '@/components/AISearchOverlay';
 import { SkeletonCard } from '@/components/SkeletonCard';
 import { exploreStickers } from '@/data/stickers';
+import { categories } from '@/data/categories';
 import { useWebsites } from '@/lib/useWebsites';
 import type { SearchFilters } from '@/types';
 
@@ -84,7 +85,7 @@ export function ExplorePage() {
             </span>
             <h1 className="mt-1 text-xl font-bold text-slate-900">Browse all tools</h1>
             <p className="mt-1 text-[0.7rem] text-slate-500">
-              {totalCount} tool{totalCount !== 1 ? 's' : ''} across 8 domains
+              {totalCount} tool{totalCount !== 1 ? 's' : ''} across {categories.length} domains
             </p>
           </div>
         </div>

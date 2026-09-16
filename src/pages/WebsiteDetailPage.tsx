@@ -13,15 +13,14 @@ import { WebsiteCard } from '@/components/WebsiteCard';
 function categoryLabel(slug: string): string {
   return slug
     .replace(/-/g, ' ')
-    .replace(/\b\w/g, (c) => c.toUpperCase())
-    .replace(/Iot/g, 'IoT')
-    .replace(/Eda/g, 'EDA')
-    .replace(/Hdl/g, 'HDL');
+    .replace(/\b\w/g, (c) => c.toUpperCase());
 }
 
 const purposeLabels: Record<string, string> = {
   'simulator': 'Simulator',
   'eda-tool': 'EDA Tool',
+  'ide-toolchain': 'IDE / Toolchain',
+  'rtos': 'RTOS / Firmware',
   'calculator': 'Calculator',
   'datasheet-reference': 'Datasheet / Reference',
   'community-docs': 'Community & Docs',

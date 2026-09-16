@@ -16,6 +16,8 @@ interface FilterSidebarProps {
 const purposeLabels: Record<Purpose, string> = {
   'simulator': 'Simulator',
   'eda-tool': 'EDA Tool',
+  'ide-toolchain': 'IDE / Toolchain',
+  'rtos': 'RTOS / Firmware',
   'calculator': 'Calculator',
   'datasheet-reference': 'Datasheet / Reference',
   'community-docs': 'Community & Docs',
@@ -52,7 +54,7 @@ const typeLabels: Record<ToolType, string> = {
   'extension': 'Extension',
 };
 
-const purposes: Purpose[] = ['simulator', 'eda-tool', 'calculator', 'datasheet-reference', 'community-docs'];
+const purposes: Purpose[] = ['simulator', 'eda-tool', 'ide-toolchain', 'rtos', 'calculator', 'datasheet-reference', 'community-docs'];
 const pricing: Pricing[] = ['free', 'open-source', 'freemium', 'paid'];
 const authentications: Authentication[] = ['no-account', 'optional-signup', 'signup-required'];
 const difficulties: Difficulty[] = ['beginner', 'intermediate', 'advanced'];

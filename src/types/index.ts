@@ -1,16 +1,15 @@
 export type CategorySlug =
-  | 'electronics-circuitry'
-  | 'electrical-power'
-  | 'embedded-systems-iot'
-  | 'pcb-design-eda'
-  | 'digital-logic-hdl'
-  | 'computer-architecture-chips'
+  | 'embedded-computer-engineering'
   | 'robotics-control'
-  | 'calculators-reference';
+  | 'electronics-hardware-design'
+  | 'ai-machine-learning'
+  | 'engineering-resources-tools';
 
 export type Purpose =
   | 'simulator'
   | 'eda-tool'
+  | 'ide-toolchain'
+  | 'rtos'
   | 'calculator'
   | 'datasheet-reference'
   | 'community-docs';

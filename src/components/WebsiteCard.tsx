@@ -29,7 +29,10 @@ interface WebsiteCardProps {
 }
 
 function categoryLabel(slug: string): string {
-  return slug.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
+  return slug
+    .replace(/-/g, ' ')
+    .replace(/\b\w/g, (c) => c.toUpperCase())
+    .replace(/ Ai /g, ' AI ');
 }
 
 export function WebsiteCard({ website, layout = 'grid' }: WebsiteCardProps) {

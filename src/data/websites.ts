@@ -3,7 +3,7 @@ import { isToolOpenSource } from '@/types';
 import { rankWebsites } from '@/lib/search';
 
 export const websites: Website[] = [
-  // ── Electronics & Circuitry ──────────────────────────────────────────
+  // ── Electronics & Hardware Design ────────────────────────────────────
   {
     id: '1',
     slug: 'wokwi',
@@ -14,7 +14,7 @@ export const websites: Website[] = [
     description: 'Online electronics simulator for Arduino, ESP32, and Raspberry Pi Pico.',
     longDescription:
       'Wokwi is a browser-based electronics simulator that supports Arduino, ESP32, Raspberry Pi Pico, and other microcontrollers. Simulate circuits with sensors, LEDs, displays, and custom parts — entirely in your browser with no hardware required.',
-    category: 'electronics-circuitry',
+    category: 'electronics-hardware-design',
     purposes: ['simulator'],
     pricing: 'freemium',
     authentication: 'optional-signup',
@@ -35,7 +35,7 @@ export const websites: Website[] = [
     description: 'Interactive browser-based circuit simulator with real-time visualization.',
     longDescription:
       "Falstad's circuit simulator is a free, browser-based tool that provides real-time visualization of voltage, current, and component behavior. It supports analog, digital, and mixed-signal circuits and is excellent for learning electronics fundamentals.",
-    category: 'electronics-circuitry',
+    category: 'electronics-hardware-design',
     purposes: ['simulator'],
     pricing: 'free',
     authentication: 'no-account',
@@ -57,7 +57,7 @@ export const websites: Website[] = [
     description: 'In-browser schematic editor and mixed-mode circuit simulator with waveform plotting.',
     longDescription:
       'CircuitLab pairs a browser schematic editor with its own mixed-mode simulation engine — AC sweeps, Bode plots, time-domain analysis — and exports presentation-quality schematics. Its interactive Ultimate Electronics textbook doubles as a solid intro to circuit design.',
-    category: 'electronics-circuitry',
+    category: 'electronics-hardware-design',
     purposes: ['simulator'],
     pricing: 'freemium',
     authentication: 'signup-required',
@@ -78,7 +78,7 @@ export const websites: Website[] = [
     description: 'Free browser-based electronics simulation and 3D design tool by Autodesk.',
     longDescription:
       'Tinkercad is a free, web-based 3D design, electronics simulation, and coding tool from Autodesk. Popular for education, it offers circuit simulation with Arduino and basic 3D modeling for beginners.',
-    category: 'electronics-circuitry',
+    category: 'electronics-hardware-design',
     purposes: ['simulator'],
     pricing: 'free',
     authentication: 'signup-required',
@@ -98,7 +98,7 @@ export const websites: Website[] = [
     description: 'Free online textbook, worksheets, and forums covering electronics fundamentals.',
     longDescription:
       "All About Circuits hosts a free online textbook, worked worksheets, and active forums covering electronics from Ohm's law through semiconductors, digital logic, and power electronics. The forums alone are worth a bookmark for troubleshooting help.",
-    category: 'electronics-circuitry',
+    category: 'engineering-resources-tools',
     purposes: ['community-docs'],
     pricing: 'free',
     authentication: 'no-account',
@@ -110,7 +110,7 @@ export const websites: Website[] = [
     featured: true,
   },
 
-  // ── Electrical & Power Engineering ──────────────────────────────────
+  // ── Engineering Resources & Tools ───────────────────────────────────
   {
     id: '6',
     slug: 'eep-web-tools',
@@ -120,7 +120,7 @@ export const websites: Website[] = [
     description: 'Technical articles, guides, and downloadable calculation spreadsheets for power engineers.',
     longDescription:
       'EEP publishes deep LV/MV/HV technical articles on switchgear, protection relaying, transformers, and substation design, plus a download center full of engineering spreadsheets for cable sizing, voltage drop, and fault calculations. Much of the archive is free; premium membership unlocks specialized guides and video courses.',
-    category: 'electrical-power',
+    category: 'engineering-resources-tools',
     purposes: ['community-docs', 'calculator'],
     pricing: 'freemium',
     authentication: 'optional-signup',
@@ -140,7 +140,7 @@ export const websites: Website[] = [
     description: 'Interactive circuit simulator with animated current flow visualization.',
     longDescription:
       'EveryCircuit is an interactive circuit simulator that shows animated current flow, voltage propagation, and component behavior in real time. Available on web and mobile for learning and prototyping analog and digital circuits.',
-    category: 'electrical-power',
+    category: 'electronics-hardware-design',
     purposes: ['simulator'],
     pricing: 'freemium',
     authentication: 'optional-signup',
@@ -160,7 +160,7 @@ export const websites: Website[] = [
     description: 'Free online tutorials covering analog and digital electronics fundamentals.',
     longDescription:
       'Electronics-Tutorials provides clear, well-structured tutorials on electronics fundamentals including resistors, capacitors, transistors, digital logic, and more. A great resource for building foundational knowledge.',
-    category: 'electrical-power',
+    category: 'engineering-resources-tools',
     purposes: ['community-docs'],
     pricing: 'free',
     authentication: 'no-account',
@@ -172,7 +172,7 @@ export const websites: Website[] = [
     featured: false,
   },
 
-  // ── Embedded Systems & IoT ──────────────────────────────────────────
+  // ── Embedded Systems & Computer Engineering ────────────────────────
   {
     id: '9',
     slug: 'arduino',
@@ -182,7 +182,7 @@ export const websites: Website[] = [
     description: 'Official Arduino documentation, project hub and community.',
     longDescription:
       "Home base for all things Arduino: IDE downloads, board documentation, the Project Hub's thousands of community builds, and forums where most beginner questions get answered within hours. The IDE and board cores are developed in the open on the arduino GitHub org.",
-    category: 'embedded-systems-iot',
+    category: 'embedded-computer-engineering',
     purposes: ['community-docs'],
     pricing: 'freemium',
     authentication: 'optional-signup',
@@ -203,7 +203,7 @@ export const websites: Website[] = [
     description: 'Official Espressif IoT Development Framework documentation.',
     longDescription:
       'ESP-IDF is the official development framework for ESP32 and other Espressif chips. The documentation provides comprehensive guides for building IoT applications with Wi-Fi, Bluetooth, and many other peripherals.',
-    category: 'embedded-systems-iot',
+    category: 'embedded-computer-engineering',
     purposes: ['community-docs'],
     pricing: 'open-source',
     authentication: 'no-account',
@@ -224,8 +224,8 @@ export const websites: Website[] = [
     description: 'Professional embedded development ecosystem and IDE.',
     longDescription:
       "PlatformIO is two things that replace vendor IDEs: PlatformIO Core, a Python-based CLI build system, and a VS Code extension wrapping it. One project configuration builds for any of 1,000+ supported boards (ESP32, STM32, AVR, RP2040...), with dependency management through its central library registry.",
-    category: 'embedded-systems-iot',
-    purposes: ['eda-tool'],
+    category: 'embedded-computer-engineering',
+    purposes: ['ide-toolchain'],
     pricing: 'freemium',
     authentication: 'signup-required',
     platform: ['windows', 'mac', 'linux'],
@@ -245,7 +245,7 @@ export const websites: Website[] = [
     description: 'Electronics vendor with one of the deepest free maker tutorial libraries.',
     longDescription:
       "Adafruit designs and sells dev boards, sensors, and components, and backs them with an enormous free learning system covering Arduino, CircuitPython (which started there), sensors, and wearables. The tutorials are product-agnostic enough to be useful even if you buy nothing.",
-    category: 'embedded-systems-iot',
+    category: 'engineering-resources-tools',
     purposes: ['community-docs'],
     pricing: 'freemium',
     authentication: 'optional-signup',
@@ -265,7 +265,7 @@ export const websites: Website[] = [
     description: 'Community platform for hardware projects, tutorials and competitions.',
     longDescription:
       'Hackster.io is a community for hardware engineers and makers to share projects, participate in contests, and learn from each other. The platform covers embedded systems, IoT, robotics, and maker projects.',
-    category: 'embedded-systems-iot',
+    category: 'engineering-resources-tools',
     purposes: ['community-docs'],
     pricing: 'free',
     authentication: 'optional-signup',
@@ -277,7 +277,7 @@ export const websites: Website[] = [
     featured: true,
   },
 
-  // ── PCB Design & EDA ────────────────────────────────────────────────
+  // ── Electronics & Hardware Design (continued) ───────────────────────
   {
     id: '14',
     slug: 'easyeda',
@@ -287,7 +287,7 @@ export const websites: Website[] = [
     description: 'Browser-based EDA suite with schematic, PCB layout and LCSC component library.',
     longDescription:
       'EasyEDA bundles schematic capture, PCB layout, and Ngspice-based simulation in the browser, wired directly into the LCSC parts catalog and one-click JLCPCB fabrication. The Standard and newer Pro editors are both free; a paid tier adds private libraries, more cloud storage, and support.',
-    category: 'pcb-design-eda',
+    category: 'electronics-hardware-design',
     purposes: ['eda-tool'],
     pricing: 'freemium',
     authentication: 'signup-required',
@@ -308,7 +308,7 @@ export const websites: Website[] = [
     description: 'Open-source electronic design automation suite for PCB design.',
     longDescription:
       'KiCad is a free and open-source EDA suite for schematic capture and PCB layout. It features a 3D board viewer, extensive component libraries, and Gerber file export for manufacturing.',
-    category: 'pcb-design-eda',
+    category: 'electronics-hardware-design',
     purposes: ['eda-tool'],
     pricing: 'open-source',
     authentication: 'no-account',
@@ -329,7 +329,7 @@ export const websites: Website[] = [
     description: 'Browser-based PCB design tool with an AI copilot for schematics and layout.',
     longDescription:
       'Flux runs the full PCB design flow in the browser — schematic capture, board layout, and a 3D viewer — with an AI copilot that can place components, wire up reference designs, and answer design questions as you work. Boards share like documents, so reviewing a teammate\'s layout is just a link.',
-    category: 'pcb-design-eda',
+    category: 'electronics-hardware-design',
     purposes: ['eda-tool'],
     pricing: 'freemium',
     authentication: 'signup-required',
@@ -349,7 +349,7 @@ export const websites: Website[] = [
     description: 'Free PCB component library with symbols, footprints and 3D models.',
     longDescription:
       'SnapEDA is a free search engine for electronic component symbols, PCB footprints, and 3D models. Supports direct import into KiCad, Eagle, Altium, and other EDA tools.',
-    category: 'pcb-design-eda',
+    category: 'electronics-hardware-design',
     purposes: ['datasheet-reference'],
     pricing: 'freemium',
     authentication: 'optional-signup',
@@ -369,7 +369,7 @@ export const websites: Website[] = [
     description: 'Professional PCB design suite with unified schematic and layout.',
     longDescription:
       'Altium Designer is a premium, industry-leading PCB design platform featuring unified schematic capture, board layout, rigid-flex design, and extensive manufacturing output generation.',
-    category: 'pcb-design-eda',
+    category: 'electronics-hardware-design',
     purposes: ['eda-tool'],
     pricing: 'paid',
     authentication: 'signup-required',
@@ -380,8 +380,29 @@ export const websites: Website[] = [
     tags: ['PCB', 'Professional', 'Rigid-Flex', 'Industry Standard', 'EDA'],
     featured: false,
   },
+  {
+    id: '45',
+    slug: 'librepcb',
+    name: 'LibrePCB',
+    url: 'https://librepcb.org',
+    type: 'desktop-app',
+    description: 'Open-source schematic capture and PCB design application.',
+    longDescription:
+      'LibrePCB is a free, open-source EDA tool for schematic capture, board layout, and Gerber file generation. Designed with a clean, cross-platform interface, it emphasizes simplicity, reliability, and workflow consistency without the complexity or licensing restrictions of commercial suites.',
+    category: 'electronics-hardware-design',
+    purposes: ['eda-tool'],
+    pricing: 'open-source',
+    authentication: 'no-account',
+    platform: ['windows', 'mac', 'linux'],
+    difficulty: ['beginner', 'intermediate'],
+    interactivity: 'interactive-canvas',
+    openSource: true,
+    githubUrl: 'https://github.com/LibrePCB/LibrePCB',
+    tags: ['PCB', 'Schematic', 'Open Source', 'Cross-Platform', 'Gerber', 'EDA'],
+    featured: false,
+  },
 
-  // ── Digital Logic & HDL ─────────────────────────────────────────────
+  // ── Embedded Systems & Computer Engineering (continued) ─────────────
   {
     id: '19',
     slug: 'edaplayground',
@@ -391,7 +412,7 @@ export const websites: Website[] = [
     description: 'Browser-based Verilog/SystemVerilog/VHDL simulation environment.',
     longDescription:
       'EDA Playground is an online platform for running HDL simulations in the browser. Supports Verilog, SystemVerilog, and VHDL with multiple simulators (Icarus, VCS, ModelSim) and waveform viewers.',
-    category: 'digital-logic-hdl',
+    category: 'embedded-computer-engineering',
     purposes: ['simulator'],
     pricing: 'free',
     authentication: 'no-account',
@@ -411,7 +432,7 @@ export const websites: Website[] = [
     description: 'Learn digital design and build real chips on tiny silicon tiles.',
     longDescription:
       'Tiny Tapeout is an educational project that lets you learn digital design, design real chips using HDL or gate-level, and get them manufactured on low-cost silicon. An accessible path from learning to a real ASIC.',
-    category: 'digital-logic-hdl',
+    category: 'embedded-computer-engineering',
     purposes: ['simulator', 'community-docs'],
     pricing: 'freemium',
     authentication: 'optional-signup',
@@ -432,7 +453,7 @@ export const websites: Website[] = [
     description: 'Open-source Verilog simulation and synthesis tool.',
     longDescription:
       'Icarus Verilog is a free Verilog simulation and synthesis tool. It compiles Verilog and partial SystemVerilog code, commonly used for HDL simulation, testbenches, and educational digital design.',
-    category: 'digital-logic-hdl',
+    category: 'embedded-computer-engineering',
     purposes: ['simulator'],
     pricing: 'open-source',
     authentication: 'no-account',
@@ -453,7 +474,7 @@ export const websites: Website[] = [
     description: 'Open-source Verilog synthesis framework for FPGA and ASIC.',
     longDescription:
       'Yosys is a comprehensive open-source Verilog synthesis framework. Supports optimization, mapping, and technology-independent formal verification for FPGA and ASIC flows.',
-    category: 'digital-logic-hdl',
+    category: 'embedded-computer-engineering',
     purposes: ['eda-tool'],
     pricing: 'open-source',
     authentication: 'no-account',
@@ -474,7 +495,7 @@ export const websites: Website[] = [
     description: 'Interactive Verilog practice problems with built-in simulation.',
     longDescription:
       'HDLBits is a collection of small Verilog practice problems with an in-browser simulator. Covers combinational logic, sequential logic, circuits, and more — an excellent hands-on resource for learning digital design.',
-    category: 'digital-logic-hdl',
+    category: 'embedded-computer-engineering',
     purposes: ['simulator'],
     pricing: 'free',
     authentication: 'signup-required',
@@ -486,6 +507,67 @@ export const websites: Website[] = [
     featured: false,
   },
   {
+    id: '46',
+    slug: 'vivado',
+    name: 'AMD/Xilinx Vivado',
+    url: 'https://www.amd.com/en/products/software-tools/vivado.html',
+    type: 'desktop-app',
+    description: 'FPGA design suite for synthesis, simulation, and hardware debugging.',
+    longDescription:
+      'Vivado is AMD/Xilinx\'s flagship FPGA development environment covering RTL synthesis, timing analysis, simulation, power estimation, and hardware debugging via Integrated Logic Analyzers. Supports Verilog, VHDL, and SystemVerilog across the full Xilinx/AMD 7-series and UltraScale+ FPGA families.',
+    category: 'embedded-computer-engineering',
+    purposes: ['eda-tool'],
+    pricing: 'freemium',
+    authentication: 'signup-required',
+    platform: ['windows', 'linux'],
+    difficulty: ['advanced'],
+    interactivity: 'input-output-tool',
+    openSource: false,
+    tags: ['FPGA', 'Xilinx', 'Synthesis', 'Timing Analysis', 'HDL', 'AMD'],
+    featured: false,
+  },
+  {
+    id: '47',
+    slug: 'quartus-prime',
+    name: 'Intel Quartus Prime',
+    url: 'https://www.intel.com/content/www/us/en/products/details/fpga/development-tools/quartus-prime.html',
+    type: 'desktop-app',
+    description: 'FPGA design and synthesis toolchain from Intel (Altera).',
+    longDescription:
+      'Intel Quartus Prime is the FPGA development environment for Intel/Altera devices, providing RTL synthesis, timing closure, in-system debugging with SignalTap, and IP integration. Supports Verilog, VHDL, SystemVerilog, and block-based design across MAX and Stratix FPGA families.',
+    category: 'embedded-computer-engineering',
+    purposes: ['eda-tool'],
+    pricing: 'freemium',
+    authentication: 'signup-required',
+    platform: ['windows', 'linux'],
+    difficulty: ['advanced'],
+    interactivity: 'input-output-tool',
+    openSource: false,
+    tags: ['FPGA', 'Intel', 'Altera', 'Synthesis', 'SignalTap', 'HDL'],
+    featured: false,
+  },
+  {
+    id: '48',
+    slug: 'verilator',
+    name: 'Verilator',
+    url: 'https://www.veripool.org/verilator',
+    type: 'desktop-app',
+    description: 'Fast open-source Verilog/SystemVerilog simulator and linter.',
+    longDescription:
+      'Verilator is a free, open-source tool that compiles synthesizable Verilog and SystemVerilog into optimised C++ or SystemC models for cycle-accurate simulation. Commonly used in open-source ASIC and FPGA flows for fast RTL simulation, linting, and continuous integration testing.',
+    category: 'embedded-computer-engineering',
+    purposes: ['simulator'],
+    pricing: 'open-source',
+    authentication: 'no-account',
+    platform: ['linux', 'mac', 'windows'],
+    difficulty: ['advanced'],
+    interactivity: 'input-output-tool',
+    openSource: true,
+    githubUrl: 'https://github.com/verilator/verilator',
+    tags: ['Verilog', 'SystemVerilog', 'Simulation', 'Linter', 'ASIC Flow', 'Open Source'],
+    featured: false,
+  },
+  {
     id: '24',
     slug: 'enginaut',
     name: 'Enginaut',
@@ -494,7 +576,7 @@ export const websites: Website[] = [
     description: 'Gamified learning platform with short daily lessons for engineering concepts.',
     longDescription:
       'Enginaut is an interactive educational platform that uses gamification to simplify complex engineering concepts through short, engaging daily lessons — described by its community as the "Duolingo of engineering". Users pick an engineering specialization and follow structured learning paths of increasing difficulty, combining visual lessons, interactive challenges such as drag-and-drop activities, and problem-solving exercises. Free to use; an account is required to save progress and track achievements.',
-    category: 'digital-logic-hdl',
+    category: 'engineering-resources-tools',
     purposes: ['community-docs'],
     pricing: 'free',
     authentication: 'signup-required',
@@ -513,7 +595,7 @@ export const websites: Website[] = [
     featured: false,
   },
 
-  // ── Computer Architecture & Chips ───────────────────────────────────
+  // ── Embedded Systems & Computer Engineering (continued) ─────────────
   {
     id: '25',
     slug: 'nand2tetris',
@@ -523,7 +605,7 @@ export const websites: Website[] = [
     description: 'Build a complete computer from first principles — NAND gates to OS.',
     longDescription:
       'Nand2Tetris is a comprehensive course that walks you through building an entire computer system from scratch — starting with NAND gates and ending with a high-level language, compiler, OS, and Tetris game.',
-    category: 'computer-architecture-chips',
+    category: 'embedded-computer-engineering',
     purposes: ['simulator'],
     pricing: 'free',
     authentication: 'no-account',
@@ -543,7 +625,7 @@ export const websites: Website[] = [
     description: 'Official RISC-V instruction set architecture resources and specifications.',
     longDescription:
       'RISC-V International is the nonprofit managing the open RISC-V ISA. Provides ISA specifications, software ecosystem links, and member resources for RISC-V development.',
-    category: 'computer-architecture-chips',
+    category: 'embedded-computer-engineering',
     purposes: ['datasheet-reference'],
     pricing: 'free',
     authentication: 'no-account',
@@ -564,7 +646,7 @@ export const websites: Website[] = [
     description: 'Interactive compiler explorer for C, C++, Rust, Assembly and more.',
     longDescription:
       'Compiler Explorer lets you write C, C++, Rust, Assembly, and other languages and see the resulting compiler output in real time. Essential for understanding code generation, optimization, and low-level behavior — pick any compiler version or target triple and diff the assembly side by side.',
-    category: 'computer-architecture-chips',
+    category: 'embedded-computer-engineering',
     purposes: ['simulator'],
     pricing: 'open-source',
     authentication: 'no-account',
@@ -585,7 +667,7 @@ export const websites: Website[] = [
     description: 'STMicroelectronics STM32 microcontroller resources and tools.',
     longDescription:
       'The official STM32 portal provides documentation, development tools, HAL libraries, and training resources for the STM32 family of ARM Cortex-M microcontrollers.',
-    category: 'computer-architecture-chips',
+    category: 'embedded-computer-engineering',
     purposes: ['datasheet-reference'],
     pricing: 'freemium',
     authentication: 'optional-signup',
@@ -605,7 +687,7 @@ export const websites: Website[] = [
     description: 'Digital logic circuit simulator for learning computer architecture.',
     longDescription:
       'Digital is a digital logic circuit simulator that lets you design and simulate CPUs, ALUs, registers, and complex digital systems. Supports component libraries, VHDL import, and integrated circuit testing.',
-    category: 'computer-architecture-chips',
+    category: 'embedded-computer-engineering',
     purposes: ['simulator'],
     pricing: 'open-source',
     authentication: 'no-account',
@@ -615,6 +697,48 @@ export const websites: Website[] = [
     openSource: true,
     githubUrl: 'https://github.com/hneemann/Digital',
     tags: ['Digital Logic', 'CPU Design', 'Simulator', 'Education', 'Open Source'],
+    featured: false,
+  },
+  {
+    id: '49',
+    slug: 'ripes',
+    name: 'Ripes',
+    url: 'https://ripes.me',
+    type: 'desktop-app',
+    description: 'Interactive graphical RISC-V processor and computer architecture simulator.',
+    longDescription:
+      'Ripes is a graphical processor simulator for exploring RISC-V assembly, single-cycle and pipelined datapaths (RV32I), caches, and memory systems. Built for computer-architecture education, it visualises datapath signals, execution traces, and assembly-to-machine mapping in real time.',
+    category: 'embedded-computer-engineering',
+    purposes: ['simulator'],
+    pricing: 'open-source',
+    authentication: 'no-account',
+    platform: ['windows', 'mac', 'linux'],
+    difficulty: ['beginner', 'intermediate'],
+    interactivity: 'interactive-canvas',
+    openSource: true,
+    githubUrl: 'https://github.com/mortbopet/Ripes',
+    tags: ['RISC-V', 'Computer Architecture', 'Processor Simulation', 'Assembly', 'Education', 'Open Source'],
+    featured: false,
+  },
+  {
+    id: '50',
+    slug: 'openroad',
+    name: 'OpenROAD',
+    url: 'https://theopenroadproject.org',
+    type: 'desktop-app',
+    description: 'Open-source digital ASIC design and place-and-route flow.',
+    longDescription:
+      'OpenROAD provides a no-cost, open-source digital ASIC design flow supporting RTL-to-GDSII implementation — synthesis with Yosys, floorplanning, placement, clock tree synthesis, routing, and signoff-oriented analysis. It is the core engine behind the successful Tape-out of open chips such as the OpenLane flow used with SkyWater processes.',
+    category: 'embedded-computer-engineering',
+    purposes: ['eda-tool'],
+    pricing: 'open-source',
+    authentication: 'no-account',
+    platform: ['linux'],
+    difficulty: ['advanced'],
+    interactivity: 'input-output-tool',
+    openSource: true,
+    githubUrl: 'https://github.com/The-OpenROAD-Project/OpenROAD',
+    tags: ['ASIC', 'Place and Route', 'RTL-to-GDSII', 'Open Source', 'OpenLane', 'Chip Design'],
     featured: false,
   },
 
@@ -724,7 +848,171 @@ export const websites: Website[] = [
     featured: true,
   },
 
-  // ── Calculators & Technical Reference ───────────────────────────────
+  // ── Engineering Resources & Tools (continued) ───────────────────────
+  {
+    id: '37',
+    slug: 'ltspice',
+    name: 'LTspice',
+    url: 'https://www.analog.com/en/resources/evaluation-hardware-and-software/ltspice.html',
+    type: 'desktop-app',
+    description: 'Free analog circuit simulator from Analog Devices for schematic capture and simulation.',
+    longDescription:
+      'LTspice is a free, high-performance SPICE simulator from Analog Devices used for schematic capture, analog circuit simulation, and waveform analysis. Widely adopted for power electronics, filter design, and general analog/digital circuit prototyping, it runs on Windows and macOS with no usage restrictions.',
+    category: 'electronics-hardware-design',
+    purposes: ['simulator'],
+    pricing: 'free',
+    authentication: 'no-account',
+    platform: ['windows', 'mac'],
+    difficulty: ['intermediate', 'advanced'],
+    interactivity: 'interactive-canvas',
+    openSource: false,
+    tags: ['SPICE', 'Analog Simulation', 'Power Electronics', 'Waveforms', 'Analog Devices'],
+    featured: false,
+  },
+  {
+    id: '38',
+    slug: 'ngspice',
+    name: 'ngspice',
+    url: 'https://ngspice.sourceforge.io',
+    type: 'desktop-app',
+    description: 'Open-source mixed-mode SPICE circuit simulator.',
+    longDescription:
+      'ngspice is a free, open-source SPICE circuit simulator for analog and mixed-signal circuit simulation. Derived from the original Berkeley SPICE, it supports AC, DC, transient, and noise analysis and integrates with numerous EDA front-ends including Xschem and KiCad.',
+    category: 'electronics-hardware-design',
+    purposes: ['simulator'],
+    pricing: 'open-source',
+    authentication: 'no-account',
+    platform: ['windows', 'mac', 'linux'],
+    difficulty: ['intermediate', 'advanced'],
+    interactivity: 'input-output-tool',
+    openSource: true,
+    githubUrl: 'https://sourceforge.net/projects/ngspice',
+    tags: ['SPICE', 'Open Source', 'Analog Simulation', 'Mixed-Mode', 'CLI'],
+    featured: false,
+  },
+  {
+    id: '39',
+    slug: 'proteus',
+    name: 'Proteus',
+    url: 'https://www.labcenter.com',
+    type: 'desktop-app',
+    description: 'Circuit simulation and microcontroller co-simulation suite.',
+    longDescription:
+      'Proteus (Proteus Design Suite by Labcenter Electronics) combines schematic capture, SPICE analog/digital simulation, and microcontroller co-simulation in one environment. Its VSM engine lets you test firmware on virtual MCUs (AVR, PIC, STM32, Arduino) alongside simulated peripherals in real time.',
+    category: 'electronics-hardware-design',
+    purposes: ['simulator'],
+    pricing: 'paid',
+    authentication: 'signup-required',
+    platform: ['windows'],
+    difficulty: ['intermediate', 'advanced'],
+    interactivity: 'interactive-canvas',
+    openSource: false,
+    tags: ['SPICE', 'MCU Simulation', 'Schematic Capture', 'Embedded Testing', 'Labcenter'],
+    featured: false,
+  },
+  {
+    id: '40',
+    slug: 'stm32cubeide',
+    name: 'STM32CubeIDE',
+    url: 'https://www.st.com/en/development-tools/stm32cubeide.html',
+    type: 'desktop-app',
+    description: 'Integrated development environment for STM32 microcontrollers.',
+    longDescription:
+      'STM32CubeIDE is a free, multi-OS development environment from STMicroelectronics that combines Eclipse-based editing, debugging, and the STM32CubeMX graphical configuration tool. Supports code generation, peripheral initialization, and live debugging for the entire STM32 family.',
+    category: 'embedded-computer-engineering',
+    purposes: ['ide-toolchain'],
+    pricing: 'freemium',
+    authentication: 'signup-required',
+    platform: ['windows', 'mac', 'linux'],
+    difficulty: ['intermediate', 'advanced'],
+    interactivity: 'input-output-tool',
+    openSource: false,
+    tags: ['STM32', 'ARM Cortex-M', 'IDE', 'Code Generation', 'Debugger', 'STMicroelectronics'],
+    featured: false,
+  },
+  {
+    id: '41',
+    slug: 'zephyr-rtos',
+    name: 'Zephyr RTOS',
+    url: 'https://zephyrproject.org',
+    type: 'desktop-app',
+    description: 'Scalable real-time operating system for embedded devices and IoT.',
+    longDescription:
+      'Zephyr is a Linux Foundation-hosted, open-source RTOS designed for resource-constrained embedded systems. It provides a scalable kernel, native Bluetooth Low Energy and Wi-Fi networking, device-tree-based hardware abstraction, and a West-based build system with support for dozens of board platforms.',
+    category: 'embedded-computer-engineering',
+    purposes: ['rtos'],
+    pricing: 'open-source',
+    authentication: 'no-account',
+    platform: ['linux', 'windows', 'mac'],
+    difficulty: ['intermediate', 'advanced'],
+    interactivity: 'input-output-tool',
+    openSource: true,
+    githubUrl: 'https://github.com/zephyrproject-rtos/zephyr',
+    tags: ['RTOS', 'IoT', 'Bluetooth', 'ARM Cortex-M', 'Embedded Linux', 'Open Source'],
+    featured: false,
+  },
+  {
+    id: '42',
+    slug: 'freertos',
+    name: 'FreeRTOS',
+    url: 'https://www.freertos.org',
+    type: 'desktop-app',
+    description: 'Market-leading real-time operating system for microcontrollers.',
+    longDescription:
+      'FreeRTOS is a free, market-leading RTOS for embedded systems that provides a preemptive, cooperative multitasking kernel with task scheduling, inter-task communication, and memory management. Backed by Amazon Web Services, it supports over 40 microcontroller architectures and includes integrated TCP/IP and IoT connectivity stacks.',
+    category: 'embedded-computer-engineering',
+    purposes: ['rtos'],
+    pricing: 'open-source',
+    authentication: 'no-account',
+    platform: ['linux', 'windows', 'mac'],
+    difficulty: ['beginner', 'intermediate', 'advanced'],
+    interactivity: 'input-output-tool',
+    openSource: true,
+    githubUrl: 'https://github.com/FreeRTOS/FreeRTOS-Kernel',
+    tags: ['RTOS', 'Embedded', 'Microcontroller', 'Task Scheduling', 'AWS IoT', 'Open Source'],
+    featured: false,
+  },
+  {
+    id: '43',
+    slug: 'renode',
+    name: 'Renode',
+    url: 'https://renode.io',
+    type: 'desktop-app',
+    description: 'Open-source framework for deterministic embedded system simulation.',
+    longDescription:
+      'Renode is an open-source simulation framework by Antmicro that models multi-node embedded systems — MCUs, sensors, radios, and peripherals — with deterministic, reproducible timing. It supports Zephyr, FreeRTOS, and bare-metal firmware and integrates with CI pipelines and continuous testing workflows.',
+    category: 'embedded-computer-engineering',
+    purposes: ['simulator'],
+    pricing: 'open-source',
+    authentication: 'no-account',
+    platform: ['linux', 'windows', 'mac'],
+    difficulty: ['intermediate', 'advanced'],
+    interactivity: 'input-output-tool',
+    openSource: true,
+    githubUrl: 'https://github.com/renode/renode',
+    tags: ['Embedded Simulation', 'CI Testing', 'MCU', 'Deterministic', 'Antmicro', 'Open Source'],
+    featured: false,
+  },
+  {
+    id: '44',
+    slug: 'mplab-x-ide',
+    name: 'MPLAB X IDE',
+    url: 'https://www.microchip.com/en-us/tools-resources/develop/mplab-ide',
+    type: 'desktop-app',
+    description: 'Integrated development environment for PIC, AVR, and SAM microcontrollers.',
+    longDescription:
+      'MPLAB X IDE is a free, Java-based development environment from Microchip Technology for programming PIC, AVR, and SAM microcontrollers. Built on the NetBeans platform, it offers project management, source editing, compilation, and hardware debugging with Microchip debuggers and programmers.',
+    category: 'embedded-computer-engineering',
+    purposes: ['ide-toolchain'],
+    pricing: 'free',
+    authentication: 'no-account',
+    platform: ['windows', 'mac', 'linux'],
+    difficulty: ['intermediate', 'advanced'],
+    interactivity: 'input-output-tool',
+    openSource: false,
+    tags: ['PIC', 'AVR', 'Microchip', 'IDE', 'Embedded', 'Firmware'],
+    featured: false,
+  },
   {
     id: '35',
     slug: 'octopart',
@@ -734,7 +1022,7 @@ export const websites: Website[] = [
     description: 'Electronic component search engine with pricing and datasheets.',
     longDescription:
       'Octopart is the most comprehensive search engine for electronic components. Aggregates pricing, availability, and datasheets from hundreds of distributors, making component sourcing fast and transparent.',
-    category: 'calculators-reference',
+    category: 'engineering-resources-tools',
     purposes: ['datasheet-reference'],
     pricing: 'free',
     authentication: 'no-account',
@@ -754,7 +1042,7 @@ export const websites: Website[] = [
     description: 'Global electronic component distributor with parametric search tools.',
     longDescription:
       'DigiKey (formerly Digi-Key) is a major authorized distributor offering a vast in-stock inventory of electronic components with powerful parametric search, datasheets, reference designs, and free engineering calculators for rapid prototyping.',
-    category: 'calculators-reference',
+    category: 'engineering-resources-tools',
     purposes: ['datasheet-reference'],
     pricing: 'free',
     authentication: 'no-account',

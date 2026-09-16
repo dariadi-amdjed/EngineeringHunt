@@ -16,16 +16,13 @@ Instead of searching across scattered websites and outdated lists, EngineeringHu
 
 ## What you can find
 
-EngineeringHunt currently covers 8 engineering domains:
+EngineeringHunt currently covers 5 engineering domains:
 
-- Electronics & Circuitry
-- Electrical & Power Engineering
-- Embedded Systems & IoT
-- PCB Design & EDA
-- Digital Logic & Hardware Description
-- Computer Architecture & Chips
+- Embedded Systems & Computer Engineering
 - Robotics & Control Systems
-- Calculators & Technical Reference
+- Electronics & Hardware Design
+- AI & Machine Learning
+- Engineering Resources & Tools
 
 ## Features
 

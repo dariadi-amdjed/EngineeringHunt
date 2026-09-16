@@ -1,16 +1,13 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, Zap, Lightbulb, Cpu, CircuitBoard, Binary, Server, Bot, Calculator, type LucideIcon } from 'lucide-react';
+import { ArrowRight, Zap, Cpu, Bot, Sparkles, Globe, type LucideIcon } from 'lucide-react';
 import type { Category } from '@/types';
 
 export const iconMap: Record<string, LucideIcon> = {
   Zap,
-  Lightbulb,
   Cpu,
-  CircuitBoard,
-  Binary,
-  Server,
   Bot,
-  Calculator,
+  Sparkles,
+  Globe,
 };
 
 interface CategoryCardProps {
