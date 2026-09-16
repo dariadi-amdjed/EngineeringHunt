@@ -10,6 +10,7 @@ import { AISearchOverlay } from '@/components/AISearchOverlay';
 import { SkeletonCard } from '@/components/SkeletonCard';
 import { exploreStickers } from '@/data/stickers';
 import { categories } from '@/data/categories';
+import { pruneFocusSelection } from '@/data/focus';
 import { useWebsites } from '@/lib/useWebsites';
 import type { SearchFilters } from '@/types';
 
@@ -18,13 +19,14 @@ const PAGE_SIZE = 12;
 const defaultFilters: SearchFilters = {
   query: '',
   categories: [],
-  purposes: [],
+  focus: [],
   pricing: [],
   authentication: [],
   difficulty: [],
   interactivity: [],
   openSource: false,
   type: [],
+  platform: [],
 };
 
 export function ExplorePage() {
@@ -48,6 +50,13 @@ export function ExplorePage() {
     setAiQuery(query);
     setAiOpen(true);
   };
+
+  const handleFilterChange = useCallback((f: Partial<SearchFilters>) => {
+    setFilters((prev) => {
+      const next = { ...prev, ...f };
+      return { ...next, focus: pruneFocusSelection(next.categories, next.focus) };
+    });
+  }, []);
 
   const { websites: results, totalCount, loading } = useWebsites({ filters });
 
@@ -85,7 +94,9 @@ export function ExplorePage() {
             </span>
             <h1 className="mt-1 text-xl font-bold text-slate-900">Browse all tools</h1>
             <p className="mt-1 text-[0.7rem] text-slate-500">
-              {totalCount} tool{totalCount !== 1 ? 's' : ''} across {categories.length} domains
+              {totalCount} tool{totalCount !== 1 ? 's' : ''} across{' '}
+              {filters.categories.length > 0 ? filters.categories.length : categories.length} domain
+              {filters.categories.length > 0 ? (filters.categories.length !== 1 ? 's' : '') : 's'}
             </p>
           </div>
         </div>
@@ -97,7 +108,7 @@ export function ExplorePage() {
 
         {/* Filter Bar */}
         <div className="mb-2">
-          <FilterBar filters={filters} onFilterChange={(f) => setFilters((prev) => ({ ...prev, ...f }))} />
+          <FilterBar filters={filters} onFilterChange={handleFilterChange} />
         </div>
 
         {/* Result count */}

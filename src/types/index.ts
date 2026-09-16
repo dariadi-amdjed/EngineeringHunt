@@ -12,7 +12,66 @@ export type Purpose =
   | 'rtos'
   | 'calculator'
   | 'datasheet-reference'
-  | 'community-docs';
+  | 'community-docs'
+  | 'ml-framework';
+
+export type Focus =
+  // Embedded Systems & Computer Engineering
+  | 'microcontrollers'
+  | 'firmware'
+  | 'rtos'
+  | 'ide-toolchain'
+  | 'digital-logic'
+  | 'hdl'
+  | 'fpga'
+  | 'computer-architecture'
+  | 'cpu-design'
+  | 'asic-chip-design'
+  | 'embedded-simulation'
+  | 'low-level-programming'
+  // Robotics & Control Systems
+  | 'robot-simulation'
+  | 'ros'
+  | 'control-systems'
+  | 'motion-planning'
+  | 'sensors'
+  | 'actuators'
+  | 'kinematics'
+  | 'dynamics'
+  | 'numerical-computing'
+  // Electronics & Hardware Design
+  | 'circuit-simulation'
+  | 'spice'
+  | 'pcb-eda'
+  | 'schematic-design'
+  | 'components'
+  | 'power-electronics'
+  | 'signal-analysis'
+  | 'hardware-prototyping'
+  // AI & Machine Learning
+  | 'machine-learning'
+  | 'deep-learning'
+  | 'computer-vision'
+  | 'nlp'
+  | 'models'
+  | 'datasets'
+  | 'experiment-tracking'
+  | 'mlops'
+  | 'inference-deployment'
+  | 'edge-ai'
+  | 'gpu-acceleration'
+  | 'ml-compiler'
+  | 'notebooks'
+  | 'data-science'
+  // Engineering Resources & Tools
+  | 'calculators'
+  | 'datasheets'
+  | 'component-search'
+  | 'documentation'
+  | 'learning'
+  | 'references'
+  | 'community'
+  | 'engineering-tools';
 
 export type Pricing = 'free' | 'open-source' | 'freemium' | 'paid';
 
@@ -37,6 +96,7 @@ export type Website = {
   type: ToolType;
   category: CategorySlug;
   purposes: Purpose[];
+  focus: Focus[];
   pricing: Pricing;
   authentication: Authentication;
   platform: Platform[];
@@ -63,13 +123,14 @@ export type Category = {
 export type SearchFilters = {
   query: string;
   categories: CategorySlug[];
-  purposes: Purpose[];
+  focus: Focus[];
   pricing: Pricing[];
   authentication: Authentication[];
   difficulty: Difficulty[];
   interactivity: Interactivity[];
   openSource: boolean;
   type: ToolType[];
+  platform: Platform[];
 };
 
 export type SortOption = 'relevance' | 'popular' | 'recent' | 'free-first' | 'open-source-first';

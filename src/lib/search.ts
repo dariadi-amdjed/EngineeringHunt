@@ -25,8 +25,9 @@ interface ToolIndex {
   tagWords: string[];
   categoryTextLower: string;
   categoryWords: string[];
-  topicWords: string[];
   purposeTextLower: string;
+  focusTextLower: string;
+  focusWords: string[];
   metaTextLower: string;
 }
 
@@ -90,6 +91,11 @@ const SYNONYMS: Record<string, string[]> = {
   browser: ['web'],
   web: ['browser'],
   free: [],
+  // Shorthand / compound expansions. Kept narrow and engineering-specific;
+  // ambiguous abbreviations are only expanded where the query intent is clear.
+  ros2: ['ros', 'ros 2'],
+  ml: ['machine', 'learning'],
+  cv: ['vision', 'image'],
 };
 
 function normalize(text: string): string {
@@ -105,6 +111,8 @@ const FIELD_WEIGHTS = {
   namePart: 16,
   tagWord: 20,
   tagPart: 10,
+  focusWord: 18,
+  focusPart: 8,
   categoryWord: 14,
   categoryPart: 7,
   purposeWord: 12,
@@ -113,7 +121,7 @@ const FIELD_WEIGHTS = {
   descPart: 3,
   longDescWord: 4,
   longDescPart: 2,
-  metaWord: 8,
+  metaWord: 5,
 };
 
 const PHRASE_BONUS = {
@@ -123,7 +131,15 @@ const PHRASE_BONUS = {
   description: 25,
 };
 
+// Extra credit when a matched query term belongs to the tool's own domain
+// vocabulary, so queries like "esp32", "ros 2", or "pcb" stay on-topic.
+const DOMAIN_CONTEXT_BONUS = 14;
+
 export const STRONG_MATCH_THRESHOLD = 55;
+
+// High single-token scores (e.g. "ros2", "ml", "cv", "fpga") signal a
+// confident match even when only one query term was present.
+const STRONG_SINGLE_TOKEN_SCORE = 75;
 
 function buildToolIndex(website: Website): ToolIndex {
   const category = categories.find((c) => c.slug === website.category);
@@ -138,17 +154,16 @@ function buildToolIndex(website: Website): ToolIndex {
     categoryTextLower: [
       website.category.replace(/-/g, ' '),
       category ? category.name : '',
-      category ? category.topics.join(' ') : '',
     ]
       .join(' ')
       .toLowerCase(),
     categoryWords: [
       ...words(website.category.replace(/-/g, ' ')),
       ...(category ? category.name.split(/\s+/).map((w) => w.toLowerCase()) : []),
-      ...(category ? category.topics.flatMap((t) => words(t)) : []),
     ],
-    topicWords: category ? category.topics.flatMap((t) => words(t)) : [],
     purposeTextLower: website.purposes.map((p) => p.replace(/-/g, ' ')).join(' ').toLowerCase(),
+    focusTextLower: website.focus.map((f) => f.replace(/-/g, ' ')).join(' | ').toLowerCase(),
+    focusWords: website.focus.flatMap((f) => words(f)),
     metaTextLower: [
       website.pricing,
       website.authentication.replace(/-/g, ' '),
@@ -188,9 +203,9 @@ function matchToken(index: ToolIndex, term: string): FieldHit | null {
     return { score: FIELD_WEIGHTS.nameWord, field: 'name', term: t };
   if (index.tagWords.includes(t))
     return { score: FIELD_WEIGHTS.tagWord, field: 'tag', term: t };
-  if (index.topicWords.includes(t) || index.nameLower === t)
-    return { score: FIELD_WEIGHTS.categoryWord, field: 'domain', term: t };
-  if (index.categoryWords.includes(t))
+  if (index.focusWords.includes(t))
+    return { score: FIELD_WEIGHTS.focusWord, field: 'focus', term: t };
+  if (index.nameLower === t || index.categoryWords.includes(t))
     return { score: FIELD_WEIGHTS.categoryWord, field: 'domain', term: t };
   if (words(index.purposeTextLower).includes(t))
     return { score: FIELD_WEIGHTS.purposeWord, field: 'purpose', term: t };
@@ -207,6 +222,8 @@ function matchToken(index: ToolIndex, term: string): FieldHit | null {
       return { score: FIELD_WEIGHTS.namePart, field: 'name', term: t };
     if (index.tagTextLower.includes(t))
       return { score: FIELD_WEIGHTS.tagPart, field: 'tag', term: t };
+    if (index.focusTextLower.includes(t))
+      return { score: FIELD_WEIGHTS.focusPart, field: 'focus', term: t };
     if (index.categoryTextLower.includes(t))
       return { score: FIELD_WEIGHTS.categoryPart, field: 'domain', term: t };
     if (index.descLower.includes(t)) return { score: FIELD_WEIGHTS.descPart, field: 'description' };
@@ -298,9 +315,19 @@ export function rankWebsites(query: string, pool: Website[]): RankedWebsite[] {
       score += 40 * ((matchedCount * matchedCount) / (total * total));
     }
 
+    // Domain-context bonus: if the query matched terms from this tool's own
+    // domain vocabulary, the tool is more likely to be the intended answer.
+    const domainVocab = CATEGORY_INTENT_WORDS[index.website.category] ?? [];
+    if (matchedTokens.some((t) => domainVocab.includes(t))) {
+      score += DOMAIN_CONTEXT_BONUS;
+    }
+
     const hasNameOrPhraseHit = nameHit > 0 || tagPhrase;
     const strong =
-      score >= STRONG_MATCH_THRESHOLD && (matchedCount >= 2 || hasNameOrPhraseHit);
+      score >= STRONG_MATCH_THRESHOLD &&
+      (matchedCount >= 2 ||
+        hasNameOrPhraseHit ||
+        (total === 1 && score >= STRONG_SINGLE_TOKEN_SCORE));
 
     return { website: index.website, score, matchedTokens, strong, hitFields };
   });
@@ -381,6 +408,18 @@ export function interpretQuery(query: string): { label: string; tags: string[] }
     datasheet: 'Datasheets',
     reference: 'Reference',
     documentation: 'Docs',
+    ml: 'Machine Learning',
+    'machine': 'Machine Learning',
+    training: 'Machine Learning',
+    vision: 'Computer Vision',
+    cv: 'Computer Vision',
+    ros: 'ROS / ROS 2',
+    ros2: 'ROS / ROS 2',
+    inference: 'Inference / Deployment',
+    deployment: 'Inference / Deployment',
+    gpu: 'GPU / Acceleration',
+    datasets: 'Datasets',
+    notebooks: 'Notebooks',
   };
   for (const token of tokens) {
     const label = intentLabels[token];
@@ -399,6 +438,7 @@ export function interpretQuery(query: string): { label: string; tags: string[] }
 const FIELD_LABELS: Record<string, string> = {
   name: 'name',
   tag: 'tags',
+  focus: 'focus',
   domain: 'domain',
   purpose: 'purpose',
   metadata: 'attributes',
@@ -409,7 +449,7 @@ const FIELD_LABELS: Record<string, string> = {
 export function describeMatch(entry: RankedWebsite): string {
   const parts: string[] = [];
 
-  const ordered = ['name', 'tag', 'domain', 'purpose', 'metadata', 'description'];
+  const ordered = ['name', 'tag', 'focus', 'domain', 'purpose', 'metadata', 'description'];
   for (const field of ordered) {
     const details = entry.hitFields.get(field);
     if (!details || details.length === 0) continue;

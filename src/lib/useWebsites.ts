@@ -16,8 +16,10 @@ function applyFilters(
   if (filters.categories && filters.categories.length > 0) {
     result = result.filter((w) => filters.categories!.includes(w.category));
   }
-  if (filters.purposes && filters.purposes.length > 0) {
-    result = result.filter((w) => w.purposes.some((p) => filters.purposes!.includes(p)));
+  if (filters.focus && filters.focus.length > 0) {
+    result = result.filter((w) =>
+      w.focus.some((f) => filters.focus!.includes(f))
+    );
   }
   if (filters.pricing && filters.pricing.length > 0) {
     result = result.filter((w) => filters.pricing!.includes(w.pricing));
@@ -36,6 +38,11 @@ function applyFilters(
   }
   if (filters.type && filters.type.length > 0) {
     result = result.filter((w) => filters.type!.includes(w.type));
+  }
+  if (filters.platform && filters.platform.length > 0) {
+    result = result.filter((w) =>
+      filters.platform!.some((p) => w.platform.includes(p))
+    );
   }
 
   // Query ranking runs last so it scores only within the filtered pool.
@@ -100,14 +107,15 @@ export function useWebsites(options: UseWebsitesOptions = {}): UseWebsitesResult
   const filterKey = JSON.stringify({
     q: filters?.query || '',
     c: filters?.categories || [],
-    p: filters?.purposes || [],
+    f: filters?.focus || [],
     pr: filters?.pricing || [],
     a: filters?.authentication || [],
     d: filters?.difficulty || [],
     i: filters?.interactivity || [],
     o: filters?.openSource || false,
     t: filters?.type || [],
-    f: featured || false,
+    p: filters?.platform || [],
+    feat: featured || false,
     l: limit || 0,
   });
 

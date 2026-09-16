@@ -18,6 +18,7 @@ const templateJson = `{
   type: 'web-app',
   category: 'embedded-computer-engineering',
   purposes: ['simulator'],
+  focus: ['microcontrollers'],
   pricing: 'free',
   authentication: 'no-account',
   platform: ['web'],

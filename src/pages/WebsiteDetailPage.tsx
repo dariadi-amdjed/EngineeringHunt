@@ -24,6 +24,7 @@ const purposeLabels: Record<string, string> = {
   'calculator': 'Calculator',
   'datasheet-reference': 'Datasheet / Reference',
   'community-docs': 'Community & Docs',
+  'ml-framework': 'ML Framework',
 };
 
 const authLabels: Record<string, string> = {

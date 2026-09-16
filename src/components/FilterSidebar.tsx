@@ -1,7 +1,8 @@
 import { ChevronDown, ChevronRight } from 'lucide-react';
 import { useState, useCallback } from 'react';
-import type { SearchFilters, SortOption, Purpose, Pricing, Authentication, Difficulty, Interactivity, ToolType } from '@/types';
+import type { SearchFilters, SortOption, Pricing, Authentication, Difficulty, Interactivity, ToolType, Platform } from '@/types';
 import { categories } from '@/data/categories';
+import { getFocusOptions } from '@/data/focus';
 
 interface FilterSidebarProps {
   filters: SearchFilters;
@@ -12,16 +13,6 @@ interface FilterSidebarProps {
   onMobileClose?: () => void;
   contentOnly?: boolean;
 }
-
-const purposeLabels: Record<Purpose, string> = {
-  'simulator': 'Simulator',
-  'eda-tool': 'EDA Tool',
-  'ide-toolchain': 'IDE / Toolchain',
-  'rtos': 'RTOS / Firmware',
-  'calculator': 'Calculator',
-  'datasheet-reference': 'Datasheet / Reference',
-  'community-docs': 'Community & Docs',
-};
 
 const pricingLabels: Record<Pricing, string> = {
   'free': 'Free',
@@ -54,12 +45,21 @@ const typeLabels: Record<ToolType, string> = {
   'extension': 'Extension',
 };
 
-const purposes: Purpose[] = ['simulator', 'eda-tool', 'ide-toolchain', 'rtos', 'calculator', 'datasheet-reference', 'community-docs'];
+const platformLabels: Record<Platform, string> = {
+  web: 'Web',
+  windows: 'Windows',
+  mac: 'macOS',
+  linux: 'Linux',
+  cli: 'CLI',
+  mobile: 'Mobile',
+};
+
 const pricing: Pricing[] = ['free', 'open-source', 'freemium', 'paid'];
 const authentications: Authentication[] = ['no-account', 'optional-signup', 'signup-required'];
 const difficulties: Difficulty[] = ['beginner', 'intermediate', 'advanced'];
 const interactivities: Interactivity[] = ['interactive-canvas', 'input-output-tool', 'static-document'];
 const toolTypes: ToolType[] = ['web-app', 'desktop-app', 'extension'];
+const platforms: Platform[] = ['web', 'windows', 'mac', 'linux', 'cli', 'mobile'];
 
 const sortOptions: { value: SortOption; label: string }[] = [
   { value: 'relevance', label: 'Relevance' },
@@ -149,12 +149,13 @@ export function FilterSidebar({
 
   const activeFilterCount =
     filters.categories.length +
-    filters.purposes.length +
+    filters.focus.length +
     filters.pricing.length +
     filters.authentication.length +
     filters.difficulty.length +
     filters.interactivity.length +
     filters.type.length +
+    filters.platform.length +
     (filters.openSource ? 1 : 0);
 
   const sidebarContent = (
@@ -168,13 +169,14 @@ export function FilterSidebar({
               onFilterChange({
                 query: filters.query,
                 categories: [],
-                purposes: [],
+                focus: [],
                 pricing: [],
                 authentication: [],
                 difficulty: [],
                 interactivity: [],
                 openSource: false,
                 type: [],
+                platform: [],
               })
             }
             className="text-[0.6rem] text-blue-600 hover:text-blue-700 cursor-pointer"
@@ -239,14 +241,14 @@ export function FilterSidebar({
         ))}
       </CollapsibleSection>
 
-      {/* Purpose */}
-      <CollapsibleSection title="Purpose" count={filters.purposes.length}>
-        {purposes.map((p) => (
+      {/* Focus */}
+      <CollapsibleSection title="Focus" count={filters.focus.length}>
+        {getFocusOptions(filters.categories).map((f) => (
           <CheckboxItem
-            key={p}
-            label={purposeLabels[p]}
-            checked={filters.purposes.includes(p)}
-            onChange={() => toggleFilter('purposes', p)}
+            key={f.value}
+            label={f.label}
+            checked={filters.focus.includes(f.value)}
+            onChange={() => toggleFilter('focus', f.value)}
           />
         ))}
       </CollapsibleSection>
@@ -259,6 +261,18 @@ export function FilterSidebar({
             label={pricingLabels[p]}
             checked={filters.pricing.includes(p)}
             onChange={() => toggleFilter('pricing', p)}
+          />
+        ))}
+      </CollapsibleSection>
+
+      {/* Platform */}
+      <CollapsibleSection title="Platform" count={filters.platform.length}>
+        {platforms.map((p) => (
+          <CheckboxItem
+            key={p}
+            label={platformLabels[p]}
+            checked={filters.platform.includes(p)}
+            onChange={() => toggleFilter('platform', p)}
           />
         ))}
       </CollapsibleSection>

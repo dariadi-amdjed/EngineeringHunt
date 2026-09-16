@@ -1,26 +1,17 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { ChevronDown, X } from 'lucide-react';
 import { categories } from '@/data/categories';
+import { getFocusOptions } from '@/data/focus';
 import type {
   SearchFilters,
-  Purpose,
   Pricing,
   Authentication,
   Difficulty,
   ToolType,
+  Platform,
 } from '@/types';
 
 /* ── Labels ──────────────────────────────────────────────────────────── */
-
-const purposeLabels: Record<Purpose, string> = {
-  simulator: 'Simulator',
-  'eda-tool': 'EDA Tool',
-  'ide-toolchain': 'IDE / Toolchain',
-  rtos: 'RTOS / Firmware',
-  calculator: 'Calculator',
-  'datasheet-reference': 'Datasheet / Reference',
-  'community-docs': 'Community & Docs',
-};
 
 const pricingLabels: Record<Pricing, string> = {
   free: 'Free',
@@ -47,17 +38,17 @@ const typeLabels: Record<ToolType, string> = {
   'extension': 'Extension',
 };
 
+const platformLabels: Record<Platform, string> = {
+  web: 'Web',
+  windows: 'Windows',
+  mac: 'macOS',
+  linux: 'Linux',
+  cli: 'CLI',
+  mobile: 'Mobile',
+};
+
 /* ── Option arrays ───────────────────────────────────────────────────── */
 
-const allPurposes: Purpose[] = [
-  'simulator',
-  'eda-tool',
-  'ide-toolchain',
-  'rtos',
-  'calculator',
-  'datasheet-reference',
-  'community-docs',
-];
 const allPricing: Pricing[] = ['free', 'open-source', 'freemium', 'paid'];
 const allAuth: Authentication[] = [
   'no-account',
@@ -66,6 +57,7 @@ const allAuth: Authentication[] = [
 ];
 const allDifficulty: Difficulty[] = ['beginner', 'intermediate', 'advanced'];
 const allToolTypes: ToolType[] = ['web-app', 'desktop-app', 'extension'];
+const allPlatforms: Platform[] = ['web', 'windows', 'mac', 'linux', 'cli', 'mobile'];
 
 /* ── Props ───────────────────────────────────────────────────────────── */
 
@@ -225,6 +217,40 @@ function Chip({ label, count, isOpen, onToggle, onClear, children }: ChipProps) 
   );
 }
 
+/* ── Open-source toggle ──────────────────────────────────────────────── */
+
+function OpenSourceToggle({
+  active,
+  onToggle,
+  onClear,
+}: {
+  active: boolean;
+  onToggle: () => void;
+  onClear: () => void;
+}) {
+  return (
+    <button
+      onClick={onToggle}
+      className={`flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-[0.65rem] font-medium transition-colors cursor-pointer ${
+        active
+          ? 'border-blue-200 bg-blue-50 text-blue-700 hover:bg-blue-100'
+          : 'border-slate-200 bg-white text-slate-600 hover:border-slate-300 hover:bg-slate-50'
+      }`}
+    >
+      Open Source
+      {active && (
+        <X
+          className="h-3 w-3 text-blue-400 hover:text-blue-600"
+          onClick={(e) => {
+            e.stopPropagation();
+            onClear();
+          }}
+        />
+      )}
+    </button>
+  );
+}
+
 /* ── FilterBar ───────────────────────────────────────────────────────── */
 
 export function FilterBar({ filters, onFilterChange }: FilterBarProps) {
@@ -238,20 +264,24 @@ export function FilterBar({ filters, onFilterChange }: FilterBarProps) {
 
   const totalActive =
     filters.categories.length +
-    filters.purposes.length +
+    filters.focus.length +
     filters.pricing.length +
     filters.authentication.length +
     filters.difficulty.length +
-    filters.type.length;
+    filters.type.length +
+    filters.platform.length +
+    (filters.openSource ? 1 : 0);
 
   const clearAll = () => {
     onFilterChange({
       categories: [],
-      purposes: [],
+      focus: [],
       pricing: [],
       authentication: [],
       difficulty: [],
       type: [],
+      platform: [],
+      openSource: false,
     });
   };
 
@@ -264,18 +294,21 @@ export function FilterBar({ filters, onFilterChange }: FilterBarProps) {
       selected: filters.categories,
     },
     {
+      id: 'focus',
+      label: 'Focus',
+      filterKey: 'focus' as const,
+      options: getFocusOptions(filters.categories).map((f) => ({
+        value: f.value,
+        label: f.label,
+      })),
+      selected: filters.focus,
+    },
+    {
       id: 'type',
       label: 'Tool Type',
       filterKey: 'type' as const,
       options: allToolTypes.map((t) => ({ value: t, label: typeLabels[t] })),
       selected: filters.type,
-    },
-    {
-      id: 'purpose',
-      label: 'Purpose',
-      filterKey: 'purposes' as const,
-      options: allPurposes.map((p) => ({ value: p, label: purposeLabels[p] })),
-      selected: filters.purposes,
     },
     {
       id: 'pricing',
@@ -285,11 +318,11 @@ export function FilterBar({ filters, onFilterChange }: FilterBarProps) {
       selected: filters.pricing,
     },
     {
-      id: 'auth',
-      label: 'Authentication',
-      filterKey: 'authentication' as const,
-      options: allAuth.map((a) => ({ value: a, label: authLabels[a] })),
-      selected: filters.authentication,
+      id: 'platform',
+      label: 'Platform',
+      filterKey: 'platform' as const,
+      options: allPlatforms.map((p) => ({ value: p, label: platformLabels[p] })),
+      selected: filters.platform,
     },
     {
       id: 'level',
@@ -300,6 +333,13 @@ export function FilterBar({ filters, onFilterChange }: FilterBarProps) {
         label: difficultyLabels[d],
       })),
       selected: filters.difficulty,
+    },
+    {
+      id: 'auth',
+      label: 'Authentication',
+      filterKey: 'authentication' as const,
+      options: allAuth.map((a) => ({ value: a, label: authLabels[a] })),
+      selected: filters.authentication,
     },
   ];
 
@@ -331,6 +371,12 @@ export function FilterBar({ filters, onFilterChange }: FilterBarProps) {
           />
         </Chip>
       ))}
+
+      <OpenSourceToggle
+        active={filters.openSource}
+        onToggle={() => onFilterChange({ openSource: !filters.openSource })}
+        onClear={() => onFilterChange({ openSource: false })}
+      />
 
       {totalActive > 0 && (
         <button
