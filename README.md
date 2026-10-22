@@ -16,13 +16,16 @@ Instead of searching across scattered websites and outdated lists, EngineeringHu
 
 ## What you can find
 
-EngineeringHunt currently covers 5 engineering domains:
+EngineeringHunt currently includes 70+ tools across 8 engineering domains:
 
-- Embedded Systems & Computer Engineering
-- Robotics & Control Systems
-- Electronics & Hardware Design
-- AI & Machine Learning
-- Engineering Resources & Tools
+- PCB Design
+- Electronics & Circuits
+- Electrical Power
+- Embedded Systems & IoT
+- Digital Logic & HDL
+- Computer Engineering & Chips
+- Robotics & Control
+- Reference Calculators
 
 ## Features
 
